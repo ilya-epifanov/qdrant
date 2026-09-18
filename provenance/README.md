@@ -6,6 +6,7 @@ This branch packages the published `qdrant-edge` 0.8.0 crate with one upstream f
 crates.io qdrant-edge 0.8.0
     -> unchanged standalone package import
     -> preserved edge-layout.patch
+    -> comment-only modification-notice.patch
     -> immutable consuming-project Gitlink at third-party/qdrant
 ```
 
@@ -17,7 +18,9 @@ crates.io qdrant-edge 0.8.0
 - Upstream fix: https://github.com/qdrant/qdrant/commit/bbd54cf6f01fddbf63c779d682391ab8a6e885cf, PR 10239, authored by generall, Andrey Vasnetsov.
 - Original upstream patch: `bbd54cf.patch`, SHA256 `ca35464ee0f5b9faa1cec656221587d26f3f576bb02831a030b0e4186fa48b53`.
 - Applied patch: `edge-layout.patch`, SHA256 `071f59753e7ce3cecb22820f5d641c3572683052b9fbe75637562b4a6be9f415`.
-- Patched `src/segment/index/hnsw_index/links_container.rs` SHA256: `cee39f03c210bcac53c12737b2ed0d7cdd4558e7acc1bb554e69fd247257f900`.
+- Qualified `src/segment/index/hnsw_index/links_container.rs` before the packaging notice, SHA256: `cee39f03c210bcac53c12737b2ed0d7cdd4558e7acc1bb554e69fd247257f900`.
+- Comment-only packaging patch: `modification-notice.patch`, SHA256 `239667857081a89a7d7150c706dad4c4375c0dca76be5364f33cab697d5c7052`.
+- Distributed `src/segment/index/hnsw_index/links_container.rs` after the notice, SHA256: `92471e866dfb705316822607fe7aae3776b988fd760ca47a7042dd3dcf9cb021`.
 
 The only engine-source change is `LinksContainer`, including upstream's duplicate-vector regression test. The applied patch changes the upstream monorepo paths and one unchanged import context to match the published flattened package. It does not change the upstream algorithm.
 
@@ -25,7 +28,15 @@ The fork is `git@github.com:ilya-epifanov/qdrant.git`. Its dedicated orphan bran
 
 ## License and attribution
 
-The package declares Apache-2.0 and credits the Qdrant Team in its unchanged manifest. The archive did not include a root license file. `../LICENSE` preserves the license fetched from https://raw.githubusercontent.com/qdrant/qdrant/bbd54cf6f01fddbf63c779d682391ab8a6e885cf/LICENSE, SHA256 `c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4`. The two preserved patches retain upstream authorship. Existing bundled source notices remain unchanged. This document records the local modification; it does not claim a complete transitive-license audit.
+The package declares Apache-2.0 and credits the Qdrant Team in its unchanged manifest. The archive did not include a root license file. `../LICENSE` preserves the license fetched from https://raw.githubusercontent.com/qdrant/qdrant/bbd54cf6f01fddbf63c779d682391ab8a6e885cf/LICENSE, SHA256 `c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4`. The two preserved upstream patches retain upstream authorship and exact bytes. The separate `modification-notice.patch` adds the file-level change notice required by Apache-2.0 section 4(b). It prepends exactly the following two comment lines and one blank line, with LF line endings, without changing qualified algorithm bytes:
+
+```rust
+// Modified from published qdrant-edge 0.8.0 by porting upstream fix
+// bbd54cf6f01fddbf63c779d682391ab8a6e885cf. See provenance/README.md.
+
+```
+
+Existing bundled source notices remain unchanged. This document does not claim a complete transitive-license audit.
 
 ## Reproduce and verify
 
@@ -41,12 +52,14 @@ printf '%s  %s\n' 0b8072302c87506a34bffec9bc16dbdcd36df8ab1321406b6e141530348c7e
 tar -xzf "$work/source.crate" -C "$work"
 (cd "$work/qdrant-edge-0.8.0" && patch -p1 --fuzz=0 < "$sdk/provenance/edge-layout.patch")
 printf '%s  %s\n' cee39f03c210bcac53c12737b2ed0d7cdd4558e7acc1bb554e69fd247257f900 "$work/qdrant-edge-0.8.0/src/segment/index/hnsw_index/links_container.rs" | shasum -a 256 -c -
+(cd "$work/qdrant-edge-0.8.0" && patch -p1 --fuzz=0 < "$sdk/provenance/modification-notice.patch")
+printf '%s  %s\n' 92471e866dfb705316822607fe7aae3776b988fd760ca47a7042dd3dcf9cb021 "$work/qdrant-edge-0.8.0/src/segment/index/hnsw_index/links_container.rs" | shasum -a 256 -c -
 diff -r -x .git -x LICENSE -x provenance "$work/qdrant-edge-0.8.0" "$sdk"
 ```
 
-Only `.git`, the added root `LICENSE` and this provenance directory are outside the reconstructed archive. There are no generated build files in the SDK checkout. These diff exceptions describe source reconstruction, not repository scanner policy.
+Both patch commands must report only `patching file 'src/segment/index/hnsw_index/links_container.rs'`, with no offsets, fuzz, rejects or other output. Reject extra files. The only allowed additions to the archive are root `LICENSE`, `provenance/README.md`, `provenance/bbd54cf.patch`, `provenance/edge-layout.patch` and `provenance/modification-notice.patch`; `.git` is checkout metadata. Confirm this exact addition set separately from the recursive diff, which skips the provenance directory. There are no generated build files in the SDK checkout. These diff exceptions describe source reconstruction, not repository scanner policy.
 
-Qualification source comparison also matched all 1,074 package files against the prior patched vendor copy. That Cargo-cache-derived copy additionally has `.cargo-ok`, a Cargo extraction marker absent from the published archive and this Git package.
+Removing only the exact declared notice prefix from the distributed LinksContainer file reproduces the qualified file byte-for-byte. All 1,073 other imported files match both the published archive and the qualified vendor copy without changes. That Cargo-cache-derived copy additionally has `.cargo-ok`, a Cargo extraction marker absent from the published archive and this Git package.
 
 ## Build contract and maintenance
 

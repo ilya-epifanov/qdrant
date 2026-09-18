@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 by porting upstream fix
+// bbd54cf6f01fddbf63c779d682391ab8a6e885cf. See provenance/README.md.
+
 use std::cell::Cell;
 use std::iter::Copied;
 use std::num::NonZeroU32;
