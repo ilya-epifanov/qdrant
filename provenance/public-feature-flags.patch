@@ -1,0 +1,10 @@
+--- a/src/edge/reexports.rs
++++ b/src/edge/reexports.rs
+@@ -1,3 +1,7 @@
++// Modified for the immutable Edge experiment: expose existing feature initialization.
++// Original defaults and normalization are unchanged.
++pub use crate::common::flags::{FeatureFlags, init_feature_flags};
++
+ mod reexports_from_qdrant_crates {
+     pub use crate::segment::common::operation_error::{OperationError, OperationResult};
+     pub use crate::segment::data_types::facets::{FacetHit, FacetResponse, FacetValue, FacetValueHit};
