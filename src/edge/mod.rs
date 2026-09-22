@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
+// See provenance/README.md.
+
 pub mod bm25_embed;
 mod builders;
 pub mod config;
@@ -21,7 +24,7 @@ pub use builders::{
 pub use config::optimizers::EdgeOptimizersConfig;
 pub use config::shard::EdgeConfig;
 pub use config::vectors::{EdgeSparseVectorParams, EdgeVectorParams};
-pub use edge_shard::EdgeShard;
+pub use edge_shard::{EdgeFinishReport, EdgeShard};
 pub use read_only::{
     LocalSegmentEnumerator, ManifestSegmentEnumerator, ReadOnlyEdgeShard, SegmentEnumerator,
 };

@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
+// See provenance/README.md.
+
 mod optimize;
 mod shard_read;
 mod snapshots;
@@ -29,6 +32,7 @@ use crate::edge::read_view::build_segment_pool;
 
 #[derive(Debug)]
 pub struct EdgeShard {
+    finish_started: bool,
     path: PathBuf,
     /// Shared so long-lived closures (e.g. the optimizer's live vector-name provider) can read the
     /// current config after `&self` borrows expire.
@@ -44,8 +48,45 @@ pub struct EdgeShard {
     search_pool: Arc<rayon::ThreadPool>,
 }
 
+/// Outcomes observed before destroying the consumed shard owner.
+///
+/// A returned report means the retained WAL workers were joined and this shard was
+/// destroyed, even when a phase returned an error or a worker panicked. It does not
+/// revoke independently acquired read views or other escaped storage owners.
+/// Segment errors retain the SDK error; existing lower-level conversions may have
+/// already discarded underlying IO sources.
+#[derive(Debug)]
+pub struct EdgeFinishReport {
+    pub retired: Option<std::thread::Result<std::io::Result<()>>>,
+    pub current: std::io::Result<()>,
+    pub creator: Option<std::thread::Result<std::io::Result<()>>>,
+    pub segments: OperationResult<crate::segment::types::SeqNumberType>,
+    _completed: (),
+}
+
 const WAL_PATH: &str = "wal";
 impl EdgeShard {
+    /// Drain the retained WAL workers, flush current WAL and segments, and destroy
+    /// this owner. Returned phase errors do not skip subsequent phases.
+    ///
+    /// Synchronous phase or destructor panics propagate without returning a report.
+    /// Drop never repeats its log-only flush after this method starts, including
+    /// during unwinding. This is not a retry API or a universal resource revocation.
+    pub fn finish(mut self) -> EdgeFinishReport {
+        self.finish_started = true;
+        let wal = self.wal.get_mut().finish();
+        let segments = self.segments.read().flush_all(FlushMode::Sync, true);
+        let report = EdgeFinishReport {
+            retired: wal.retired,
+            current: wal.current,
+            creator: wal.creator,
+            segments,
+            _completed: (),
+        };
+        drop(self);
+        report
+    }
+
     /// Create a new edge shard at `path` with the given configuration.
     ///
     /// Fails if the shard already exists (i.e. the segments directory contains any segment).
@@ -81,6 +122,7 @@ impl EdgeShard {
         let segment_manifest = init_segment_manifest(path, &segments)?;
 
         Ok(Self {
+            finish_started: false,
             path: path.into(),
             config,
             wal: parking_lot::Mutex::new(wal),
@@ -158,6 +200,7 @@ impl EdgeShard {
         let segment_manifest = init_segment_manifest(path, &segments)?;
 
         Ok(Self {
+            finish_started: false,
             path: path.into(),
             config,
             wal: parking_lot::Mutex::new(wal),
@@ -265,7 +308,9 @@ impl EdgeShard {
 
 impl Drop for EdgeShard {
     fn drop(&mut self) {
-        if let Err(e) = self.flush() {
+        if !self.finish_started
+            && let Err(e) = self.flush()
+        {
             log::error!("EdgeShard flush during drop failed: {e}");
         }
     }

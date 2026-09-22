@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
+// See provenance/README.md.
+
 use std::cmp::Ordering;
 use std::io::{Error, ErrorKind, Result};
 use std::num::NonZeroUsize;
@@ -62,6 +65,13 @@ enum WalSegment {
     Closed(ClosedSegment),
 }
 
+/// Independent outcomes of draining the workers and flushing the current segment.
+pub(crate) struct FinishReport {
+    pub retired: Option<thread::Result<Result<()>>>,
+    pub current: Result<()>,
+    pub creator: Option<thread::Result<Result<()>>>,
+}
+
 /// A write ahead log.
 ///
 /// ### Logging
@@ -95,6 +105,18 @@ pub struct Wal {
 }
 
 impl Wal {
+    // Internal terminal step only; a consumed flush handle cannot be retried.
+    pub(crate) fn finish(&mut self) -> FinishReport {
+        let retired = self.flush.take().map(|handle| handle.join());
+        let current = self.flush_open_segment();
+        let creator = self.creator.finish();
+        FinishReport {
+            retired,
+            current,
+            creator,
+        }
+    }
+
     pub fn open<P>(path: P) -> Result<Wal>
     where
         P: AsRef<Path>,

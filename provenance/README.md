@@ -1,6 +1,6 @@
 # Patched Edge SDK provenance
 
-This branch packages the published `qdrant-edge` 0.8.0 crate with one upstream fix and the reviewed public feature-initialization API patch. It is maintained for the consuming `grayce/entity-linking` project, not an upstream-supported Edge release.
+This branch packages the published `qdrant-edge` 0.8.0 crate with one upstream fix, the reviewed public feature-initialization API patch and a consuming terminal-finish API. It is maintained for the consuming `grayce/entity-linking` project, not an upstream-supported Edge release.
 
 ```text
 crates.io qdrant-edge 0.8.0
@@ -8,6 +8,7 @@ crates.io qdrant-edge 0.8.0
     -> preserved edge-layout.patch
     -> comment-only modification-notice.patch
     -> public-feature-flags.patch
+    -> terminal-finish.patch
     -> immutable consuming-project Gitlink at third-party/qdrant
 ```
 
@@ -59,16 +60,18 @@ printf '%s  %s\n' 72a36d1788bd4c0da4ef47af049d872d37ed3400e439f89cde45b2be2fd9d9
 printf '%s  %s\n' e55d3ec968fcfbc6092c121e82d33ea982f82ed198b5c47254874ac125fcb755 "$work/qdrant-edge-0.8.0/src/edge/reexports.rs" | shasum -a 256 -c -
 (cd "$work/qdrant-edge-0.8.0" && patch -p1 --fuzz=0 < "$sdk/provenance/public-feature-flags.patch")
 printf '%s  %s\n' 8e24184b32af1a699feb4e3bf344ebefce0118093e2560d7380ecf5a721d4f6f "$work/qdrant-edge-0.8.0/src/edge/reexports.rs" | shasum -a 256 -c -
+printf '%s  %s\n' ad683511d631a5e50af9395c6a4807032a1ae26f101361df50c3401395397564 "$sdk/provenance/terminal-finish.patch" | shasum -a 256 -c -
+(cd "$work/qdrant-edge-0.8.0" && patch -p1 --fuzz=0 < "$sdk/provenance/terminal-finish.patch")
 diff -r -x .git -x LICENSE -x provenance "$work/qdrant-edge-0.8.0" "$sdk"
 ```
 
-The dense and notice patch commands must report only `patching file 'src/segment/index/hnsw_index/links_container.rs'`, with no offsets, fuzz, rejects or other output. The sealed patch command must report only `patching file 'src/edge/reexports.rs'`, with no offsets, fuzz, rejects or other output. Reject extra files. The only allowed additions to the archive are root `LICENSE`, `provenance/README.md`, `provenance/bbd54cf.patch`, `provenance/edge-layout.patch`, `provenance/modification-notice.patch` and `provenance/public-feature-flags.patch`; `.git` is checkout metadata. Confirm this exact addition set separately from the recursive diff, which skips the provenance directory. There are no generated build files in the SDK checkout. These diff exceptions describe source reconstruction, not repository scanner policy.
+The dense and notice patch commands must report only `patching file 'src/segment/index/hnsw_index/links_container.rs'`, with no offsets, fuzz, rejects or other output. The sealed patch command must report only `patching file 'src/edge/reexports.rs'`, with no offsets, fuzz, rejects or other output. Reject extra files. The only allowed additions to the archive are root `LICENSE`, `provenance/README.md`, `provenance/bbd54cf.patch`, `provenance/edge-layout.patch`, `provenance/modification-notice.patch`, `provenance/public-feature-flags.patch` and `provenance/terminal-finish.patch`; `.git` is checkout metadata. Confirm this exact addition set separately from the recursive diff, which skips the provenance directory. There are no generated build files in the SDK checkout. These diff exceptions describe source reconstruction, not repository scanner policy.
 
-Removing only the exact declared notice prefix from the distributed LinksContainer file reproduces the qualified file byte-for-byte. All 1,072 other imported files match both the published archive and the qualified vendor copy without changes. That Cargo-cache-derived copy additionally has `.cargo-ok`, a Cargo extraction marker absent from the published archive and this Git package.
+Removing only the exact declared notice prefix from the distributed LinksContainer file reproduces the qualified file byte-for-byte. Apart from the seven declared modified archive files, all 1,067 imported files remain unchanged from the published archive. That Cargo-cache-derived copy additionally has `.cargo-ok`, a Cargo extraction marker absent from the published archive and this Git package.
 
 ## Build contract and maintenance
 
-The consuming project's maintainers own this packaging branch, patch review, qualification and Gitlink updates. Keep the patches limited to the dense fix and public feature-initialization exports. For each update, authenticate the replacement archive, compare all package files, preserve license notices, rerun the consuming project's qualification commands, and review an immutable commit before changing the Gitlink. A newer upstream release is not automatically compatible. Rebuild graphs created by the defective algorithm from retained values; a patched reader does not repair existing graph links.
+The consuming project's maintainers own this packaging branch, patch review, qualification and Gitlink updates. Keep the patches limited to the dense fix, public feature-initialization exports and consuming terminal finish. For each update, authenticate the replacement archive, compare all package files, preserve license notices, rerun the consuming project's qualification commands, and review an immutable commit before changing the Gitlink. A newer upstream release is not automatically compatible. Rebuild graphs created by the defective algorithm from retained values; a patched reader does not repair existing graph links.
 
 Existing qualification used Rust 1.98.1 and locked consumer dependencies on macOS and native Linux arm64. Exact source identity is not a build run in this checkout. The SDK's own unit-test harness has not been run here. Native amd64 qualification remains a consuming-project gate. Production storage integration and deployment are not authorized by this package.
 
@@ -78,6 +81,14 @@ The SDK has no Justfile. In this nested development location, `cargo metadata --
 
 `public-feature-flags.patch` is preserved byte-for-byte from consuming-project experiment `e6ddbe29ea8261088a9bc2a69c761ccb5c716843`, path `experiments/edge-sealed/patches/public-feature-flags.patch`. Its SHA256 is `72a36d1788bd4c0da4ef47af049d872d37ed3400e439f89cde45b2be2fd9d96d`.
 
-The original `src/edge/reexports.rs` SHA256 is `e55d3ec968fcfbc6092c121e82d33ea982f82ed198b5c47254874ac125fcb755`; the distributed result is `8e24184b32af1a699feb4e3bf344ebefce0118093e2560d7380ecf5a721d4f6f`. This is the second modified archive file. There are six explicit provenance/license additions and 1,080 distributed files. The patch retains its reviewed modification notice unchanged. It only exports existing `FeatureFlags` and `init_feature_flags`; defaults and normalization are unchanged.
+The original `src/edge/reexports.rs` SHA256 is `e55d3ec968fcfbc6092c121e82d33ea982f82ed198b5c47254874ac125fcb755`; the distributed result is `8e24184b32af1a699feb4e3bf344ebefce0118093e2560d7380ecf5a721d4f6f`. Before terminal finish, this was the second modified archive file, with six explicit provenance/license additions and 1,080 distributed files. The patch retains its reviewed modification notice unchanged. It only exports existing `FeatureFlags` and `init_feature_flags`; defaults and normalization are unchanged.
 
 Initialize feature flags once, before opening any shards. Initialization is process-global, not a per-reader option. The reviewed sealed experiment uses this API to set only `write_segment_manifest=true`, preserving all other defaults, including `incremental_hnsw_building=true`. It does not fix raw partial follower opens. Production admission, publication, recovery, graph/config correspondence and request pins remain separate gates. Tickets08/09 remain gated. The prior experiment review accepted experiment qualification, not production adoption or native AMD64 qualification of this distribution.
+
+## Consuming terminal finish
+
+`terminal-finish.patch` adds `EdgeShard::finish` and independent retired-WAL, current-WAL, creator and segment outcomes. Its SHA256 is `ad683511d631a5e50af9395c6a4807032a1ae26f101361df50c3401395397564`. Its input is packaging commit `c00671f403d62e3657eefc69cf2b94e0864feea0`. The five changed files are `src/edge/edge_shard/mod.rs`, `src/edge/mod.rs`, `src/shard/wal.rs`, `src/wal/mod.rs` and `src/wal/segment_creator.rs`. Each carries an Apache-2.0 modification notice. The reconstruction command must patch exactly those files without offsets, fuzz or rejects. There are now seven modified archive files, seven explicit provenance/license additions and 1,081 distributed files. Published manifests and lockfile remain unchanged.
+
+A report returns only after the shard is destroyed. Returned phase errors do not skip later phases. The report preserves original IO errors, worker panic payloads and SDK segment errors. It does not restore underlying segment IO causes that existing SDK conversions already discarded. Synchronous panics propagate without a report. Finish disables the redundant EdgeShard Drop flush before starting work; no new Drop join or executor is added. Escaped views remain the caller's responsibility.
+
+The consuming project's `tools/qdrant-qualification/Justfile` owns terminal-finish qualification. It builds an uninstrumented copy and a separate fault-instrumented copy with fresh fixtures and locked SDK dependencies. Instrumentation and qualification examples are not distributed SDK code. The SDK's upstream cfg(test) baseline fails compilation with missing test modules and other errors; these tests have not been repaired or declared passing. Application ownership, seal/publication behavior, full CI and independent review remain separate acceptance gates. This local source checkpoint does not authorize remote publication.

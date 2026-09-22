@@ -1,0 +1,202 @@
+diff --git a/src/edge/edge_shard/mod.rs b/src/edge/edge_shard/mod.rs
+index 8d9e2cbc..87d2c979 100644
+--- a/src/edge/edge_shard/mod.rs
++++ b/src/edge/edge_shard/mod.rs
+@@ -1,3 +1,6 @@
++// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
++// See provenance/README.md.
++
+ mod optimize;
+ mod shard_read;
+ mod snapshots;
+@@ -29,6 +32,7 @@ use crate::edge::read_view::build_segment_pool;
+ 
+ #[derive(Debug)]
+ pub struct EdgeShard {
++    finish_started: bool,
+     path: PathBuf,
+     /// Shared so long-lived closures (e.g. the optimizer's live vector-name provider) can read the
+     /// current config after `&self` borrows expire.
+@@ -44,8 +48,45 @@ pub struct EdgeShard {
+     search_pool: Arc<rayon::ThreadPool>,
+ }
+ 
++/// Outcomes observed before destroying the consumed shard owner.
++///
++/// A returned report means the retained WAL workers were joined and this shard was
++/// destroyed, even when a phase returned an error or a worker panicked. It does not
++/// revoke independently acquired read views or other escaped storage owners.
++/// Segment errors retain the SDK error; existing lower-level conversions may have
++/// already discarded underlying IO sources.
++#[derive(Debug)]
++pub struct EdgeFinishReport {
++    pub retired: Option<std::thread::Result<std::io::Result<()>>>,
++    pub current: std::io::Result<()>,
++    pub creator: Option<std::thread::Result<std::io::Result<()>>>,
++    pub segments: OperationResult<crate::segment::types::SeqNumberType>,
++    _completed: (),
++}
++
+ const WAL_PATH: &str = "wal";
+ impl EdgeShard {
++    /// Drain the retained WAL workers, flush current WAL and segments, and destroy
++    /// this owner. Returned phase errors do not skip subsequent phases.
++    ///
++    /// Synchronous phase or destructor panics propagate without returning a report.
++    /// Drop never repeats its log-only flush after this method starts, including
++    /// during unwinding. This is not a retry API or a universal resource revocation.
++    pub fn finish(mut self) -> EdgeFinishReport {
++        self.finish_started = true;
++        let wal = self.wal.get_mut().finish();
++        let segments = self.segments.read().flush_all(FlushMode::Sync, true);
++        let report = EdgeFinishReport {
++            retired: wal.retired,
++            current: wal.current,
++            creator: wal.creator,
++            segments,
++            _completed: (),
++        };
++        drop(self);
++        report
++    }
++
+     /// Create a new edge shard at `path` with the given configuration.
+     ///
+     /// Fails if the shard already exists (i.e. the segments directory contains any segment).
+@@ -81,6 +122,7 @@ impl EdgeShard {
+         let segment_manifest = init_segment_manifest(path, &segments)?;
+ 
+         Ok(Self {
++            finish_started: false,
+             path: path.into(),
+             config,
+             wal: parking_lot::Mutex::new(wal),
+@@ -158,6 +200,7 @@ impl EdgeShard {
+         let segment_manifest = init_segment_manifest(path, &segments)?;
+ 
+         Ok(Self {
++            finish_started: false,
+             path: path.into(),
+             config,
+             wal: parking_lot::Mutex::new(wal),
+@@ -265,7 +308,9 @@ impl EdgeShard {
+ 
+ impl Drop for EdgeShard {
+     fn drop(&mut self) {
+-        if let Err(e) = self.flush() {
++        if !self.finish_started
++            && let Err(e) = self.flush()
++        {
+             log::error!("EdgeShard flush during drop failed: {e}");
+         }
+     }
+diff --git a/src/edge/mod.rs b/src/edge/mod.rs
+index ff672656..9b0b4879 100644
+--- a/src/edge/mod.rs
++++ b/src/edge/mod.rs
+@@ -1,3 +1,6 @@
++// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
++// See provenance/README.md.
++
+ pub mod bm25_embed;
+ mod builders;
+ pub mod config;
+@@ -21,7 +24,7 @@ pub use builders::{
+ pub use config::optimizers::EdgeOptimizersConfig;
+ pub use config::shard::EdgeConfig;
+ pub use config::vectors::{EdgeSparseVectorParams, EdgeVectorParams};
+-pub use edge_shard::EdgeShard;
++pub use edge_shard::{EdgeFinishReport, EdgeShard};
+ pub use read_only::{
+     LocalSegmentEnumerator, ManifestSegmentEnumerator, ReadOnlyEdgeShard, SegmentEnumerator,
+ };
+diff --git a/src/shard/wal.rs b/src/shard/wal.rs
+index d1f6e6e0..7fa271e5 100644
+--- a/src/shard/wal.rs
++++ b/src/shard/wal.rs
+@@ -1,3 +1,6 @@
++// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
++// See provenance/README.md.
++
+ use std::marker::PhantomData;
+ use std::ops::Range;
+ use std::path::Path;
+@@ -257,6 +260,10 @@ impl<R: DeserializeOwned + Serialize> SerdeWal<R> {
+         Ok(())
+     }
+ 
++    pub(crate) fn finish(&mut self) -> crate::wal::FinishReport {
++        self.wal.finish()
++    }
++
+     pub fn flush(&mut self) -> Result<()> {
+         self.wal
+             .flush_open_segment()
+diff --git a/src/wal/mod.rs b/src/wal/mod.rs
+index c1e4176a..ddaa5245 100644
+--- a/src/wal/mod.rs
++++ b/src/wal/mod.rs
+@@ -1,3 +1,6 @@
++// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
++// See provenance/README.md.
++
+ use std::cmp::Ordering;
+ use std::io::{Error, ErrorKind, Result};
+ use std::num::NonZeroUsize;
+@@ -62,6 +65,13 @@ enum WalSegment {
+     Closed(ClosedSegment),
+ }
+ 
++/// Independent outcomes of draining the workers and flushing the current segment.
++pub(crate) struct FinishReport {
++    pub retired: Option<thread::Result<Result<()>>>,
++    pub current: Result<()>,
++    pub creator: Option<thread::Result<Result<()>>>,
++}
++
+ /// A write ahead log.
+ ///
+ /// ### Logging
+@@ -95,6 +105,18 @@ pub struct Wal {
+ }
+ 
+ impl Wal {
++    // Internal terminal step only; a consumed flush handle cannot be retried.
++    pub(crate) fn finish(&mut self) -> FinishReport {
++        let retired = self.flush.take().map(|handle| handle.join());
++        let current = self.flush_open_segment();
++        let creator = self.creator.finish();
++        FinishReport {
++            retired,
++            current,
++            creator,
++        }
++    }
++
+     pub fn open<P>(path: P) -> Result<Wal>
+     where
+         P: AsRef<Path>,
+diff --git a/src/wal/segment_creator.rs b/src/wal/segment_creator.rs
+index 4dfa2dbc..a4fb670f 100644
+--- a/src/wal/segment_creator.rs
++++ b/src/wal/segment_creator.rs
+@@ -1,3 +1,6 @@
++// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
++// See provenance/README.md.
++
+ use std::cmp::max;
+ use std::io::Error;
+ use std::path::{Path, PathBuf};
+@@ -104,6 +107,12 @@ impl SegmentCreatorV2 {
+         result
+     }
+ 
++    pub(super) fn finish(&mut self) -> Option<thread::Result<std::io::Result<()>>> {
++        self.thread
++            .take()
++            .map(|thread| thread.join().map(|result| result.map(drop)))
++    }
++
+     fn schedule_creation(&mut self) {
+         if self.thread.is_none() && self.pending_segments.len() < self.segment_queue_len {
+             let count = self

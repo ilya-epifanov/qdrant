@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
+// See provenance/README.md.
+
 use std::cmp::max;
 use std::io::Error;
 use std::path::{Path, PathBuf};
@@ -102,6 +105,12 @@ impl SegmentCreatorV2 {
         result.schedule_creation();
 
         result
+    }
+
+    pub(super) fn finish(&mut self) -> Option<thread::Result<std::io::Result<()>>> {
+        self.thread
+            .take()
+            .map(|thread| thread.join().map(|result| result.map(drop)))
     }
 
     fn schedule_creation(&mut self) {

@@ -1,3 +1,6 @@
+// Modified from published qdrant-edge 0.8.0 to add consuming terminal finish.
+// See provenance/README.md.
+
 use std::marker::PhantomData;
 use std::ops::Range;
 use std::path::Path;
@@ -255,6 +258,10 @@ impl<R: DeserializeOwned + Serialize> SerdeWal<R> {
         })?;
 
         Ok(())
+    }
+
+    pub(crate) fn finish(&mut self) -> crate::wal::FinishReport {
+        self.wal.finish()
     }
 
     pub fn flush(&mut self) -> Result<()> {
