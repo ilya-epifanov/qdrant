@@ -14,10 +14,10 @@ use std::rc::Rc;
 use std::str::FromStr;
 use std::sync::Arc;
 
-use ahash::AHashSet;
-use bytemuck::{Pod, Zeroable};
 use crate::common::stable_hash::StableHash;
 use crate::common::types::{PointOffsetType, ScoreType};
+use ahash::AHashSet;
+use bytemuck::{Pod, Zeroable};
 use ecow::EcoString;
 use fnv::FnvBuildHasher;
 use geo::{Contains, Coord, Distance as GeoDistance, Haversine, LineString, Point, Polygon};
@@ -49,7 +49,9 @@ use crate::segment::index::field_index::CardinalityEstimation;
 use crate::segment::index::sparse_index::sparse_index_config::SparseIndexConfig;
 use crate::segment::json_path::JsonPath;
 use crate::segment::spaces::metric::{Metric, MetricPostProcessing};
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::utils::unordered_hash_unique;
 use crate::segment::utils::maybe_arc::MaybeArc;
 
@@ -299,7 +301,6 @@ impl From<CompactExtendedPointId> for ExtendedPointId {
     Deserialize,
     Serialize,
     JsonSchema,
-    
     Clone,
     Copy,
     FromPrimitive,
@@ -437,7 +438,7 @@ impl PartialEq for ScoredPoint {
 }
 
 /// Type of segment
-#[derive(Debug, Serialize, JsonSchema,  Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Serialize, JsonSchema, Clone, Copy, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum SegmentType {
     // There are no index built for the segment, all operations are available
@@ -449,7 +450,7 @@ pub enum SegmentType {
 }
 
 /// Display payload field type & index information
-#[derive(Debug, Serialize, JsonSchema,  Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, JsonSchema, Clone, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct PayloadIndexInfo {
     pub data_type: PayloadSchemaType,
@@ -486,7 +487,7 @@ impl PayloadIndexInfo {
 /// * `Mmap` - Reads are served by the page cache through a memory mapping.
 ///
 /// * `IoUring` - Reads are submitted to the kernel with io_uring.
-#[derive(Debug, Serialize, Deserialize, JsonSchema,  Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, JsonSchema, Clone, Copy, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum IoBackend {
     // Reads are served by the page cache through a memory mapping.
@@ -511,7 +512,7 @@ impl IoBackend {
     }
 }
 
-#[derive(Debug, Serialize, JsonSchema,  Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, JsonSchema, Clone, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct VectorDataInfo {
     pub num_vectors: usize,
@@ -520,12 +521,11 @@ pub struct VectorDataInfo {
     /// Universal I/O backend that this vector storage reads files with. Absent if vector storage
     /// does not support configurable backends or only supports a single backend type.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub io_backend: Option<IoBackend>,
 }
 
 /// Aggregated information about segment
-#[derive(Debug, Serialize, JsonSchema,  Clone, PartialEq, Eq)]
+#[derive(Debug, Serialize, JsonSchema, Clone, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct SegmentInfo {
     pub uuid: Uuid,
@@ -549,12 +549,10 @@ pub struct SegmentInfo {
     /// Universal I/O backend that payload storage reads files with. Absent if payload storage
     /// does not support configurable backends or only supports a single backend type.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub payload_storage_io_backend: Option<IoBackend>,
     /// Internal ID from which points are deferred (hidden from reads).
     /// Only set for appendable segments.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub deferred_internal_id: Option<PointOffsetType>,
 }
 
@@ -777,7 +775,7 @@ fn validate_dense_vector_memory(memory: &Memory) -> Result<(), ValidationError> 
 }
 
 /// Vector index configuration
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Eq)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 #[serde(tag = "type", content = "options")]
 pub enum Indexes {
@@ -806,9 +804,7 @@ impl Indexes {
 }
 
 /// Config of HNSW index
-#[derive(
-    Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize, JsonSchema, Validate, 
-)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize, JsonSchema, Validate)]
 #[serde(rename_all = "snake_case")]
 
 pub struct HnswConfig {
@@ -893,7 +889,7 @@ impl HnswConfig {
     }
 }
 
-#[derive(Debug, Deserialize, Serialize, JsonSchema, Validate,  Clone)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Validate, Clone)]
 #[serde(rename_all = "snake_case", default)]
 
 pub struct HnswGlobalConfig {
@@ -1117,7 +1113,7 @@ pub struct TurboQuantization {
     pub turbo: TurboQuantQuantizationConfig,
 }
 
-#[derive(Clone, Debug, Eq, PartialEq, Hash, Deserialize, Serialize, JsonSchema, )]
+#[derive(Clone, Debug, Eq, PartialEq, Hash, Deserialize, Serialize, JsonSchema)]
 #[serde(untagged, rename_all = "snake_case")]
 
 pub enum QuantizationConfig {
@@ -1186,9 +1182,7 @@ impl Validate for QuantizationConfig {
     }
 }
 
-#[derive(
-    Default, Debug, Deserialize, Serialize, JsonSchema,  Clone, Copy, PartialEq, Eq, Hash,
-)]
+#[derive(Default, Debug, Deserialize, Serialize, JsonSchema, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(rename_all = "lowercase")]
 
 pub enum BinaryQuantizationQueryEncoding {
@@ -1233,18 +1227,17 @@ pub struct StrictModeSparseConfig {
     pub config: BTreeMap<VectorNameBuf, StrictModeSparse>,
 }
 
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Default)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Default)]
 #[schemars(deny_unknown_fields)]
 pub struct StrictModeSparseConfigOutput {
     #[serde(flatten)]
     pub config: BTreeMap<VectorNameBuf, StrictModeSparseOutput>,
 }
 
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Default)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Default)]
 pub struct StrictModeSparseOutput {
     /// Max length of sparse vector
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_length: Option<usize>,
 }
 
@@ -1284,7 +1277,7 @@ pub struct StrictModeMultivectorConfig {
     pub config: BTreeMap<VectorNameBuf, StrictModeMultivector>,
 }
 
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Default)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Default)]
 #[schemars(deny_unknown_fields)]
 pub struct StrictModeMultivectorConfigOutput {
     #[serde(flatten)]
@@ -1304,11 +1297,10 @@ impl From<StrictModeMultivectorConfig> for StrictModeMultivectorConfigOutput {
     }
 }
 
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Default)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Default)]
 pub struct StrictModeMultivectorOutput {
     /// Max number of vectors in a multivector
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_vectors: Option<usize>,
 }
 
@@ -1482,7 +1474,7 @@ impl Hash for StrictModeConfig {
 }
 
 // Version of the strict mode config we can present to the user
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Default)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Default)]
 pub struct StrictModeConfigOutput {
     // Global
     /// Whether strict mode is enabled for a collection or not.
@@ -1491,12 +1483,10 @@ pub struct StrictModeConfigOutput {
 
     /// Max allowed `limit` parameter for all APIs that don't have their own max limit.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_query_limit: Option<usize>,
 
     /// Max allowed `timeout` parameter.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_timeout: Option<usize>,
 
     /// Allow usage of unindexed fields in retrieval based (e.g. search) filters.
@@ -1510,7 +1500,6 @@ pub struct StrictModeConfigOutput {
     // Search
     /// Max HNSW value allowed in search parameters.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub search_max_hnsw_ef: Option<usize>,
 
     /// Whether exact search is allowed or not.
@@ -1519,51 +1508,41 @@ pub struct StrictModeConfigOutput {
 
     /// Max oversampling value allowed in search.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub search_max_oversampling: Option<f64>,
 
     /// Max batchsize when upserting
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub upsert_max_batchsize: Option<usize>,
     /// Max batchsize when searching
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub search_max_batchsize: Option<usize>,
 
     /// Max size of a collections vector storage in bytes, ignoring replicas.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_collection_vector_size_bytes: Option<usize>,
 
     /// Max number of read operations per minute per replica
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub read_rate_limit: Option<usize>,
 
     /// Max number of write operations per minute per replica
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub write_rate_limit: Option<usize>,
 
     /// Max size of a collections payload storage in bytes
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_collection_payload_size_bytes: Option<usize>,
 
     /// Max number of points estimated in a collection
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_points_count: Option<usize>,
 
     /// Max conditions a filter can have.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub filter_max_conditions: Option<usize>,
 
     /// Max size of a condition, eg. items in `MatchAny`.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub condition_max_size: Option<usize>,
 
     /// Multivector configuration
@@ -1584,7 +1563,6 @@ pub struct StrictModeConfigOutput {
         note = "memory is node-wide: use the global quota config instead. Removal planned for 1.21"
     )]
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_resident_memory_percent: Option<u8>,
 }
 
@@ -1664,7 +1642,7 @@ impl Default for Indexes {
 }
 
 /// Type of payload storage
-#[derive( Debug, Deserialize, Serialize, JsonSchema, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Copy, Clone, PartialEq, Eq)]
 #[serde(tag = "type", content = "options", rename_all = "snake_case")]
 pub enum PayloadStorageType {
     // Store payload on disk and in memory, read from memory if possible
@@ -1715,7 +1693,7 @@ impl PayloadStorageType {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema, )]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct SegmentConfig {
     #[serde(default)]
@@ -1852,9 +1830,7 @@ where
 /// * `Pinned` - Data is loaded in RAM and never evicted. First request is fast, but the component must
 ///   fit in RAM at all times. Recommended for frequently queried small components like
 ///   quantized vectors or primary indexes.
-#[derive(
-    Debug, Deserialize, Serialize, JsonSchema,  Eq, PartialEq, Copy, Clone, Hash,
-)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Eq, PartialEq, Copy, Clone, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum Memory {
     // Data is not pre-loaded from disk to RAM. Preferred for rarely queried components or
@@ -1995,7 +1971,7 @@ impl Memory {
 }
 
 /// Storage types for vectors
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Eq, PartialEq, Copy, Clone)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Eq, PartialEq, Copy, Clone)]
 pub enum VectorStorageType {
     /// Storage in memory (RAM)
     ///
@@ -2032,9 +2008,7 @@ impl Default for VectorStorageType {
 }
 
 /// Storage types for vectors
-#[derive(
-    Default, Debug, Deserialize, Serialize, JsonSchema,  Eq, PartialEq, Copy, Clone, Hash,
-)]
+#[derive(Default, Debug, Deserialize, Serialize, JsonSchema, Eq, PartialEq, Copy, Clone, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum VectorStorageDatatype {
     // Single-precision floating point
@@ -2048,9 +2022,7 @@ pub enum VectorStorageDatatype {
     Turbo4,
 }
 
-#[derive(
-    Debug, Default, Deserialize, Serialize, JsonSchema,  Eq, PartialEq, Copy, Clone, Hash,
-)]
+#[derive(Debug, Default, Deserialize, Serialize, JsonSchema, Eq, PartialEq, Copy, Clone, Hash)]
 #[serde(rename_all = "snake_case")]
 pub struct MultiVectorConfig {
     /// How to compare multivector points
@@ -2073,9 +2045,7 @@ impl MultiVectorConfig {
     }
 }
 
-#[derive(
-    Debug, Default, Deserialize, Serialize, JsonSchema,  Eq, PartialEq, Copy, Clone, Hash,
-)]
+#[derive(Debug, Default, Deserialize, Serialize, JsonSchema, Eq, PartialEq, Copy, Clone, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum MultiVectorComparator {
     #[default]
@@ -2148,7 +2118,7 @@ impl VectorStorageType {
 }
 
 /// Config of single vector data storage
-#[derive(Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema, )]
+#[derive(Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub struct VectorDataConfig {
     /// Size/dimensionality of the vectors used
@@ -2243,9 +2213,7 @@ impl VectorDataConfig {
     }
 }
 
-#[derive(
-    Copy, Clone, Debug, Default, Eq, PartialEq, Deserialize, Serialize, JsonSchema, 
-)]
+#[derive(Copy, Clone, Debug, Default, Eq, PartialEq, Deserialize, Serialize, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum SparseVectorStorageType {
     /// Storage in memory maps (gridstore storage)
@@ -2268,9 +2236,7 @@ impl SparseVectorStorageType {
 }
 
 /// Config of single sparse vector data storage
-#[derive(
-    Copy, Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema, Validate, 
-)]
+#[derive(Copy, Clone, Debug, PartialEq, Deserialize, Serialize, JsonSchema, Validate)]
 #[serde(rename_all = "snake_case")]
 pub struct SparseVectorDataConfig {
     /// Sparse inverted index config
@@ -2601,9 +2567,7 @@ impl<'a> From<&'a Map<String, Value>> for OwnedPayloadRef<'a> {
 }
 
 /// All possible names of payload types
-#[derive(
-    Debug, Deserialize, Serialize, JsonSchema,  Clone, Copy, PartialEq, Hash, Eq, EnumIter,
-)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, Copy, PartialEq, Hash, Eq, EnumIter)]
 #[serde(rename_all = "snake_case")]
 pub enum PayloadSchemaType {
     Keyword,
@@ -2637,7 +2601,7 @@ impl PayloadSchemaType {
 }
 
 /// Payload type with parameters
-#[derive(Debug, Deserialize, Serialize, JsonSchema,  Clone, PartialEq, Hash, Eq)]
+#[derive(Debug, Deserialize, Serialize, JsonSchema, Clone, PartialEq, Hash, Eq)]
 #[serde(untagged, rename_all = "snake_case")]
 
 pub enum PayloadSchemaParams {
@@ -3303,7 +3267,9 @@ impl<'de> serde::Deserialize<'de> for RangeInterface {
 type OrderedFloatPayloadType = OrderedFloat<FloatPayloadType>;
 
 /// Range filter request
-#[macro_rules_attribute::macro_rules_derive(crate::segment::common::macros::schemars_rename_generics)]
+#[macro_rules_attribute::macro_rules_derive(
+    crate::segment::common::macros::schemars_rename_generics
+)]
 #[derive_args(< OrderedFloatPayloadType > => "Range", < DateTimePayloadType > => "DatetimeRange")]
 #[derive(Copy, Clone, Debug, Default, Eq, PartialEq, Deserialize, Serialize)]
 #[serde(rename_all = "snake_case")]
@@ -6303,7 +6269,7 @@ fn shard_key_number_example() -> u64 {
     12
 }
 
-#[derive(Deserialize, Serialize, JsonSchema,  Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Deserialize, Serialize, JsonSchema, Debug, Clone, PartialEq, Eq, Hash)]
 #[serde(untagged)]
 pub enum ShardKey {
     #[schemars(
@@ -6312,7 +6278,6 @@ pub enum ShardKey {
     )]
     Keyword(EcoString),
     #[schemars(example = "shard_key_number_example")]
-    
     Number(u64),
 }
 

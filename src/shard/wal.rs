@@ -8,10 +8,10 @@ use std::result;
 use std::thread::JoinHandle;
 
 use crate::common::fs::{atomic_save_json, read_json};
+use crate::wal::{Wal, WalOptions};
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
-use crate::wal::{Wal, WalOptions};
 
 /// Write-Ahead-Log wrapper with built-in type parsing.
 /// Stores sequences of records of type `R` in binary files.

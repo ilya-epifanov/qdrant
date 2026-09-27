@@ -1,15 +1,15 @@
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use itertools::Itertools;
-use ordered_float::OrderedFloat;
-use parking_lot::Mutex;
 use crate::segment::common::operation_time_statistics::OperationDurationsAggregator;
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::index::VectorIndexRead;
 use crate::segment::segment::Segment;
 use crate::segment::types::HnswGlobalConfig;
 use crate::segment::vector_storage::VectorStorageRead;
+use itertools::Itertools;
+use ordered_float::OrderedFloat;
+use parking_lot::Mutex;
 
 use super::config::SegmentOptimizerConfig;
 use super::segment_optimizer::{OptimizationPlanner, SegmentOptimizer};

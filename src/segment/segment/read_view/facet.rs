@@ -8,7 +8,9 @@ use crate::common::types::{DeferredBehavior, PointOffsetType};
 use itertools::Itertools;
 use roaring::RoaringBitmap;
 
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::facets::{FacetParams, FacetValue, FacetValueRef};
 use crate::segment::id_tracker::IdTrackerRead;
 use crate::segment::index::PayloadIndexRead;
@@ -18,7 +20,9 @@ use crate::segment::json_path::JsonPath;
 use crate::segment::payload_storage::PayloadStorageRead;
 use crate::segment::segment::read_view::SegmentReadView;
 use crate::segment::segment::vector_data_read::VectorDataRead;
-use crate::segment::types::{Condition, FieldCondition, Filter, IntPayloadType, Match, ValueVariants};
+use crate::segment::types::{
+    Condition, FieldCondition, Filter, IntPayloadType, Match, ValueVariants,
+};
 
 /// Filter selectivity below which [`SegmentReadView::visit_filter_iter`] beats
 /// [`SegmentReadView::visit_facet_iter`] on the full (non-sampling) path.

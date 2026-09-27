@@ -1,9 +1,9 @@
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
-use chrono::{DateTime, SubsecRound, Utc};
 use crate::common::types::DetailsLevel::Level1;
 use crate::common::types::TelemetryDetail;
+use chrono::{DateTime, SubsecRound, Utc};
 use itertools::Itertools as _;
 use parking_lot::Mutex;
 use schemars::JsonSchema;
@@ -15,7 +15,7 @@ use crate::segment::common::anonymize::Anonymize;
 const AVG_DATASET_LEN: usize = 128;
 const SLIDING_WINDOW_LEN: usize = 8;
 
-#[derive(Serialize, Clone, Default, Debug, JsonSchema, )]
+#[derive(Serialize, Clone, Default, Debug, JsonSchema)]
 pub struct OperationDurationStatistics {
     pub count: usize,
 
@@ -25,22 +25,18 @@ pub struct OperationDurationStatistics {
 
     /// The average time taken by 128 latest operations, calculated as a weighted mean.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub avg_duration_micros: Option<f32>,
 
     /// The minimum duration of the operations across all the measurements.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub min_duration_micros: Option<f32>,
 
     /// The maximum duration of the operations across all the measurements.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub max_duration_micros: Option<f32>,
 
     /// The total duration of all operations in microseconds.
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub total_duration_micros: Option<u64>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -51,7 +47,6 @@ pub struct OperationDurationStatistics {
     /// (aka `{le="+Inf"}` in Prometheus terms) is not stored in this list, and `count` should be
     /// used instead.
     #[serde(skip)] // openapi-generator-cli crashes on this field
-    
     pub duration_micros_histogram: Vec<(f32, usize)>,
 }
 

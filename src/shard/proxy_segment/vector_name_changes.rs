@@ -6,8 +6,6 @@
 use std::borrow::Cow;
 use std::sync::Arc;
 
-use ahash::{AHashMap, AHashSet};
-use itertools::Itertools as _;
 use crate::segment::data_types::vector_name_config::{
     DenseVectorConfig, SparseVectorConfig, VectorNameConfig,
 };
@@ -16,6 +14,8 @@ use crate::segment::types::{
     Condition, CustomIdCheckerCondition, ExtendedPointId, Filter, SegmentConfig, SeqNumberType,
     SparseVectorDataConfig, VectorDataConfig, VectorName, VectorNameBuf, WithVector,
 };
+use ahash::{AHashMap, AHashSet};
+use itertools::Itertools as _;
 
 /// A [`CustomIdCheckerCondition`] that never matches any point. Used to
 /// replace `HasVector` conditions that reference a vector the proxy has

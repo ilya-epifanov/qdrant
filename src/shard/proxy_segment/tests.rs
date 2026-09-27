@@ -3,7 +3,6 @@ use std::sync::atomic::AtomicBool;
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::tar_ext;
 use crate::common::types::DeferredBehavior;
-use fs_err::File;
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::data_types::query_context::QueryContext;
 use crate::segment::data_types::vectors::{DEFAULT_VECTOR_NAME, QueryVector, only_default_vector};
@@ -12,6 +11,7 @@ use crate::segment::entry::{
     StorageSegmentEntry as _,
 };
 use crate::segment::types::{FieldCondition, PayloadSchemaType};
+use fs_err::File;
 use tempfile::Builder;
 
 use super::*;

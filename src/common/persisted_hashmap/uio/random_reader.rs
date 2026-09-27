@@ -7,7 +7,9 @@ use super::{BucketOffset, Key, MaybeIncompleteEntry, MaybeIncompleteEntryKind, U
 use crate::common::aligned_buf::AlignedBuf;
 use crate::common::generic_consts::Random;
 use crate::common::persisted_hashmap::uio::parse_bucket_offset;
-use crate::common::universal_io::{ReadPipeline, UioResult, UniversalIoError, UniversalRead, UserData};
+use crate::common::universal_io::{
+    ReadPipeline, UioResult, UniversalIoError, UniversalRead, UserData,
+};
 
 pub(super) enum Request<'a, K: Key + ?Sized> {
     /// Request an entry by the given offset with unknown key.

@@ -1,7 +1,7 @@
 use std::io::{self, Read, Write};
 
-use byteorder::{ReadBytesExt, WriteBytesExt};
 use crate::common::types::PointOffsetType;
+use byteorder::{ReadBytesExt, WriteBytesExt};
 use uuid::Uuid;
 
 use crate::segment::common::operation_error::OperationResult;

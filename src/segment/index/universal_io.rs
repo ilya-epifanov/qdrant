@@ -6,12 +6,16 @@ use crate::common::universal_io::{DiskCache, DiskCacheRemote, MmapFile, Universa
 
 use crate::segment::index::condition_checker::ConditionCheckerEnum;
 use crate::segment::index::field_index::bool_index::{BoolConditionChecker, ReadOnlyBoolIndex};
-use crate::segment::index::field_index::full_text_index::{FullTextConditionChecker, ReadOnlyFullTextIndex};
+use crate::segment::index::field_index::full_text_index::{
+    FullTextConditionChecker, ReadOnlyFullTextIndex,
+};
 use crate::segment::index::field_index::geo_index::{GeoConditionChecker, ReadOnlyGeoIndex};
 use crate::segment::index::field_index::map_index::MapConditionChecker;
 use crate::segment::index::field_index::map_index::read_only::ReadOnlyMapIndex;
 use crate::segment::index::field_index::null_index::{NullConditionChecker, ReadOnlyNullIndex};
-use crate::segment::index::field_index::numeric_index::{RangeConditionChecker, ReadOnlyNumericIndexInner};
+use crate::segment::index::field_index::numeric_index::{
+    RangeConditionChecker, ReadOnlyNumericIndexInner,
+};
 use crate::segment::types::{
     FloatPayloadType, GeoBoundingBox, GeoRadius, IntPayloadType, PolygonWrapper, UuidIntType,
 };
@@ -114,4 +118,3 @@ impl UniversalReadExt for ReadOnly<MmapFile> {
     fn condition_checker_numeric_int     <'a>(i: RangeCC<'a, Self, IntPayloadType>)   -> EnumCC<'a> { EnumCC::Dyn(Box::new(i)) }
     fn condition_checker_numeric_uuid    <'a>(i: RangeCC<'a, Self, UuidIntType>)      -> EnumCC<'a> { EnumCC::Dyn(Box::new(i)) }
 }
-

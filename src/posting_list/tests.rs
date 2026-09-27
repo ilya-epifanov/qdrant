@@ -5,7 +5,9 @@ use rand::distr::{Alphanumeric, SampleString};
 use rand::rngs::StdRng;
 use rand::{Rng, RngExt, SeedableRng};
 
-use crate::posting_list::{CHUNK_LEN, PostingBuilder, PostingList, PostingValue, UnsizedHandler, UnsizedValue};
+use crate::posting_list::{
+    CHUNK_LEN, PostingBuilder, PostingList, PostingValue, UnsizedHandler, UnsizedValue,
+};
 
 // Simple struct that implements VarSizedValue for testing
 #[derive(Debug, Clone, PartialEq)]

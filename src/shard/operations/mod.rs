@@ -328,8 +328,8 @@ impl From<ClockTag> for api::grpc::qdrant::ClockTag {
 mod tests {
     #![expect(clippy::wildcard_enum_match_arm, reason = "test code")]
 
-    use proptest::prelude::*;
     use crate::segment::types::*;
+    use proptest::prelude::*;
 
     use super::payload_ops::*;
     use super::point_ops::*;

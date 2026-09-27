@@ -5,9 +5,6 @@ use std::sync::atomic::AtomicBool;
 
 use crate::common::budget::{ResourceBudget, ResourcePermit};
 use crate::common::progress_tracker::ProgressTracker;
-#[cfg(any(test, feature = "testing"))]
-use itertools::Itertools;
-use parking_lot::{Mutex, RwLock};
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::common::operation_time_statistics::OperationDurationsAggregator;
 use crate::segment::entry::ReadSegmentEntry;
@@ -17,6 +14,9 @@ use crate::segment::segment::Segment;
 use crate::segment::segment_constructor::build_segment;
 use crate::segment::segment_constructor::segment_builder::SegmentBuilder;
 use crate::segment::types::{HnswGlobalConfig, Indexes, Memory, VectorNameBuf, VectorStorageType};
+#[cfg(any(test, feature = "testing"))]
+use itertools::Itertools;
+use parking_lot::{Mutex, RwLock};
 use uuid::Uuid;
 
 use super::config::SegmentOptimizerConfig;

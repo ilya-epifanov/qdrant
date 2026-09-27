@@ -2,10 +2,8 @@ use std::mem;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashSet;
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::types::{DeferredBehavior, ScoreType};
-use ordered_float::OrderedFloat;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::common::reciprocal_rank_fusion::rrf_scoring;
 use crate::segment::common::score_fusion::{ScoreFusion, score_fusion};
@@ -22,6 +20,8 @@ use crate::shard::query::*;
 use crate::shard::retrieve::retrieve_blocking::retrieve_over;
 use crate::shard::search::CoreSearchRequest;
 use crate::shard::search_result_aggregator::BatchResultAggregator;
+use ahash::AHashSet;
+use ordered_float::OrderedFloat;
 
 use crate::edge::read_view::{EdgeReadView, ReadSegmentHandle};
 
@@ -447,7 +447,7 @@ fn filter_by_point_ids(points: &[Vec<ScoredPoint>]) -> Filter {
     let point_ids: AHashSet<_> = points.iter().flatten().map(|point| point.id).collect();
 
     // create filter for target point ids
-    Filter::new_must(crate::segment::types::Condition::HasId(HasIdCondition::from(
-        point_ids,
-    )))
+    Filter::new_must(crate::segment::types::Condition::HasId(
+        HasIdCondition::from(point_ids),
+    ))
 }

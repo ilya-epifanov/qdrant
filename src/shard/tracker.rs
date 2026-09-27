@@ -1,11 +1,11 @@
 use std::collections::VecDeque;
 use std::sync::Arc;
 
-use chrono::{DateTime, Utc};
 use crate::common::progress_tracker::{ProgressTracker, ProgressView, new_progress_tracker};
+use crate::segment::common::anonymize::Anonymize;
+use chrono::{DateTime, Utc};
 use parking_lot::Mutex;
 use schemars::JsonSchema;
-use crate::segment::common::anonymize::Anonymize;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -158,10 +158,9 @@ impl Tracker {
 }
 
 /// Tracker object used in telemetry
-#[derive(Serialize, Deserialize, Clone, Debug, JsonSchema, )]
+#[derive(Serialize, Deserialize, Clone, Debug, JsonSchema)]
 pub struct TrackerTelemetry {
     /// Name of the optimizer
-    
     pub name: &'static str,
     /// UUID of the upcoming segment being created by the optimizer
     pub uuid: Uuid,
@@ -219,17 +218,15 @@ impl TrackerState {
 }
 
 /// Represents the current state of the optimizer being tracked
-#[derive(
-    Serialize, Deserialize, Clone, Debug, JsonSchema,  Default, Eq, PartialEq, Hash,
-)]
+#[derive(Serialize, Deserialize, Clone, Debug, JsonSchema, Default, Eq, PartialEq, Hash)]
 #[serde(rename_all = "lowercase")]
 pub enum TrackerStatus {
     #[default]
     Optimizing,
     Done,
-    
+
     Cancelled(String),
-    
+
     Error(String),
 }
 

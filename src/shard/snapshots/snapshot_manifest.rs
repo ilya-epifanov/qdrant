@@ -1,12 +1,12 @@
 use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
-use fs_err as fs;
-use fs_err::File;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::manifest::SegmentManifest;
 use crate::segment::segment::snapshot::SEGMENT_MANIFEST_FILE_NAME;
 use crate::segment::types::SeqNumberType;
+use fs_err as fs;
+use fs_err::File;
 
 use crate::shard::files::segments_path;
 

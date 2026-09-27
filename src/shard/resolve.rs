@@ -21,7 +21,9 @@ use crate::segment::types::PointIdType;
 use crate::shard::operations::payload_ops::{DeletePayloadOp, PayloadOps, SetPayloadOp};
 use crate::shard::operations::point_ops::{ConditionalInsertOperationInternal, PointOperations};
 use crate::shard::operations::vector_ops::{UpdateVectorsOp, VectorOperations};
-use crate::shard::operations::{CollectionUpdateOperations, FieldIndexOperations, VectorNameOperations};
+use crate::shard::operations::{
+    CollectionUpdateOperations, FieldIndexOperations, VectorNameOperations,
+};
 use crate::shard::segment_holder::SegmentHolder;
 use crate::shard::update::{
     points_by_filter, retain_conditional_upsert_points, select_excluded_by_filter_ids,
@@ -249,7 +251,9 @@ mod tests {
     use crate::shard::operations::point_ops::{
         PointInsertOperationsInternal, PointStructPersisted, UpdateMode, VectorStructPersisted,
     };
-    use crate::shard::update::{delete_points_by_filter, points_by_filter, process_point_operation};
+    use crate::shard::update::{
+        delete_points_by_filter, points_by_filter, process_point_operation,
+    };
 
     fn color_filter(color: &str) -> Filter {
         Filter::new_must(Condition::Field(FieldCondition::new_match(

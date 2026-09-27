@@ -8,7 +8,9 @@ use crate::quantization::turboquant::simd::{
     score_1bit_internal, score_2bit_internal, score_2bit_internal_weighted, score_4bit_internal,
     score_4bit_internal_weighted,
 };
-use crate::quantization::turboquant::{EncodedQueryTQ, EncodedQueryTQData, TQBits, TQMode, TQRotation};
+use crate::quantization::turboquant::{
+    EncodedQueryTQ, EncodedQueryTQData, TQBits, TQMode, TQRotation,
+};
 
 /// Quantize vectors using TurboQuant.
 pub struct TurboQuantizer {

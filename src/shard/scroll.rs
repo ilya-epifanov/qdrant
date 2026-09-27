@@ -1,7 +1,7 @@
-use schemars::JsonSchema;
 use crate::segment::data_types::load_profile::LoadProfile;
 use crate::segment::data_types::order_by::OrderByInterface;
 use crate::segment::types::{Filter, PointIdType, WithPayloadInterface, WithVector};
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 

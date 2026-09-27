@@ -1,5 +1,9 @@
-use crate::segment::common::memory_usage::{ComponentMemoryUsage, FileStorageIntent, MemoryReporter};
-use crate::segment::payload_storage::payload_storage_base::{PayloadStorage as _, PayloadStorageRead as _};
+use crate::segment::common::memory_usage::{
+    ComponentMemoryUsage, FileStorageIntent, MemoryReporter,
+};
+use crate::segment::payload_storage::payload_storage_base::{
+    PayloadStorage as _, PayloadStorageRead as _,
+};
 use crate::segment::payload_storage::payload_storage_enum::PayloadStorageEnum;
 
 impl MemoryReporter for PayloadStorageEnum {

@@ -4,12 +4,12 @@ use std::ops::ControlFlow;
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, AtomicUsize};
 
-use bitvec::vec::BitVec;
 use crate::common::bitvec::BitSliceExt;
 use crate::common::fixed_length_priority_queue::FixedLengthPriorityQueue;
 use crate::common::fs::{atomic_save, atomic_save_bin};
 use crate::common::types::{PointOffsetType, ScoredPointOffset};
 use crate::common::universal_io::MmapFs;
+use bitvec::vec::BitVec;
 use parking_lot::{Mutex, MutexGuard, RwLock};
 use rand::distr::Uniform;
 use rand::{Rng, RngExt};

@@ -7,13 +7,13 @@ mod tests;
 
 use std::borrow::Cow;
 
-use ahash::AHashMap;
 use crate::common::bitvec::BitVec;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
-use itertools::Itertools as _;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::types::*;
+use ahash::AHashMap;
+use itertools::Itertools as _;
 
 pub use self::vector_name_changes::{IntendedVector, ProxyVectorNameChanges};
 use crate::shard::locked_segment::LockedSegment;

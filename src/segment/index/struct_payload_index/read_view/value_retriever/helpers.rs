@@ -1,6 +1,6 @@
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
+use ahash::AHashMap;
 use serde_json::Value;
 
 use crate::segment::common::operation_error::OperationResult;
@@ -85,10 +85,10 @@ fn payload_variable_retriever<'a, P: PayloadStorageRead + 'a>(
 mod tests {
     use std::sync::Arc;
 
-    use ahash::AHashMap;
-    use atomic_refcell::AtomicRefCell;
     use crate::common::bitvec::BitVec;
     use crate::common::counter::hardware_counter::HardwareCounterCell;
+    use ahash::AHashMap;
+    use atomic_refcell::AtomicRefCell;
     use serde_json::{Value, from_value, json};
 
     use super::variable_retriever;

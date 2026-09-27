@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 use std::fmt::Debug;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UserData;
-use itertools::Either;
 use crate::posting_list::{PostingBuilder, PostingList, PostingListView, PostingValue};
+use ahash::AHashMap;
+use itertools::Either;
 
 use super::immutable_postings_enum::ImmutablePostings;
 use super::mutable_inverted_index::MutableInvertedIndex;

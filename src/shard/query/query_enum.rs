@@ -1,8 +1,8 @@
 use crate::segment::data_types::vectors::*;
 use crate::segment::types::VectorName;
 use crate::segment::vector_storage::query::*;
-use serde::Serialize;
 use crate::sparse::common::sparse_vector::SparseVector;
+use serde::Serialize;
 
 /// Every kind of vector query that can be performed on segment level.
 #[derive(Clone, Debug, PartialEq, Hash, Serialize)]

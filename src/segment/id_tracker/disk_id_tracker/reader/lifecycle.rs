@@ -3,7 +3,6 @@
 use std::io::Cursor;
 use std::path::Path;
 
-use byteorder::{LittleEndian, ReadBytesExt};
 use crate::common::generic_consts::Random;
 use crate::common::mmap::AdviceSetting;
 use crate::common::stored_bitmask::StoredBitmask;
@@ -11,6 +10,7 @@ use crate::common::universal_io::{
     CachedReadFs, OkNotFound, OpenOptions, Populate, ReadRange, UniversalRead,
     UniversalReadFileOps, UniversalReadFs,
 };
+use byteorder::{LittleEndian, ReadBytesExt};
 
 use super::DiskMappingReader;
 use crate::segment::common::operation_error::{OperationError, OperationResult};

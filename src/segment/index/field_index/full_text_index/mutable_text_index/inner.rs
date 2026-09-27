@@ -22,7 +22,8 @@ use crate::segment::types::{FieldCondition, PayloadKeyType};
 /// [`MutableFullTextIndex`]: super::MutableFullTextIndex
 /// [`ReadOnlyAppendableFullTextIndex`]: super::read_only::ReadOnlyAppendableFullTextIndex
 pub(in crate::segment::index::field_index::full_text_index) struct MutableFullTextIndexInner {
-    pub(in crate::segment::index::field_index::full_text_index) inverted_index: MutableInvertedIndex,
+    pub(in crate::segment::index::field_index::full_text_index) inverted_index:
+        MutableInvertedIndex,
     pub(in crate::segment::index::field_index::full_text_index) config: TextIndexParams,
     pub(in crate::segment::index::field_index::full_text_index) tokenizer: Tokenizer,
 }

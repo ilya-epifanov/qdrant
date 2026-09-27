@@ -21,7 +21,9 @@ use crate::segment::index::field_index::full_text_index::FullTextIndex;
 use crate::segment::index::field_index::geo_index::GeoIndex;
 use crate::segment::index::field_index::null_index::MutableNullIndex;
 use crate::segment::index::field_index::numeric_index::{NumericIndex, NumericIndexValue};
-use crate::segment::index::payload_config::{FullPayloadIndexType, IndexMutability, PayloadIndexType};
+use crate::segment::index::payload_config::{
+    FullPayloadIndexType, IndexMutability, PayloadIndexType,
+};
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::{Memory, PayloadFieldSchema, PayloadSchemaParams};
 

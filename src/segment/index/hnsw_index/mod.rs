@@ -12,7 +12,6 @@ mod links_container;
 pub mod point_scorer;
 mod search_context;
 
-
 /// Maximum number of links per level.
 #[derive(Debug, Clone, Copy)]
 pub struct HnswM {

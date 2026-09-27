@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
 use crate::common::condition_checker::ConditionChecker;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::counter::iterator_hw_measurement::HwMeasurementIteratorExt;
@@ -9,6 +8,7 @@ use crate::common::either_variant::EitherVariant;
 use crate::common::generic_consts::AccessPattern;
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::{DeferredBehavior, PointOffsetType, ScoreType};
+use ahash::AHashMap;
 
 use super::StructPayloadIndexReadView;
 use crate::segment::common::operation_error::OperationResult;

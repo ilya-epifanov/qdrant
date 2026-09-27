@@ -1,13 +1,13 @@
 use std::assert_matches;
 
-use ahash::AHashSet;
-use ordered_float::OrderedFloat;
 use crate::segment::common::operation_error::OperationError;
 use crate::segment::common::reciprocal_rank_fusion::DEFAULT_RRF_K;
 use crate::segment::data_types::vectors::{MultiDenseVectorInternal, NamedQuery, VectorInternal};
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::*;
 use crate::sparse::common::sparse_vector::SparseVector;
+use ahash::AHashSet;
+use ordered_float::OrderedFloat;
 
 use super::planned_query::*;
 use super::*;
@@ -346,7 +346,9 @@ fn test_base_params_mapping_in_try_from() {
     let dummy_filter = Some(Filter::new_must(Condition::Field(
         FieldCondition::new_match(
             "my_key".try_into().unwrap(),
-            Match::new_value(crate::segment::types::ValueVariants::String("hello".to_string())),
+            Match::new_value(crate::segment::types::ValueVariants::String(
+                "hello".to_string(),
+            )),
         ),
     )));
 

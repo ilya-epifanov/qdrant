@@ -21,7 +21,9 @@ use super::{
     SINGLE_THREADED_HNSW_BUILD_THRESHOLD,
 };
 use crate::segment::common::BYTES_IN_KB;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::id_tracker::{IdTrackerEnum, IdTrackerRead};
 use crate::segment::index::PayloadIndexRead;
 use crate::segment::index::condition_checker::ConditionCheckerEnum;
@@ -37,7 +39,9 @@ use crate::segment::index::hnsw_index::gpu::gpu_insert_context::GpuInsertContext
 use crate::segment::index::hnsw_index::graph_layers::GraphLayers;
 use crate::segment::index::hnsw_index::graph_layers_builder::GraphLayersBuilder;
 use crate::segment::index::hnsw_index::graph_layers_healer::GraphLayersHealer;
-use crate::segment::index::hnsw_index::graph_links::{GraphLinksFormatParam, StorageGraphLinksVectors};
+use crate::segment::index::hnsw_index::graph_links::{
+    GraphLinksFormatParam, StorageGraphLinksVectors,
+};
 use crate::segment::index::hnsw_index::point_scorer::FilteredScorer;
 use crate::segment::index::query_optimization::optimized_filter::OptimizedFilter;
 use crate::segment::index::struct_payload_index::StructPayloadIndex;

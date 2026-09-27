@@ -63,7 +63,9 @@ mod tests {
 
     use super::*;
     use crate::segment::common::live_reload::LiveReload;
-    use crate::segment::data_types::vectors::{MultiDenseVectorInternal, VectorElementType, VectorRef};
+    use crate::segment::data_types::vectors::{
+        MultiDenseVectorInternal, VectorElementType, VectorRef,
+    };
     use crate::segment::vector_storage::turbo::multi_turbo::open_appendable_turbo_multi_vector_storage;
     use crate::segment::vector_storage::{VectorStorage, VectorStorageRead};
 

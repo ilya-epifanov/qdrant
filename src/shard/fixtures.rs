@@ -2,8 +2,6 @@ use std::collections::HashSet;
 use std::path::Path;
 
 use crate::common::counter::hardware_counter::HardwareCounterCell;
-use rand::RngExt;
-use rand::rngs::ThreadRng;
 use crate::segment::data_types::vectors::only_default_vector;
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::entry::entry_point::SegmentEntry;
@@ -11,6 +9,8 @@ use crate::segment::payload_json;
 use crate::segment::segment::Segment;
 use crate::segment::segment_constructor::simple_segment_constructor::build_simple_segment;
 use crate::segment::types::{Distance, Payload, PointIdType, SeqNumberType};
+use rand::RngExt;
+use rand::rngs::ThreadRng;
 
 /// A generator for random point IDs
 #[derive(Default)]

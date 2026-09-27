@@ -10,7 +10,9 @@ use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UserData;
 
 use crate::segment::common::Flusher;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::{CowMultiVector, CowVector};
 use crate::segment::data_types::primitive::PrimitiveVectorElement;
 use crate::segment::data_types::vectors::{TypedMultiDenseVectorRef, VectorElementType, VectorRef};

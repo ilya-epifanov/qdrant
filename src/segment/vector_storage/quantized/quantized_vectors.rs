@@ -186,7 +186,9 @@ impl QuantizedVectors {
         }
     }
 
-    pub(in crate::segment::vector_storage::quantized) fn convert_tq_bits(bits: TurboQuantBitSize) -> TQBits {
+    pub(in crate::segment::vector_storage::quantized) fn convert_tq_bits(
+        bits: TurboQuantBitSize,
+    ) -> TQBits {
         match bits {
             TurboQuantBitSize::Bits1 => TQBits::Bits1,
             TurboQuantBitSize::Bits1_5 => TQBits::Bits1_5,
@@ -195,7 +197,9 @@ impl QuantizedVectors {
         }
     }
 
-    pub(in crate::segment::vector_storage::quantized) fn tq_bits_default_rescoring(bits: TQBits) -> bool {
+    pub(in crate::segment::vector_storage::quantized) fn tq_bits_default_rescoring(
+        bits: TQBits,
+    ) -> bool {
         match bits {
             TQBits::Bits1 | TQBits::Bits1_5 | TQBits::Bits2 => true,
             TQBits::Bits4 => false,
@@ -258,7 +262,9 @@ impl QuantizedVectors {
     ) -> usize {
         match quantization_config {
             QuantizationConfig::Scalar(_) => {
-                crate::quantization::encoded_vectors_u8::get_quantized_vector_size(vector_parameters)
+                crate::quantization::encoded_vectors_u8::get_quantized_vector_size(
+                    vector_parameters,
+                )
             }
             QuantizationConfig::Product(ProductQuantization { product }) => {
                 let bucket_size = Self::get_bucket_size(product.compression);

@@ -3,11 +3,11 @@ mod gaps;
 use std::ops::Range;
 use std::path::{Path, PathBuf};
 
-use ahash::AHashSet;
 use crate::common::bitvec::BitSlice;
 use crate::common::mmap::{Advice, AdviceSetting, create_and_ensure_length};
 use crate::common::stored_bitslice::StoredBitSlice;
 use crate::common::universal_io::{MmapFile, OpenOptions, Populate, UniversalWrite};
+use ahash::AHashSet;
 use gaps::{BitmaskGaps, RegionGaps};
 use itertools::Itertools;
 
@@ -573,9 +573,9 @@ impl<S: UniversalWrite> Bitmask<S> {
 #[cfg(test)]
 mod tests {
 
-    use bitvec::bits;
     use crate::common::bitvec::BitVec;
     use crate::common::universal_io::MmapFs;
+    use bitvec::bits;
     use proptest::prelude::*;
     use rand::{RngExt, rng};
 

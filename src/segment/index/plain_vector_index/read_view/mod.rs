@@ -10,7 +10,9 @@ use crate::segment::index::PayloadIndexRead;
 use crate::segment::index::field_index::FieldIndex;
 use crate::segment::index::struct_payload_index::StructPayloadIndexReadView;
 use crate::segment::payload_storage::payload_storage_enum::PayloadStorageEnum;
-use crate::segment::vector_storage::quantized::quantized_vectors::{QuantizedVectors, QuantizedVectorsRead};
+use crate::segment::vector_storage::quantized::quantized_vectors::{
+    QuantizedVectors, QuantizedVectorsRead,
+};
 use crate::segment::vector_storage::{VectorStorageEnum, VectorStorageRead};
 
 /// Read-only view over a plain vector index.

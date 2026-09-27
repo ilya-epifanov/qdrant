@@ -12,11 +12,11 @@ pub mod query_context;
 mod tests;
 
 use crate::common::types::ScoreType;
-use ordered_float::OrderedFloat;
 use crate::segment::data_types::order_by::OrderBy;
 use crate::segment::data_types::vectors::VectorInternal;
 use crate::segment::index::query_optimization::rescore_formula::parsed_formula::ParsedFormula;
 use crate::segment::types::*;
+use ordered_float::OrderedFloat;
 use serde::Serialize;
 
 use self::query_enum::*;

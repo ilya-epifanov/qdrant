@@ -18,7 +18,9 @@
 
 use std::path::PathBuf;
 
-use crate::common::condition_checker::{CheckItem, ConditionChecker, Rest, Select, default_check_batched};
+use crate::common::condition_checker::{
+    CheckItem, ConditionChecker, Rest, Select, default_check_batched,
+};
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::types::PointOffsetType;
 

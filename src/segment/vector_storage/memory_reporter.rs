@@ -1,6 +1,8 @@
 use std::path::PathBuf;
 
-use crate::segment::common::memory_usage::{ComponentMemoryUsage, FileStorageIntent, MemoryReporter};
+use crate::segment::common::memory_usage::{
+    ComponentMemoryUsage, FileStorageIntent, MemoryReporter,
+};
 use crate::segment::vector_storage::vector_storage_base::{
     VectorStorage as _, VectorStorageEnum, VectorStorageRead as _,
 };

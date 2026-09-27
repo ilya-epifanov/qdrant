@@ -4,9 +4,9 @@ mod shard_read;
 
 use std::sync::Arc;
 
+use crate::segment::common::operation_error::{OperationError, OperationResult};
 use rayon::prelude::*;
 use rayon::{ThreadPool, ThreadPoolBuilder};
-use crate::segment::common::operation_error::{OperationError, OperationResult};
 
 pub use self::handle::ReadSegmentHandle;
 pub use self::ops::{Group, SearchMatrixResponse, ShardInfo};

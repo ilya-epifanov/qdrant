@@ -2,16 +2,16 @@
 //! batched pass over the whole point set, so a batch's cost scales with the
 //! points it touches, not the operations in it.
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UniversalRead;
-use rayon::ThreadPool;
-use rayon::prelude::*;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::fully_qualified_point::{FullyQualifiedPoint, StoredPoint};
 use crate::segment::types::{PointIdType, SeqNumberType};
 use crate::shard::operations::CollectionUpdateOperations;
+use ahash::AHashMap;
+use rayon::ThreadPool;
+use rayon::prelude::*;
 use uuid::Uuid;
 
 use crate::edge::update_only::UpdateOnlyEdgeShard;

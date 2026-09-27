@@ -1,7 +1,6 @@
 use std::borrow::Borrow;
 use std::path::{Path, PathBuf};
 
-use ahash::HashMap;
 use crate::common::bitvec::{BitSlice, DeletedBitVec};
 use crate::common::fs::{atomic_save_json, clear_disk_cache};
 use crate::common::mmap::AdviceSetting;
@@ -11,6 +10,7 @@ use crate::common::universal_io::{
     CachedReadFs, MmapFile, OkNotFound, OpenOptions, Populate, UniversalRead, UniversalReadFs,
     UniversalWrite, read_json_via,
 };
+use ahash::HashMap;
 use fs_err as fs;
 
 use super::super::MapIndexKey;

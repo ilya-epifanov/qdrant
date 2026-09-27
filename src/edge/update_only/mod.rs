@@ -27,9 +27,9 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
 use crate::common::universal_io::UniversalRead;
+use crate::segment::types::SegmentConfig;
 use parking_lot::RwLock;
 use rayon::ThreadPool;
-use crate::segment::types::SegmentConfig;
 use uuid::Uuid;
 
 pub use self::apply::UpdateBatchOutcome;

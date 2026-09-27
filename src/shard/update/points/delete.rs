@@ -2,11 +2,11 @@
 
 use std::sync::atomic::AtomicBool;
 
-use ahash::{AHashMap, AHashSet};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::DeferredBehavior;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::types::{Filter, PointIdType, SeqNumberType};
+use ahash::{AHashMap, AHashSet};
 
 use crate::shard::segment_holder::SegmentHolder;
 use crate::shard::update::helpers::deferred_points_to_exclude_by_filter;

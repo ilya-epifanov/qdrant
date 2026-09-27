@@ -2,8 +2,8 @@ use std::collections::BTreeMap;
 use std::io::{self, BufReader, BufWriter, Seek, Write};
 use std::path::{Path, PathBuf};
 
-use byteorder::{ReadBytesExt, WriteBytesExt};
 use crate::common::types::PointOffsetType;
+use byteorder::{ReadBytesExt, WriteBytesExt};
 use fs_err::File;
 use parking_lot::Mutex;
 

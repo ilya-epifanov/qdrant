@@ -5,7 +5,7 @@ use crate::segment::common::anonymize::Anonymize;
 use crate::segment::common::operation_time_statistics::OperationDurationStatistics;
 use crate::segment::types::{SegmentConfig, SegmentInfo, VectorNameBuf};
 
-#[derive(Serialize, Clone, Debug, JsonSchema, )]
+#[derive(Serialize, Clone, Debug, JsonSchema)]
 pub struct SegmentTelemetry {
     pub info: SegmentInfo,
     pub config: SegmentConfig,
@@ -13,12 +13,10 @@ pub struct SegmentTelemetry {
     pub payload_field_indices: Vec<PayloadIndexTelemetry>,
 }
 
-#[derive(Serialize, Clone, Debug, JsonSchema, )]
+#[derive(Serialize, Clone, Debug, JsonSchema)]
 pub struct PayloadIndexTelemetry {
-    
     pub field_name: Option<String>,
 
-    
     pub index_type: &'static str,
 
     /// The amount of values indexed for all points.
@@ -28,7 +26,6 @@ pub struct PayloadIndexTelemetry {
     pub points_count: usize,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub histogram_bucket_size: Option<usize>,
 }
 
@@ -39,10 +36,9 @@ impl PayloadIndexTelemetry {
     }
 }
 
-#[derive(Serialize, Clone, Debug, JsonSchema,  Default)]
+#[derive(Serialize, Clone, Debug, JsonSchema, Default)]
 pub struct VectorIndexSearchesTelemetry {
     #[serde(skip_serializing_if = "Option::is_none")]
-    
     pub index_name: Option<VectorNameBuf>,
 
     #[serde(skip_serializing_if = "OperationDurationStatistics::is_empty")]

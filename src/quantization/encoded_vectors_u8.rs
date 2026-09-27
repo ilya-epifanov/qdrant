@@ -13,7 +13,9 @@ use fs_err as fs;
 use serde::{Deserialize, Serialize};
 
 use crate::quantization::EncodingError;
-use crate::quantization::encoded_storage::{EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size};
+use crate::quantization::encoded_storage::{
+    EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size,
+};
 use crate::quantization::encoded_vectors::{
     DistanceType, EncodedVectors, VectorParameters, validate_vector_parameters,
 };

@@ -1,6 +1,6 @@
 use crate::segment::types::{ExtendedPointId, Payload};
-use serde_json::Value as JsonValue;
 use crate::shard::operations::point_ops::{PointStructPersisted, VectorStructPersisted};
+use serde_json::Value as JsonValue;
 
 use super::Vectors;
 

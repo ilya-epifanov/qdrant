@@ -851,7 +851,9 @@ fn score_bytes_matches_score_stored() {
 /// top of the same asymmetric scoring used by the nearest path.
 #[test]
 fn custom_reco_scorer_ranks_positive_first() {
-    use crate::segment::vector_storage::query::{RecoBestScoreQuery, RecoQuery, RecoSumScoresQuery};
+    use crate::segment::vector_storage::query::{
+        RecoBestScoreQuery, RecoQuery, RecoSumScoresQuery,
+    };
     use crate::segment::vector_storage::query_scorer::QueryScorer;
     use crate::segment::vector_storage::query_scorer::turbo_custom_query_scorer::TurboCustomQueryScorer;
 

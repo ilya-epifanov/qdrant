@@ -10,7 +10,9 @@ use parking_lot::Mutex;
 use super::DiskCacheRemote;
 use super::local_state::LocalState;
 use crate::common::universal_io::simple_disk_cache::REMOTE_OPEN_OPTIONS;
-use crate::common::universal_io::{OpenOptions, OwnedPipeline, UioResult, UniversalRead, UniversalReadFs};
+use crate::common::universal_io::{
+    OpenOptions, OwnedPipeline, UioResult, UniversalRead, UniversalReadFs,
+};
 
 mod init;
 mod read;

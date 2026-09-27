@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use std::ops::Range;
 
-use bitvec::vec::BitVec;
 use crate::common::persisted_hashmap::Key;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{MmapFile, UniversalRead};
+use bitvec::vec::BitVec;
 
 use super::MapIndexKey;
 use super::on_disk_map_index::OnDiskMapIndex;

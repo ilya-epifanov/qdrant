@@ -22,9 +22,9 @@ use std::fmt;
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::is_alive_lock::IsAliveLock;
 use crate::common::storage_version::StorageVersion;
+use atomic_refcell::AtomicRefCell;
 use parking_lot::Mutex;
 use uuid::Uuid;
 

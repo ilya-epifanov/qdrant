@@ -3,19 +3,21 @@ use std::path::Path;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{MmapFile, MmapFs};
-use rand::Rng;
 use crate::sparse::common::sparse_vector::SparseVector;
 use crate::sparse::common::sparse_vector_fixture::random_sparse_vector;
 use crate::sparse::index::inverted_index::InvertedIndexReadWrite;
+use atomic_refcell::AtomicRefCell;
+use rand::Rng;
 
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::fixtures::payload_context_fixture::create_id_tracker_fixture;
 use crate::segment::index::VectorIndexRead;
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::index::sparse_index::sparse_vector_index::{
     SparseVectorIndex, SparseVectorIndexOpenArgs,
 };

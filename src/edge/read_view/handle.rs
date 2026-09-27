@@ -1,10 +1,10 @@
 use std::sync::Arc;
 
-use parking_lot::{RwLock, RwLockReadGuard};
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::index::UniversalReadExt;
 use crate::segment::segment::read_only::ReadOnlySegment;
 use crate::shard::locked_segment::LockedSegment;
+use parking_lot::{RwLock, RwLockReadGuard};
 
 /// A handle to a single segment that can be read-locked to yield a [`ReadSegmentEntry`].
 ///

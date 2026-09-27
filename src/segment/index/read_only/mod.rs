@@ -4,13 +4,11 @@ use std::collections::HashMap;
 use std::path::Path;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::low_memory::low_memory_mode;
 use crate::common::storage_version::VERSION_FILE;
 use crate::common::types::{ScoredPointOffset, TelemetryDetail};
 use crate::common::universal_io::{CachedReadFs, OkNotFound, Populate, UniversalReadFs};
-use half::f16;
 use crate::sparse::common::types::{DimId, QuantizedU8};
 use crate::sparse::index::inverted_index::inverted_index_compressed_immutable_ram::InvertedIndexCompressedImmutableRam;
 use crate::sparse::index::inverted_index::inverted_index_compressed_mmap::{
@@ -18,6 +16,8 @@ use crate::sparse::index::inverted_index::inverted_index_compressed_mmap::{
 };
 use crate::sparse::index::inverted_index::inverted_index_ram::InvertedIndexRam;
 use crate::sparse::index::inverted_index::{InvertedIndex, InvertedIndexReadOnly};
+use atomic_refcell::AtomicRefCell;
+use half::f16;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::query_context::VectorQueryContext;
@@ -27,7 +27,9 @@ use crate::segment::index::UniversalReadExt;
 use crate::segment::index::hnsw_index::hnsw::read_only::ReadOnlyHNSWIndex;
 use crate::segment::index::plain_vector_index::read_only::ReadOnlyPlainVectorIndex;
 use crate::segment::index::sparse_index::indices_tracker::IndicesTracker;
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::index::sparse_index::sparse_vector_index::read_only::{
     ReadOnlySparseVectorIndex, ReadOnlySparseVectorIndexOpenArgs,
 };

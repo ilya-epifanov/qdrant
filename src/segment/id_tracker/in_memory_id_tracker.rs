@@ -177,9 +177,10 @@ impl IdTracker for InMemoryIdTracker {
         // Unset version first because it still requires the mapping to exist.
         // In-memory trackers never carry deferred heads, but resolve with
         // deferred preference for consistency with the other drop paths.
-        if let Some(internal_id) = self
-            .internal_id_with_behavior(external_id, crate::common::types::DeferredBehavior::WithDeferred)
-        {
+        if let Some(internal_id) = self.internal_id_with_behavior(
+            external_id,
+            crate::common::types::DeferredBehavior::WithDeferred,
+        ) {
             self.set_internal_version(internal_id, DELETED_POINT_VERSION)?;
         }
         self.mappings.drop(external_id);

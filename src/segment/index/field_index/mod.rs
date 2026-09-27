@@ -1,7 +1,7 @@
 use std::ops::Deref;
 
-use ahash::AHashSet;
 use crate::common::types::PointOffsetType;
+use ahash::AHashSet;
 
 use crate::segment::types::{Condition, FieldCondition, PointIdType, VectorNameBuf};
 

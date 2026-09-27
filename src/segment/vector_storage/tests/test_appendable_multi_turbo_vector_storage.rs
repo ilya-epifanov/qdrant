@@ -16,7 +16,9 @@ use rand::{RngExt, SeedableRng};
 use tempfile::Builder;
 
 use crate::segment::data_types::named_vectors::{CowMultiVector, CowVector};
-use crate::segment::data_types::vectors::{DenseVector, MultiDenseVectorInternal, TypedMultiDenseVectorRef};
+use crate::segment::data_types::vectors::{
+    DenseVector, MultiDenseVectorInternal, TypedMultiDenseVectorRef,
+};
 use crate::segment::types::{Distance, MultiVectorConfig};
 use crate::segment::vector_storage::turbo::multi_turbo::{
     AppendableMmapMultiTurboVectorStorage, open_appendable_turbo_multi_vector_storage,

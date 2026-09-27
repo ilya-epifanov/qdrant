@@ -1,6 +1,6 @@
-use ahash::AHashMap;
 use crate::common::types::DeferredBehavior;
 use crate::common::universal_io::{MmapFile, MmapFs};
+use ahash::AHashMap;
 use rand::SeedableRng as _;
 use rand::rngs::StdRng;
 use tempfile::Builder;

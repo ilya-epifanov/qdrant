@@ -18,7 +18,9 @@
 
 use std::path::PathBuf;
 
-use crate::common::condition_checker::{CheckItem, ConditionChecker, Rest, Select, default_check_batched};
+use crate::common::condition_checker::{
+    CheckItem, ConditionChecker, Rest, Select, default_check_batched,
+};
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::counter::iterator_hw_measurement::HwMeasurementIteratorExt;
@@ -28,7 +30,9 @@ use serde_json::Value;
 use crate::segment::common::flags::roaring_flags::RoaringFlagsRead;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::common::utils::MultiValue;
-use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCondition, PrimaryCondition};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, PayloadBlockCondition, PrimaryCondition,
+};
 use crate::segment::index::payload_config::StorageType;
 use crate::segment::index::query_optimization::rescore_formula::value_retriever::VariableRetrieverFn;
 use crate::segment::telemetry::PayloadIndexTelemetry;

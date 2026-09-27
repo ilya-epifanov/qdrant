@@ -1,8 +1,8 @@
 use crate::common::types::ScoreType;
-use ordered_float::OrderedFloat;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::vectors::NamedQuery;
 use crate::segment::types::{Filter, SearchParams, WithPayloadInterface, WithVector};
+use ordered_float::OrderedFloat;
 
 use super::query_enum::QueryEnum;
 use super::scroll::{QueryScrollRequestInternal, ScrollOrder};

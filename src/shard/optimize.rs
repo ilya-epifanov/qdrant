@@ -9,7 +9,6 @@ use std::ops::Deref;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashSet;
 use crate::common::budget::{ResourceBudget, ResourcePermit};
 use crate::common::bytes::bytes_to_human;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
@@ -18,11 +17,9 @@ use crate::common::fs::safe_delete_with_suffix;
 use crate::common::progress_tracker::ProgressTracker;
 use crate::common::storage_version::StorageVersion;
 use crate::common::types::PointOffsetType;
-use fs_err as fs;
-use itertools::Itertools;
-use parking_lot::lock_api::RwLockWriteGuard;
-use parking_lot::{Mutex, RwLockUpgradableReadGuard};
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::common::operation_time_statistics::{
     OperationDurationsAggregator, ScopeDurationMeasurer,
 };
@@ -32,6 +29,11 @@ use crate::segment::entry::{
 use crate::segment::segment::{Segment, SegmentVersion};
 use crate::segment::segment_constructor::segment_builder::SegmentBuilder;
 use crate::segment::types::{PointIdType, VectorNameBuf};
+use ahash::AHashSet;
+use fs_err as fs;
+use itertools::Itertools;
+use parking_lot::lock_api::RwLockWriteGuard;
+use parking_lot::{Mutex, RwLockUpgradableReadGuard};
 use uuid::Uuid;
 
 use crate::shard::locked_segment::LockedSegment;

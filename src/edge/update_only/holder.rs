@@ -2,9 +2,9 @@ use std::collections::HashMap;
 use std::sync::Arc;
 
 use crate::common::universal_io::UniversalRead;
-use parking_lot::RwLock;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::segment::update_only::UpdateOnlySegment;
+use parking_lot::RwLock;
 use uuid::Uuid;
 
 /// In-memory inventory of the segments a writer updates, keyed by segment

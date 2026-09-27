@@ -2,10 +2,10 @@ use std::path::Path;
 use std::sync::Arc;
 
 use crate::common::universal_io::{MmapFile, MmapFs};
-use parking_lot::RwLock;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::load_profile::LoadProfile;
 use crate::segment::index::UniversalReadExt;
+use parking_lot::RwLock;
 
 use crate::edge::EdgeConfig;
 use crate::edge::read_only::ReadOnlyEdgeShard;

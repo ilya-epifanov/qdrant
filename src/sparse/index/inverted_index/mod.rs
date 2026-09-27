@@ -2,13 +2,13 @@ use std::borrow::Cow;
 use std::fmt::Debug;
 use std::path::{Path, PathBuf};
 
-use blink_alloc::Blink;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::storage_version::StorageVersion;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{
     UioResult, UniversalIoError, UniversalRead, UniversalReadFs, UniversalWrite, UserData,
 };
+use blink_alloc::Blink;
 
 use super::posting_list_common::PostingListIter;
 use crate::sparse::common::sparse_vector::RemappedSparseVector;

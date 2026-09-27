@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 use std::ops::Neg;
 
-use ahash::AHashMap;
 use crate::common::condition_checker::ConditionChecker;
 use crate::common::types::{PointOffsetType, ScoreType};
+use ahash::AHashMap;
 use geo::{Distance, Haversine};
 use serde_json::Value;
 

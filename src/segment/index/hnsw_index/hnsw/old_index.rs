@@ -1,9 +1,9 @@
 use std::sync::Arc;
 
-use atomic_refcell::{AtomicRef, AtomicRefCell};
 use crate::common::bitvec::BitSliceExt as _;
 use crate::common::flags::FeatureFlags;
 use crate::common::types::PointOffsetType;
+use atomic_refcell::{AtomicRef, AtomicRefCell};
 use itertools::EitherOrBoth;
 use log::debug;
 

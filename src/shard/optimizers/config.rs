@@ -5,7 +5,9 @@ use std::sync::Arc;
 
 use crate::segment::common::BYTES_IN_KB;
 use crate::segment::data_types::modifier::Modifier;
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::types::{
     Distance, HnswConfig, Indexes, Memory, MultiVectorConfig, PayloadStorageType,
     QuantizationConfig, SegmentConfig, SparseVectorDataConfig, SparseVectorStorageType,

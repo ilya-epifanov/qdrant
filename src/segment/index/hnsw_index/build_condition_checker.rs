@@ -1,4 +1,6 @@
-use crate::common::condition_checker::{CheckItem, ConditionChecker, Rest, Select, default_check_batched};
+use crate::common::condition_checker::{
+    CheckItem, ConditionChecker, Rest, Select, default_check_batched,
+};
 use crate::common::types::PointOffsetType;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};

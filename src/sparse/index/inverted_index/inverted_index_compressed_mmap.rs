@@ -5,7 +5,6 @@ use std::marker::PhantomData;
 use std::mem::size_of;
 use std::path::{Path, PathBuf};
 
-use blink_alloc::Blink;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::ext::aligned_vec::ACow;
 use crate::common::fs::atomic_save_json;
@@ -19,6 +18,7 @@ use crate::common::universal_io::{
     CachedReadFs, MmapFs, OpenOptions, Populate, ReadBytesItem, UioResult, UniversalRead,
     UniversalReadFs, UniversalWrite, UserData, read_json_via,
 };
+use blink_alloc::Blink;
 use serde::{Deserialize, Serialize};
 use zerocopy::{FromBytes, Immutable, KnownLayout};
 
@@ -30,7 +30,9 @@ use crate::sparse::index::compressed_posting_list::{
     CHUNK_SIZE, CompressedPostingChunk, CompressedPostingListIterator, CompressedPostingListView,
 };
 use crate::sparse::index::inverted_index::inverted_index_ram::InvertedIndexRam;
-use crate::sparse::index::inverted_index::{InvertedIndex, InvertedIndexReadOnly, InvertedIndexReadWrite};
+use crate::sparse::index::inverted_index::{
+    InvertedIndex, InvertedIndexReadOnly, InvertedIndexReadWrite,
+};
 use crate::sparse::index::posting_list_common::GenericPostingElement;
 
 const INDEX_CONFIG_FILE_NAME: &str = "inverted_index_config.json";

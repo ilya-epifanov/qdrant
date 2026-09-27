@@ -2,13 +2,13 @@
 
 use std::sync::atomic::AtomicBool;
 
-use ahash::{AHashMap, AHashSet};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::DeferredBehavior;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::segment_record::{SegmentRecord, SegmentRecordRaw};
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::types::{PointIdType, SeqNumberType, WithPayload, WithVector};
+use ahash::{AHashMap, AHashSet};
 
 use super::delete_points;
 use super::upsert::{PointToUpsert, upsert_points_impl};

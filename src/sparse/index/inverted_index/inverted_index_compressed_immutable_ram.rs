@@ -1,13 +1,13 @@
 use std::borrow::Cow;
 use std::path::Path;
 
-use blink_alloc::Blink;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::ext::VecExt;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{
     MmapFs, UioResult, UniversalRead, UniversalReadFs, UniversalWrite, UserData,
 };
+use blink_alloc::Blink;
 
 use super::inverted_index_compressed_mmap::InvertedIndexCompressedMmap;
 use super::inverted_index_ram::InvertedIndexRam;

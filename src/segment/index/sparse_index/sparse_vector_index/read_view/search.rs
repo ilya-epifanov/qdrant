@@ -1,13 +1,15 @@
 use crate::common::condition_checker::ConditionChecker;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::{DeferredBehavior, PointOffsetType, ScoredPointOffset, TelemetryDetail};
-use itertools::Itertools;
 use crate::sparse::common::sparse_vector::SparseVector;
 use crate::sparse::index::inverted_index::InvertedIndex;
 use crate::sparse::index::search_context::SearchContext;
+use itertools::Itertools;
 
 use super::SparseVectorIndexReadView;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::common::operation_time_statistics::ScopeDurationMeasurer;
 use crate::segment::data_types::query_context::VectorQueryContext;
 use crate::segment::data_types::vectors::{QueryVector, VectorInternal};

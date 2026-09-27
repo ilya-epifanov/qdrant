@@ -5,7 +5,9 @@ use crate::common::universal_io::{CachedReadFs, Populate, UniversalRead, Univers
 
 use super::VectorStorageReadEnum;
 use crate::segment::common::operation_error::OperationResult;
-use crate::segment::data_types::vectors::{VectorElementType, VectorElementTypeByte, VectorElementTypeHalf};
+use crate::segment::data_types::vectors::{
+    VectorElementType, VectorElementTypeByte, VectorElementTypeHalf,
+};
 use crate::segment::types::{VectorDataConfig, VectorStorageDatatype, VectorStorageType};
 use crate::segment::vector_storage::dense::read_only::{
     ReadOnlyChunkedDenseVectorStorage, ReadOnlyImmutableDenseVectorStorage,

@@ -8,7 +8,9 @@ use super::DiskIdTracker;
 use super::mappings::{DiskMappingsSource, log_lookup_err};
 use super::reader::DiskMappingReader;
 use crate::segment::common::operation_error::OperationResult;
-use crate::segment::id_tracker::{IdTrackerRead, PointMappingsRefEnum, default_internal_versions_batch};
+use crate::segment::id_tracker::{
+    IdTrackerRead, PointMappingsRefEnum, default_internal_versions_batch,
+};
 use crate::segment::types::{PointIdType, SeqNumberType};
 
 impl<S: UniversalWrite> DiskIdTracker<S> {

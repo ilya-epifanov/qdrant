@@ -3,7 +3,6 @@ use std::io::Write;
 use std::mem::{self, MaybeUninit, size_of};
 use std::path::Path;
 
-use bytemuck::TransparentWrapper;
 use crate::common::bitvec::{BitSlice, BitSliceExt as _};
 use crate::common::generic_consts::{AccessPattern, Random, Sequential};
 use crate::common::maybe_uninit::maybe_uninit_fill_from;
@@ -14,6 +13,7 @@ use crate::common::universal_io::{
     CachedReadFs, MmapFile, OpenOptions as UniversalOpenOptions, Populate, ReadOnly, ReadRange,
     TypedStorage, UioResult, UniversalRead, UniversalReadFs,
 };
+use bytemuck::TransparentWrapper;
 use fs_err::{File, OpenOptions};
 
 use crate::segment::common::error_logging::LogError;

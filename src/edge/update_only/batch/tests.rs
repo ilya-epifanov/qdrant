@@ -2,7 +2,9 @@ use crate::segment::payload_json;
 use crate::segment::types::{Payload, PointIdType};
 use crate::shard::operations::CollectionUpdateOperations;
 use crate::shard::operations::payload_ops::{PayloadOps, SetPayloadOp};
-use crate::shard::operations::point_ops::{PointOperations, PointStructPersisted, VectorStructPersisted};
+use crate::shard::operations::point_ops::{
+    PointOperations, PointStructPersisted, VectorStructPersisted,
+};
 
 use super::UpdateBatchPlan;
 

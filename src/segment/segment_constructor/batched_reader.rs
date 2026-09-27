@@ -3,15 +3,17 @@ use std::cmp::min;
 use std::ops::Range;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
 use crate::common::generic_consts::Sequential;
 use crate::common::small_uint::U24;
 use crate::common::types::PointOffsetType;
 use crate::sparse::common::sparse_vector::SparseVector;
+use ahash::AHashMap;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::named_vectors::CowMultiVector;
-use crate::segment::data_types::vectors::{VectorElementType, VectorElementTypeByte, VectorElementTypeHalf};
+use crate::segment::data_types::vectors::{
+    VectorElementType, VectorElementTypeByte, VectorElementTypeHalf,
+};
 use crate::segment::types::CompactExtendedPointId;
 use crate::segment::vector_storage::{
     DenseTQVectorStorage, DenseTQVectorStorageRead, DenseVectorStorage, DenseVectorStorageRead,

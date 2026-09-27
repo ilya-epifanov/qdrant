@@ -1,9 +1,9 @@
 use std::path::Path;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::MmapFs;
+use atomic_refcell::AtomicRefCell;
 
 use super::sp;
 use crate::segment::common::operation_error::OperationResult;

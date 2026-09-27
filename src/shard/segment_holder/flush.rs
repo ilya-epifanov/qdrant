@@ -3,11 +3,11 @@ use std::sync::atomic::Ordering;
 use std::thread::JoinHandle;
 
 use crate::common::sort_utils::sort_permutation;
-use log::trace;
-use parking_lot::{RwLock, RwLockReadGuard};
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::entry::StorageSegmentEntry;
 use crate::segment::types::SeqNumberType;
+use log::trace;
+use parking_lot::{RwLock, RwLockReadGuard};
 
 use crate::shard::segment_holder::{SegmentHolder, SegmentId};
 

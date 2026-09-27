@@ -2,10 +2,10 @@ use std::path::Path;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::budget::ResourcePermit;
 use crate::common::flags::FeatureFlags;
 use crate::common::progress_tracker::ProgressTracker;
+use atomic_refcell::AtomicRefCell;
 use rand::Rng;
 
 use crate::segment::common::operation_error::OperationResult;

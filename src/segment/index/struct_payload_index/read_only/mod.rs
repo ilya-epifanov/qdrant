@@ -2,11 +2,11 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use ahash::AHashMap;
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::sorted_slice::SortedSlice;
 use crate::common::types::PointOffsetType;
+use ahash::AHashMap;
+use atomic_refcell::AtomicRefCell;
 
 use crate::segment::common::live_reload::LiveReload;
 use crate::segment::common::operation_error::OperationResult;

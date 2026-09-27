@@ -5,12 +5,12 @@ use std::sync::atomic::AtomicBool;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::{PointOffsetType, ScoredPointOffset, TelemetryDetail};
 use crate::common::universal_io::MmapFile;
-use half::f16;
 use crate::sparse::common::types::{DimId, QuantizedU8};
 use crate::sparse::index::inverted_index::InvertedIndex;
 use crate::sparse::index::inverted_index::inverted_index_compressed_immutable_ram::InvertedIndexCompressedImmutableRam;
 use crate::sparse::index::inverted_index::inverted_index_compressed_mmap::InvertedIndexCompressedMmap;
 use crate::sparse::index::inverted_index::inverted_index_ram::InvertedIndexRam;
+use half::f16;
 
 use super::hnsw_index::hnsw::HNSWIndex;
 use super::plain_vector_index::PlainVectorIndex;

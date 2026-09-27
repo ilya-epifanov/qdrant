@@ -13,7 +13,9 @@ use crate::segment::index::field_index::bool_index::{
 use crate::segment::index::field_index::full_text_index::{
     FullTextConditionChecker, FullTextIndex, ReadOnlyFullTextIndex,
 };
-use crate::segment::index::field_index::geo_index::{GeoConditionChecker, GeoIndex, ReadOnlyGeoIndex};
+use crate::segment::index::field_index::geo_index::{
+    GeoConditionChecker, GeoIndex, ReadOnlyGeoIndex,
+};
 use crate::segment::index::field_index::map_index::read_only::ReadOnlyMapIndex;
 use crate::segment::index::field_index::map_index::{MapConditionChecker, MapIndex};
 use crate::segment::index::field_index::null_index::{

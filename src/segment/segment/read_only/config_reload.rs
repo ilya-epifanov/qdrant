@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::storage_version::StorageVersion;
 use crate::common::universal_io::{UniversalReadFs, read_json_via};
+use atomic_refcell::AtomicRefCell;
 
 use super::{ReadOnlySegment, ReadOnlyVectorData};
 use crate::segment::common::operation_error::{OperationError, OperationResult};

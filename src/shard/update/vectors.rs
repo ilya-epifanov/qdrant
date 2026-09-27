@@ -1,10 +1,10 @@
 //! Named-vector operations: update and delete vectors of existing points.
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::types::{Filter, PointIdType, SeqNumberType, VectorNameBuf};
+use ahash::AHashMap;
 
 use super::helpers::{check_unprocessed_points, points_by_filter, select_excluded_by_filter_ids};
 use crate::shard::operations::vector_ops::{PointVectorsPersisted, UpdateVectorsOp};

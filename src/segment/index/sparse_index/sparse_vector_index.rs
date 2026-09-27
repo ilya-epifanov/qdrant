@@ -3,22 +3,24 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 #[cfg(feature = "testing")]
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::Sequential;
 use crate::common::storage_version::StorageVersion as _;
 use crate::common::universal_io::{MmapFile, MmapFs, UniversalReadFs};
-use fs_err as fs;
 use crate::sparse::SearchScratchPool;
 use crate::sparse::common::sparse_vector::SparseVector;
 use crate::sparse::index::inverted_index::inverted_index_ram::InvertedIndexRam;
 use crate::sparse::index::inverted_index::inverted_index_ram_builder::InvertedIndexBuilder;
 use crate::sparse::index::inverted_index::{InvertedIndex, InvertedIndexReadWrite};
+use atomic_refcell::AtomicRefCell;
+use fs_err as fs;
 
 use self::read_view::{SparseVectorIndexReadView, SparseVectorIndexReadViewEnum};
 use super::indices_tracker::IndicesTracker;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::id_tracker::{IdTrackerEnum, IdTrackerRead};
 use crate::segment::index::sparse_index::sparse_index_config::SparseIndexConfig;
 use crate::segment::index::sparse_index::sparse_search_telemetry::SparseSearchesTelemetry;

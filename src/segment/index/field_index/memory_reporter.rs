@@ -1,4 +1,6 @@
-use crate::segment::common::memory_usage::{ComponentMemoryUsage, FileStorageIntent, MemoryReporter};
+use crate::segment::common::memory_usage::{
+    ComponentMemoryUsage, FileStorageIntent, MemoryReporter,
+};
 use crate::segment::index::field_index::field_index_base::FieldIndex;
 
 impl MemoryReporter for FieldIndex {

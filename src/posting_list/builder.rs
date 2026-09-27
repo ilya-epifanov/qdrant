@@ -1,10 +1,12 @@
 use std::marker::PhantomData;
 
-use bitpacking::BitPacker;
 use crate::common::types::PointOffsetType;
+use bitpacking::BitPacker;
 use zerocopy::little_endian::U32;
 
-use crate::posting_list::posting_list::{PostingChunk, PostingElement, PostingList, RemainderPosting};
+use crate::posting_list::posting_list::{
+    PostingChunk, PostingElement, PostingList, RemainderPosting,
+};
 use crate::posting_list::value_handler::{PostingValue, ValueHandler};
 use crate::posting_list::{BitPackerImpl, CHUNK_LEN};
 

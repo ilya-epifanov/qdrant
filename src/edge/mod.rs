@@ -16,6 +16,7 @@ pub use types::*;
 #[cfg(test)]
 mod test_helpers;
 
+pub use crate::shard::segment_manifest::{SegmentManifestState, SegmentsManifest};
 pub use builders::{
     CountRequestBuilder, EdgeConfigBuilder, EdgeSparseVectorParamsBuilder, EdgeVectorParamsBuilder,
     FacetRequestBuilder, GroupRequestBuilder, PrefetchBuilder, QueryRequestBuilder,
@@ -34,7 +35,6 @@ pub use requests::{
     CountRequest, FacetRequest, GroupRequest, Prefetch, QueryRequest, RetrieveRequest,
     ScrollRequest, SearchMatrixRequest, SearchRequest,
 };
-pub use crate::shard::segment_manifest::{SegmentManifestState, SegmentsManifest};
 pub use update_only::{
     PointAction, PointCopy, PointPreview, PointUpdates, SegmentConfigInfo, UpdateBatchOutcome,
     UpdateBatchPlan, UpdateBatchPreview, UpdateOnlyEdgeShard,

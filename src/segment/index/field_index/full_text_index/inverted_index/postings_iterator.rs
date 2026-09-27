@@ -1,6 +1,6 @@
 use crate::common::types::PointOffsetType;
-use itertools::{Either, Itertools};
 use crate::posting_list::{PostingIterator, PostingListView, PostingValue};
+use itertools::{Either, Itertools};
 
 use super::posting_list::PostingList;
 use crate::segment::index::field_index::full_text_index::inverted_index::positions::{

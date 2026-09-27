@@ -1,7 +1,9 @@
 use std::sync::atomic::AtomicBool;
 
 use crate::common::bitvec::{BitSlice, BitSliceExt as _};
-use crate::common::condition_checker::{CheckItem, ConditionChecker, Rest, Select, default_check_batched};
+use crate::common::condition_checker::{
+    CheckItem, ConditionChecker, Rest, Select, default_check_batched,
+};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::{PointOffsetType, ScoreType};
 use crate::sparse::common::sparse_vector::SparseVector;
@@ -22,7 +24,9 @@ use crate::segment::data_types::vectors::{
     DenseVector, MultiDenseVectorInternal, QueryVector, VectorInternal,
 };
 use crate::segment::spaces::metric::Metric;
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::Distance;
 use crate::segment::vector_storage::query::NaiveFeedbackQuery;
 use crate::segment::vector_storage::query_scorer::QueryScorer;

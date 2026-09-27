@@ -1,5 +1,5 @@
-use schemars::JsonSchema;
 use crate::segment::types::Filter;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use validator::Validate;
 

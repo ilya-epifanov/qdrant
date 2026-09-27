@@ -15,15 +15,11 @@ use std::sync::atomic::{AtomicBool, AtomicU64, AtomicUsize, Ordering};
 use std::thread::JoinHandle;
 use std::time::Duration;
 
-use ahash::{AHashMap, AHashSet};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::process_counter::ProcessCounter;
 use crate::common::save_on_disk::SaveOnDisk;
 use crate::common::toposort::TopoSort;
 use crate::common::types::{DeferredBehavior, PointOffsetType};
-use itertools::Itertools;
-use parking_lot::{Mutex, RwLock, RwLockReadGuard, RwLockUpgradableReadGuard, RwLockWriteGuard};
-use rand::seq::IndexedRandom;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::entry::{
@@ -35,6 +31,10 @@ use crate::segment::types::{
     ExtendedPointId, Payload, PointIdType, SegmentConfig, SeqNumberType, VectorNameBuf,
     WithPayload, WithVector,
 };
+use ahash::{AHashMap, AHashSet};
+use itertools::Itertools;
+use parking_lot::{Mutex, RwLock, RwLockReadGuard, RwLockUpgradableReadGuard, RwLockWriteGuard};
+use rand::seq::IndexedRandom;
 use smallvec::SmallVec;
 
 use crate::shard::locked_segment::{DropDataOutcome, LockedSegment};
@@ -229,8 +229,11 @@ impl SegmentHolder {
         }
 
         let manifest = SegmentsManifest::from_segment_holder(self);
-        let manifest = SaveOnDisk::new(crate::shard::files::segment_manifest_path(shard_path), manifest)
-            .map_err(|err| {
+        let manifest = SaveOnDisk::new(
+            crate::shard::files::segment_manifest_path(shard_path),
+            manifest,
+        )
+        .map_err(|err| {
             OperationError::service_error(format!("failed to write segment manifest: {err}"))
         })?;
         self.segment_manifest = Some(Arc::new(manifest));

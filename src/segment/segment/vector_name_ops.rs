@@ -1,8 +1,8 @@
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::MmapFs;
+use atomic_refcell::AtomicRefCell;
 
 use super::Segment;
 use crate::segment::common::operation_error::OperationResult;

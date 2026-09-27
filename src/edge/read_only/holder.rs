@@ -2,9 +2,9 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use parking_lot::RwLock;
 use crate::segment::index::UniversalReadExt;
 use crate::segment::segment::read_only::ReadOnlySegment;
+use parking_lot::RwLock;
 use uuid::Uuid;
 
 /// In-memory inventory of read-only segments, keyed by the leader-assigned segment UUID.

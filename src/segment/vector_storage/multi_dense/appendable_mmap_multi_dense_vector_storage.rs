@@ -15,7 +15,9 @@ use super::buffered_offsets::BufferedOffsets;
 use crate::segment::common::Flusher;
 use crate::segment::common::flags::bitvec_flags::BitvecFlags;
 use crate::segment::common::flags::dynamic_stored_flags::DynamicStoredFlags;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::{CowMultiVector, CowVector};
 use crate::segment::data_types::primitive::PrimitiveVectorElement;
 use crate::segment::data_types::vectors::{

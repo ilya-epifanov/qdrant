@@ -9,7 +9,9 @@ use crate::segment::index::hnsw_index::config::HnswGraphConfig;
 use crate::segment::index::hnsw_index::graph_layers::GraphLayers;
 use crate::segment::index::struct_payload_index::StructPayloadIndexReadView;
 use crate::segment::payload_storage::payload_storage_enum::PayloadStorageEnum;
-use crate::segment::vector_storage::quantized::quantized_vectors::{QuantizedVectors, QuantizedVectorsRead};
+use crate::segment::vector_storage::quantized::quantized_vectors::{
+    QuantizedVectors, QuantizedVectorsRead,
+};
 use crate::segment::vector_storage::{VectorStorageEnum, VectorStorageRead};
 
 /// Read-only view over an HNSW index.

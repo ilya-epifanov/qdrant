@@ -3,12 +3,7 @@ use std::fmt::{Debug, Formatter};
 use std::hash::{Hash, Hasher};
 use std::mem;
 
-#[cfg(feature = "api")]
-use api::grpc::RawPayload;
 use crate::common::validation::validate_multi_vector;
-use itertools::Itertools as _;
-use ordered_float::OrderedFloat;
-use schemars::JsonSchema;
 use crate::segment::common::operation_error::OperationError;
 use crate::segment::common::utils::unordered_hash_unique;
 use crate::segment::data_types::named_vectors::NamedVectors;
@@ -18,9 +13,14 @@ use crate::segment::data_types::vectors::{
     MultiDenseVectorInternal, VectorInternal, VectorRef, VectorStructInternal,
 };
 use crate::segment::types::{Filter, Payload, PointIdType, VectorNameBuf};
+use crate::sparse::common::types::{DimId, DimWeight};
+#[cfg(feature = "api")]
+use api::grpc::RawPayload;
+use itertools::Itertools as _;
+use ordered_float::OrderedFloat;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use smallvec::SmallVec;
-use crate::sparse::common::types::{DimId, DimWeight};
 use strum::{EnumDiscriminants, EnumIter};
 use validator::{Validate, ValidationErrors};
 

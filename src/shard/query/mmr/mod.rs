@@ -6,9 +6,6 @@ mod tests;
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::ScoreType;
-use indexmap::IndexSet;
-use itertools::Itertools as _;
-use ordered_float::OrderedFloat;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::vectors::{QueryVector, VectorInternal, VectorRef};
 use crate::segment::types::{Distance, MultiVectorConfig, ScoredPoint};
@@ -18,6 +15,9 @@ use crate::segment::vector_storage::sparse::volatile_sparse_vector_storage::new_
 use crate::segment::vector_storage::{
     VectorStorage as _, VectorStorageEnum, VectorStorageRead as _, new_raw_scorer,
 };
+use indexmap::IndexSet;
+use itertools::Itertools as _;
+use ordered_float::OrderedFloat;
 
 use self::lazy_matrix::LazyMatrix;
 use super::MmrInternal;

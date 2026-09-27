@@ -1,6 +1,8 @@
 use std::path::{Path, PathBuf};
 
-use crate::common::universal_io::{UniversalIoError, UniversalReadFs, read_json_via, read_whole_via};
+use crate::common::universal_io::{
+    UniversalIoError, UniversalReadFs, read_json_via, read_whole_via,
+};
 use serde::{Deserialize, Serialize};
 
 use crate::segment::common::operation_error::OperationResult;

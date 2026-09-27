@@ -102,9 +102,9 @@ impl<H: ReadSegmentHandle> EdgeReadView<H> {
                 crate::segment::types::Distance::Dot
             } else {
                 return Err(
-                    crate::segment::common::operation_error::OperationError::service_error(format!(
-                        "vector config for '{vector_name}' does not exist"
-                    )),
+                    crate::segment::common::operation_error::OperationError::service_error(
+                        format!("vector config for '{vector_name}' does not exist"),
+                    ),
                 );
             }
         };

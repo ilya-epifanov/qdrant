@@ -1,8 +1,8 @@
 use std::fmt::Debug;
 
-use blink_alloc::Blink;
 use crate::common::defaults::POOL_KEEP_LIMIT;
 use crate::common::types::ScoreType;
+use blink_alloc::Blink;
 use parking_lot::Mutex;
 
 pub struct SearchScratchPool {

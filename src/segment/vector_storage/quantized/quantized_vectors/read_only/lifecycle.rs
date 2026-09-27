@@ -12,7 +12,9 @@ use strum::IntoEnumIterator;
 use super::ReadOnlyQuantizedVectors;
 use super::storage::ReadOnlyQuantizedVectorStorage;
 use crate::segment::common::operation_error::OperationResult;
-use crate::segment::types::{Distance, Memory, MultiVectorConfig, VectorDataConfig, VectorStorageDatatype};
+use crate::segment::types::{
+    Distance, Memory, MultiVectorConfig, VectorDataConfig, VectorStorageDatatype,
+};
 use crate::segment::vector_storage::quantized::quantized_chunked_mmap_storage::QuantizedChunkedStorageRead;
 use crate::segment::vector_storage::quantized::quantized_multivector_storage::{
     MultivectorOffsetsStorageChunkedRead, MultivectorOffsetsStorageMmap,

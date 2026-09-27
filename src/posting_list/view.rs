@@ -1,8 +1,8 @@
 use std::marker::PhantomData;
 use std::ops::RangeInclusive;
 
-use bitpacking::BitPacker;
 use crate::common::types::PointOffsetType;
+use bitpacking::BitPacker;
 use zerocopy::little_endian::U32;
 
 use crate::posting_list::iterator::PostingIterator;

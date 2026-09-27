@@ -9,8 +9,8 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
+use atomic_refcell::AtomicRefCell;
 
 use crate::segment::common::utils::IndexesMap;
 use crate::segment::id_tracker::in_memory_id_tracker::InMemoryIdTracker;

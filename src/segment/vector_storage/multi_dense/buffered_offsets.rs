@@ -50,12 +50,12 @@
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::AccessPattern;
 use crate::common::is_alive_lock::IsAliveLock;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::MmapFile;
+use ahash::AHashMap;
 use parking_lot::RwLock;
 
 use super::appendable_mmap_multi_dense_vector_storage::MultivectorMmapOffset;

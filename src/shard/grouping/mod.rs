@@ -5,15 +5,15 @@
 pub mod aggregator;
 mod driver;
 
-use ahash::AHashMap;
-use fnv::FnvBuildHasher;
-use indexmap::IndexSet;
 use crate::segment::data_types::groups::GroupId;
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::{
     AnyVariants, Condition, FieldCondition, Filter, Match, PointIdType, ScoredPoint,
     WithPayloadInterface,
 };
+use ahash::AHashMap;
+use fnv::FnvBuildHasher;
+use indexmap::IndexSet;
 use serde_json::Value;
 
 pub use self::aggregator::GroupsAggregator;

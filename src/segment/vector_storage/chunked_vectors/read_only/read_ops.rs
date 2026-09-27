@@ -15,13 +15,19 @@ use crate::segment::vector_storage::{VectorOffset, VectorOffsetType};
 
 impl<T: bytemuck::Pod + Send, S: UniversalRead> ReadOnlyChunkedVectors<T, S> {
     #[inline]
-    pub(in crate::segment::vector_storage::chunked_vectors) fn get_chunk_index(&self, key: usize) -> usize {
+    pub(in crate::segment::vector_storage::chunked_vectors) fn get_chunk_index(
+        &self,
+        key: usize,
+    ) -> usize {
         key / self.config.chunk_size_vectors
     }
 
     /// Returns the byte offset of the vector in the chunk
     #[inline]
-    pub(in crate::segment::vector_storage::chunked_vectors) fn get_chunk_offset(&self, key: usize) -> usize {
+    pub(in crate::segment::vector_storage::chunked_vectors) fn get_chunk_offset(
+        &self,
+        key: usize,
+    ) -> usize {
         let chunk_vector_idx = key % self.config.chunk_size_vectors;
         chunk_vector_idx * self.config.dim
     }

@@ -13,8 +13,12 @@ use fs_err as fs;
 use serde::{Deserialize, Serialize};
 
 use crate::quantization::EncodingError;
-use crate::quantization::encoded_storage::{EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size};
-use crate::quantization::encoded_vectors::{EncodedVectors, VectorParameters, validate_vector_parameters};
+use crate::quantization::encoded_storage::{
+    EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size,
+};
+use crate::quantization::encoded_vectors::{
+    EncodedVectors, VectorParameters, validate_vector_parameters,
+};
 use crate::quantization::quantile::find_quantile_interval_per_coordinate_with_preprocess;
 use crate::quantization::turboquant::math::std_normal_cdf;
 use crate::quantization::turboquant::quantization::{ErrorCorrection, TurboQuantizer};

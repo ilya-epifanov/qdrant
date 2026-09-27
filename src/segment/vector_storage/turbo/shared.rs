@@ -16,7 +16,9 @@ use crate::quantization::turboquant::{EncodedQueryTQ, TQBits, TQMode, TQRotation
 use crate::segment::data_types::named_vectors::CowVector;
 use crate::segment::data_types::vectors::{DenseVector, VectorElementType};
 use crate::segment::spaces::metric::Metric;
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::Distance;
 
 // TurboQuant DataType (TQDT) always uses 4 bits without shift+scale error correction.

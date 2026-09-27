@@ -1,8 +1,8 @@
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::MmapFs;
+use atomic_refcell::AtomicRefCell;
 
 use self::telemetry::HNSWSearchesTelemetry;
 use crate::segment::common::BYTES_IN_KB;

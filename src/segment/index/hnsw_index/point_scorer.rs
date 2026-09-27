@@ -8,14 +8,18 @@ use crate::common::generic_consts::Random;
 use crate::common::types::{PointOffsetType, ScoreType, ScoredPointOffset};
 use smallvec::SmallVec;
 
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::vectors::QueryVector;
 use crate::segment::index::query_optimization::optimized_filter::OptimizedFilter;
 use crate::segment::vector_storage::common::VECTOR_READ_BATCH_SIZE;
 use crate::segment::vector_storage::quantized::quantized_query_scorer::InternalScorerUnsupported;
 use crate::segment::vector_storage::quantized::quantized_vectors::QuantizedVectorsRead;
 use crate::segment::vector_storage::query_scorer::QueryScorerBytes;
-use crate::segment::vector_storage::{NotDeletedChecker, RawScorer, RawScorerBuilder, VectorStorageRead};
+use crate::segment::vector_storage::{
+    NotDeletedChecker, RawScorer, RawScorerBuilder, VectorStorageRead,
+};
 #[cfg(feature = "testing")]
 use crate::segment::vector_storage::{VectorStorageEnum, new_raw_scorer};
 

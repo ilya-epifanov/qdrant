@@ -1,9 +1,9 @@
 use std::io::{BufRead, Read, Write};
 use std::path::{Path, PathBuf};
 
-use byteorder::{ReadBytesExt, WriteBytesExt};
 use crate::common::bitvec::{BitSliceExt as _, BitVec};
 use crate::common::types::PointOffsetType;
+use byteorder::{ReadBytesExt, WriteBytesExt};
 use uuid::Uuid;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};

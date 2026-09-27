@@ -2,10 +2,10 @@ use std::cmp::Ordering;
 use std::fmt::Debug;
 use std::mem::size_of;
 
-use bitpacking::BitPacker as _;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::counter::iterator_hw_measurement::HwMeasurementIteratorExt;
 use crate::common::types::PointOffsetType;
+use bitpacking::BitPacker as _;
 #[cfg(debug_assertions)]
 use itertools::Itertools as _;
 use zerocopy::{FromBytes, Immutable, KnownLayout};

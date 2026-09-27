@@ -1,12 +1,12 @@
 use crate::common::types::ScoreType;
-#[cfg(feature = "api")]
-use itertools::Itertools as _;
 use crate::segment::data_types::load_profile::LoadProfile;
 #[cfg(feature = "api")]
 use crate::segment::data_types::vectors::NamedQuery;
 use crate::segment::types::{Filter, SearchParams, WithPayloadInterface, WithVector};
 #[cfg(feature = "api")]
 use crate::segment::{data_types::vectors::VectorInternal, vector_storage::query::ContextPair};
+#[cfg(feature = "api")]
+use itertools::Itertools as _;
 
 use crate::shard::query::query_enum::QueryEnum;
 

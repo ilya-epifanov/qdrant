@@ -55,7 +55,9 @@ mod tests {
     use super::super::FullTextIndex;
     use super::ReadOnlyFullTextIndex;
     use crate::segment::data_types::index::{TextIndexParams, TextIndexType, TokenizerType};
-    use crate::segment::index::field_index::{PayloadFieldIndex, PayloadFieldIndexRead, ValueIndexer};
+    use crate::segment::index::field_index::{
+        PayloadFieldIndex, PayloadFieldIndexRead, ValueIndexer,
+    };
     use crate::segment::json_path::JsonPath;
     use crate::segment::types::{FieldCondition, Match};
 

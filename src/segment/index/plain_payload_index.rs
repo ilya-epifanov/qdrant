@@ -3,13 +3,15 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
-use atomic_refcell::AtomicRefCell;
-use crate::common::condition_checker::{CheckItem, ConditionChecker, Rest, Select, default_check_batched};
+use crate::common::condition_checker::{
+    CheckItem, ConditionChecker, Rest, Select, default_check_batched,
+};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::AccessPattern;
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::{DeferredBehavior, PointOffsetType, ScoreType};
+use ahash::AHashMap;
+use atomic_refcell::AtomicRefCell;
 use fs_err as fs;
 use schemars::_serde_json::Value;
 
@@ -21,7 +23,9 @@ use crate::segment::id_tracker::{IdTrackerEnum, IdTrackerRead};
 use crate::segment::index::condition_checker::ConditionCheckerEnum;
 use crate::segment::index::field_index::facet_index::FacetIndexEnum;
 use crate::segment::index::field_index::numeric_index::{NumericFieldIndex, NumericFieldIndexRead};
-use crate::segment::index::field_index::{CardinalityEstimation, FacetIndex, PayloadBlockCondition};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, FacetIndex, PayloadBlockCondition,
+};
 use crate::segment::index::payload_config::PayloadConfig;
 use crate::segment::index::query_optimization::optimized_filter::OptimizedFilter;
 use crate::segment::index::query_optimization::rescore_formula::FormulaScorer;
@@ -30,7 +34,9 @@ use crate::segment::index::{BuildIndexResult, PayloadIndex, PayloadIndexRead};
 use crate::segment::json_path::JsonPath;
 use crate::segment::payload_storage::query_checker::SimpleConditionChecker;
 use crate::segment::telemetry::PayloadIndexTelemetry;
-use crate::segment::types::{Filter, Payload, PayloadFieldSchema, PayloadKeyType, PayloadKeyTypeRef};
+use crate::segment::types::{
+    Filter, Payload, PayloadFieldSchema, PayloadKeyType, PayloadKeyTypeRef,
+};
 
 /// Implementation of `PayloadIndex` which does not really indexes anything.
 ///

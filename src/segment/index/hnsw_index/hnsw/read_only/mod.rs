@@ -7,8 +7,8 @@ mod read;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::{CachedReadFs, OkNotFound, Populate, UniversalReadFs};
+use atomic_refcell::AtomicRefCell;
 use once_cell::sync::OnceCell;
 
 use super::read_view::HNSWIndexReadView;

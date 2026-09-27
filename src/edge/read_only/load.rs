@@ -1,10 +1,10 @@
 use std::path::PathBuf;
 
-use rayon::ThreadPool;
-use rayon::prelude::*;
 use crate::segment::data_types::load_profile::LoadProfile;
 use crate::segment::index::UniversalReadExt;
 use crate::segment::segment::read_only::ReadOnlySegment;
+use rayon::ThreadPool;
+use rayon::prelude::*;
 use uuid::Uuid;
 
 /// Open the given segments in parallel on `pool` and return the ones that loaded, in input order.

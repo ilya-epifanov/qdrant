@@ -15,13 +15,15 @@ use std::str::FromStr;
 use std::sync::Arc;
 
 use crate::bm25::SparseEmbedding;
-use ordered_float::NotNan;
-use crate::segment::data_types::index::{Language, StemmingAlgorithm, StopwordsInterface, TokenizerType};
+use crate::segment::data_types::index::{
+    Language, StemmingAlgorithm, StopwordsInterface, TokenizerType,
+};
 use crate::segment::index::field_index::full_text_index::stop_words::StopwordsFilter;
 use crate::segment::index::field_index::full_text_index::tokenizers::{
     Stemmer, Tokenizer, TokensProcessor,
 };
 use crate::sparse::common::sparse_vector::SparseVector;
+use ordered_float::NotNan;
 
 const DEFAULT_LANGUAGE: Language = Language::English;
 

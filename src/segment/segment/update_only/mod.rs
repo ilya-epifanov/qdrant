@@ -16,8 +16,8 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::UniversalRead;
+use atomic_refcell::AtomicRefCell;
 use uuid::Uuid;
 
 use crate::segment::id_tracker::read_only_tracker_enum::ReadOnlyIdTrackerEnum;

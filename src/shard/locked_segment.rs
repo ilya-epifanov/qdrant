@@ -2,10 +2,10 @@ use std::sync::Arc;
 use std::thread::sleep;
 use std::time::{Duration, Instant};
 
-use parking_lot::RwLock;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::entry::{ReadSegmentEntry, SegmentEntry, StorageSegmentEntry as _};
 use crate::segment::segment::Segment;
+use parking_lot::RwLock;
 
 use crate::shard::proxy_segment::ProxySegment;
 

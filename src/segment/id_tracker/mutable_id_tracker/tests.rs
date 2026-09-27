@@ -605,7 +605,10 @@ fn simple_id_tracker_vs_mutable_tracker_congruence() {
         assert_eq!(internal_id_mmap, internal_id_simple);
 
         if mutable_id_tracker
-            .internal_id_with_behavior(point_id, crate::common::types::DeferredBehavior::VisibleOnly)
+            .internal_id_with_behavior(
+                point_id,
+                crate::common::types::DeferredBehavior::VisibleOnly,
+            )
             .is_some()
         {
             mutable_id_tracker.drop(point_id).unwrap();
@@ -618,7 +621,10 @@ fn simple_id_tracker_vs_mutable_tracker_congruence() {
             .unwrap();
 
         if simple_id_tracker
-            .internal_id_with_behavior(point_id, crate::common::types::DeferredBehavior::VisibleOnly)
+            .internal_id_with_behavior(
+                point_id,
+                crate::common::types::DeferredBehavior::VisibleOnly,
+            )
             .is_some()
         {
             simple_id_tracker.drop(point_id).unwrap();

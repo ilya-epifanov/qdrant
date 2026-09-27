@@ -3,13 +3,13 @@ use std::hash::Hash;
 use std::mem;
 use std::slice::ChunksExactMut;
 
+use crate::sparse::common::sparse_vector::SparseVector;
+use crate::sparse::common::types::DimId;
 use half::f16;
 use itertools::Itertools;
 use ordered_float::OrderedFloat;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use crate::sparse::common::sparse_vector::SparseVector;
-use crate::sparse::common::types::DimId;
 use validator::Validate;
 
 use super::named_vectors::NamedVectors;

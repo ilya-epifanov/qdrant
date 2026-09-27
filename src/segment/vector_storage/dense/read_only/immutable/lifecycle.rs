@@ -3,7 +3,9 @@ use std::path::Path;
 use crate::common::bitvec::BitVec;
 use crate::common::mmap::AdviceSetting;
 use crate::common::stored_bitslice::StoredBitSlice;
-use crate::common::universal_io::{CachedReadFs, OpenOptions, Populate, UniversalRead, UniversalReadFs};
+use crate::common::universal_io::{
+    CachedReadFs, OpenOptions, Populate, UniversalRead, UniversalReadFs,
+};
 
 use super::ReadOnlyImmutableDenseVectorStorage;
 use crate::segment::common::flags::in_memory_bitvec_flags::InMemoryBitvecFlags;

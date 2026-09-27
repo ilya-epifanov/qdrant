@@ -3,10 +3,10 @@ use std::sync::Arc;
 
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::universal_io::IsNotFound as _;
-use parking_lot::RwLock;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::index::UniversalReadExt;
 use crate::segment::segment::read_only::ReadOnlySegment;
+use parking_lot::RwLock;
 use uuid::Uuid;
 
 use crate::edge::EdgeConfig;

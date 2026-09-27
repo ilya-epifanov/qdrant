@@ -3,11 +3,11 @@
 //! Everything here is batched: each component is handed the whole set of ids
 //! at once, one pass per component rather than one round-trip per point.
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::Random;
 use crate::common::types::{DeferredBehavior, PointOffsetType};
 use crate::common::universal_io::UniversalRead;
+use ahash::AHashMap;
 
 use super::UpdateOnlySegment;
 use crate::segment::common::operation_error::OperationResult;

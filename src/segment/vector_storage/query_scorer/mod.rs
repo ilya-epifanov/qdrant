@@ -1,6 +1,6 @@
-use bytemuck::TransparentWrapper;
 use crate::common::typelevel::{TBool, TOption};
 use crate::common::types::{PointOffsetType, ScoreType};
+use bytemuck::TransparentWrapper;
 
 use crate::segment::data_types::primitive::PrimitiveVectorElement;
 use crate::segment::data_types::vectors::TypedMultiDenseVectorRef;

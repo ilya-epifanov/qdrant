@@ -6,9 +6,9 @@ use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::mmap::MmapFlusher;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{CachedReadFs, OneshotFile, UniversalRead, UniversalReadFs};
+use crate::quantization::encoded_storage::default_for_each_batch;
 use fs_err as fs;
 use fs_err::File;
-use crate::quantization::encoded_storage::default_for_each_batch;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::common::vector_utils::TrySetCapacityExact;

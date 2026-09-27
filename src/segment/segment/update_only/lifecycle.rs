@@ -2,13 +2,13 @@ use std::collections::HashMap;
 use std::path::Path;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::storage_version::{StorageVersion, VERSION_FILE};
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{
     CachedFs, CachedReadFs, OkNotFound as _, Populate, UniversalRead, UniversalReadFs,
     read_json_via,
 };
+use atomic_refcell::AtomicRefCell;
 use uuid::Uuid;
 
 use super::{UpdateOnlySegment, UpdateOnlyVectorData};

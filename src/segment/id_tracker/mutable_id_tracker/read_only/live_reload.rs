@@ -7,7 +7,9 @@ use crate::common::universal_io::{OkNotFound, ReadRange, UniversalRead};
 use super::ReadOnlyAppendableIdTracker;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::id_tracker::mutable_id_tracker::change::MappingChange;
-use crate::segment::id_tracker::mutable_id_tracker::mappings_storage::{mappings_path, read_mappings_iter};
+use crate::segment::id_tracker::mutable_id_tracker::mappings_storage::{
+    mappings_path, read_mappings_iter,
+};
 use crate::segment::id_tracker::mutable_id_tracker::versions_storage::{
     VERSION_ELEMENT_SIZE, versions_path,
 };

@@ -118,7 +118,9 @@ mod tests {
     use crate::segment::vector_storage::dense::appendable_dense_vector_storage::{
         self, open_appendable_memmap_vector_storage_impl,
     };
-    use crate::segment::vector_storage::dense::dense_vector_storage::{self, open_dense_vector_storage};
+    use crate::segment::vector_storage::dense::dense_vector_storage::{
+        self, open_dense_vector_storage,
+    };
     use crate::segment::vector_storage::dense::volatile_dense_vector_storage::new_volatile_dense_vector_storage;
     use crate::segment::vector_storage::multi_dense::appendable_mmap_multi_dense_vector_storage::{
         self, open_appendable_memmap_multi_vector_storage_impl,
@@ -575,7 +577,9 @@ mod tests {
         use crate::segment::vector_storage::turbo::{
             TurboVectorStorageImpl, open_appendable_turbo_vector_storage,
         };
-        use crate::segment::vector_storage::{DenseTQVectorStorage, VectorStorage, raw_turbo_scorer_impl};
+        use crate::segment::vector_storage::{
+            DenseTQVectorStorage, VectorStorage, raw_turbo_scorer_impl,
+        };
 
         /// Bulk-load `encoded` into a freshly-opened writable target and flush it,
         /// so the read-only reopen below must round-trip through disk.
@@ -729,7 +733,9 @@ mod tests {
     fn read_only_turbo_multi_round_trip() {
         use crate::segment::data_types::vectors::QueryVector;
         use crate::segment::vector_storage::turbo::multi_turbo::open_appendable_turbo_multi_vector_storage;
-        use crate::segment::vector_storage::{MultiTQVectorStorageRead, raw_turbo_multi_scorer_impl};
+        use crate::segment::vector_storage::{
+            MultiTQVectorStorageRead, raw_turbo_multi_scorer_impl,
+        };
 
         const COUNT: PointOffsetType = 128;
         let multivector_config = MultiVectorConfig::default();

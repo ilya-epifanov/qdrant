@@ -9,11 +9,15 @@ use rayon::iter::{IntoParallelIterator as _, ParallelIterator as _};
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::index::hnsw_index::HnswM;
 use crate::segment::index::hnsw_index::graph_layers::GraphLayers;
-use crate::segment::index::hnsw_index::graph_layers_builder::{GraphLayersBuilder, LockedLayersContainer};
+use crate::segment::index::hnsw_index::graph_layers_builder::{
+    GraphLayersBuilder, LockedLayersContainer,
+};
 use crate::segment::index::hnsw_index::links_container::{ItemsBuffer, LinksContainer};
 use crate::segment::index::visited_pool::VisitedPool;
 use crate::segment::vector_storage::quantized::quantized_vectors::QuantizedVectors;
-use crate::segment::vector_storage::{RawScorer, VectorStorageEnum, VectorStorageRead, new_raw_scorer};
+use crate::segment::vector_storage::{
+    RawScorer, VectorStorageEnum, VectorStorageRead, new_raw_scorer,
+};
 
 pub struct GraphLayersHealer<'a> {
     links_layers: Vec<LockedLayersContainer>,

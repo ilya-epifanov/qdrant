@@ -295,7 +295,9 @@ mod tests {
 
     use super::immutable_bool_index::{ImmutableBoolIndex, ImmutableBoolIndexBuilder};
     use super::mutable_bool_index::{MutableBoolIndex, MutableBoolIndexBuilder};
-    use crate::segment::index::field_index::{FieldIndexBuilderTrait, PayloadFieldIndex, ValueIndexer};
+    use crate::segment::index::field_index::{
+        FieldIndexBuilderTrait, PayloadFieldIndex, ValueIndexer,
+    };
     use crate::segment::json_path::JsonPath;
 
     const FIELD_NAME: &str = "bool_field";

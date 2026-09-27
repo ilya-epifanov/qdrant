@@ -3,12 +3,12 @@ use std::collections::hash_map::Entry;
 use std::mem::size_of_val;
 use std::path::PathBuf;
 
-use ahash::HashMap;
 use crate::blobstore::Blob;
 use crate::common::bitvec::BitVec;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{MmapFs, Populate};
+use ahash::HashMap;
 use itertools::Itertools;
 use serde_json::Value;
 

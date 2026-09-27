@@ -3,20 +3,24 @@ use std::path::PathBuf;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::fs::safe_delete_with_suffix;
 use crate::common::types::{DeferredBehavior, PointOffsetType, TelemetryDetail};
+use ahash::AHashMap;
 use uuid::Uuid;
 
 use super::Segment;
-use crate::segment::common::operation_error::{OperationError, OperationResult, SegmentFailedState};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, SegmentFailedState,
+};
 use crate::segment::common::{Flusher, check_named_vectors, check_vector_name};
 use crate::segment::data_types::build_index_result::BuildFieldIndexResult;
 use crate::segment::data_types::facets::{FacetParams, FacetValue};
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::data_types::order_by::{OrderBy, OrderValue};
-use crate::segment::data_types::query_context::{FormulaContext, QueryContext, SegmentQueryContext};
+use crate::segment::data_types::query_context::{
+    FormulaContext, QueryContext, SegmentQueryContext,
+};
 use crate::segment::data_types::segment_record::{SegmentRecord, SegmentRecordRaw};
 use crate::segment::data_types::vector_name_config::VectorNameConfig;
 use crate::segment::data_types::vectors::{QueryVector, VectorInternal};

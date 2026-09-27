@@ -3,7 +3,6 @@ use std::cell::RefCell;
 use std::mem::MaybeUninit;
 use std::path::{Path, PathBuf};
 
-use ahash::{AHashMap, HashSet};
 use crate::common::generic_consts::AccessPattern;
 use crate::common::maybe_uninit::assume_init_vec;
 use crate::common::mmap::{Advice, AdviceSetting};
@@ -11,6 +10,7 @@ use crate::common::universal_io::{
     CachedReadFs, FileIndex, Flusher, OpenOptions, Populate, ReadPipeline, ReadRange,
     UniversalRead, UniversalReadFileOps, UniversalReadFs, UniversalWrite, UserData,
 };
+use ahash::{AHashMap, HashSet};
 use itertools::Either;
 
 use crate::blobstore::Result;

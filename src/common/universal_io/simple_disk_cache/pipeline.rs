@@ -10,11 +10,14 @@ use crate::common::universal_io::simple_disk_cache::local_state::LocalState;
 use crate::common::universal_io::simple_disk_cache::{
     DiskCache, DiskCacheRemote, block_aligned_fetch, to_block_range,
 };
-use crate::common::universal_io::{ReadPipeline, UioResult, UniversalIoError, UniversalRead, UserData};
+use crate::common::universal_io::{
+    ReadPipeline, UioResult, UniversalIoError, UniversalRead, UserData,
+};
 
 #[cfg(target_os = "linux")]
 /// Required alignment when using io_uring with `O_DIRECT` on Linux
-pub(super) const REMOTE_READ_ALIGNMENT: usize = crate::common::universal_io::io_uring::KERNEL_PAGE_SIZE;
+pub(super) const REMOTE_READ_ALIGNMENT: usize =
+    crate::common::universal_io::io_uring::KERNEL_PAGE_SIZE;
 
 #[cfg(not(target_os = "linux"))]
 /// Default alignment on non-Linux platforms

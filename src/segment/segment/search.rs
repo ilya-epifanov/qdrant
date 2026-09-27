@@ -9,7 +9,9 @@ use crate::segment::data_types::vectors::QueryVector;
 #[cfg(feature = "testing")]
 use crate::segment::entry::ReadSegmentEntry;
 #[cfg(feature = "testing")]
-use crate::segment::types::{Filter, ScoredPoint, SearchParams, VectorName, WithPayload, WithVector};
+use crate::segment::types::{
+    Filter, ScoredPoint, SearchParams, VectorName, WithPayload, WithVector,
+};
 
 #[cfg(feature = "testing")]
 impl Segment {

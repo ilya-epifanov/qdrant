@@ -1,4 +1,3 @@
-use ahash::AHashSet;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::vectors::NamedQuery;
 use crate::segment::types::{
@@ -7,6 +6,7 @@ use crate::segment::types::{
 };
 use crate::shard::query::query_enum::QueryEnum;
 use crate::shard::query::{SampleInternal, ScoringQuery, ShardQueryRequest};
+use ahash::AHashSet;
 
 use crate::edge::read_view::{EdgeReadView, ReadSegmentHandle};
 use crate::edge::requests::SearchMatrixRequest;

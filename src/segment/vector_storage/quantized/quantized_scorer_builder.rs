@@ -11,7 +11,9 @@ use crate::segment::data_types::vectors::{
     VectorElementTypeHalf,
 };
 use crate::segment::spaces::metric::Metric;
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::{Distance, QuantizationConfig, VectorStorageDatatype};
 use crate::segment::vector_storage::quantized::quantized_multi_custom_query_scorer::QuantizedMultiCustomQueryScorer;
 use crate::segment::vector_storage::quantized::quantized_multi_query_scorer::QuantizedMultiQueryScorer;

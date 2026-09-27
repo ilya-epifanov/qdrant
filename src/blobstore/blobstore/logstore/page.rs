@@ -1,7 +1,6 @@
 use std::borrow::Cow;
 use std::path::{Path, PathBuf};
 
-use ahash::{HashMap, HashSet};
 use crate::common::generic_consts::AccessPattern;
 use crate::common::mmap::{Advice, AdviceSetting};
 use crate::common::universal_io::{
@@ -9,6 +8,7 @@ use crate::common::universal_io::{
     UniversalIoError, UniversalRead, UniversalReadFileOps, UniversalReadFs, UniversalWriteFileOps,
     UserData,
 };
+use ahash::{HashMap, HashSet};
 
 use crate::blobstore::Result;
 use crate::blobstore::blobstore::Flusher;

@@ -3,10 +3,6 @@ use std::sync::atomic::AtomicBool;
 
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::types::DeferredBehavior;
-use itertools::Itertools as _;
-use rand::RngExt;
-use rand::distr::weighted::WeightedIndex;
-use rand::rngs::StdRng;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::order_by::{Direction, OrderBy};
 use crate::segment::entry::ReadSegmentEntry;
@@ -15,6 +11,10 @@ use crate::shard::query::scroll::{QueryScrollRequestInternal, ScrollOrder};
 use crate::shard::retrieve::record_internal::RecordInternal;
 use crate::shard::retrieve::retrieve_blocking::retrieve_over;
 use crate::shard::scroll::ScrollRequestInternal;
+use itertools::Itertools as _;
+use rand::RngExt;
+use rand::distr::weighted::WeightedIndex;
+use rand::rngs::StdRng;
 
 use crate::edge::read_view::{EdgeReadView, ReadSegmentHandle};
 

@@ -24,7 +24,9 @@ use super::shared::{self, DELETED_DIR_PATH, VECTORS_DIR_PATH};
 use crate::segment::common::Flusher;
 use crate::segment::common::flags::bitvec_flags::BitvecFlags;
 use crate::segment::common::flags::dynamic_stored_flags::DynamicStoredFlags;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::CowVector;
 use crate::segment::data_types::vectors::{DenseVector, VectorElementType, VectorRef};
 use crate::segment::types::{Distance, VectorStorageDatatype};

@@ -9,11 +9,11 @@
 
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UniversalRead;
-use rayon::ThreadPool;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::fully_qualified_point::FullyQualifiedPoint;
 use crate::segment::types::{PointIdType, SeqNumberType};
 use crate::shard::operations::CollectionUpdateOperations;
+use rayon::ThreadPool;
 use uuid::Uuid;
 
 use crate::edge::update_only::UpdateOnlyEdgeShard;

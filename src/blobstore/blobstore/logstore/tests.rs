@@ -5,9 +5,13 @@ use fs_err as fs;
 use tempfile::TempDir;
 
 use crate::blobstore::blobstore::reader::CONFIG_FILENAME;
-use crate::blobstore::config::{Compression, DEFAULT_PAGE_SIZE_BYTES, LogstoreConfig, Mode, StorageConfig};
+use crate::blobstore::config::{
+    Compression, DEFAULT_PAGE_SIZE_BYTES, LogstoreConfig, Mode, StorageConfig,
+};
 use crate::blobstore::error::BlobstoreError;
-use crate::blobstore::fixtures::{Payload, default_config, empty_storage_append_only, random_payload};
+use crate::blobstore::fixtures::{
+    Payload, default_config, empty_storage_append_only, random_payload,
+};
 use crate::blobstore::tracker::ValuePointer;
 use crate::blobstore::{Blobstore, BlobstoreReader};
 

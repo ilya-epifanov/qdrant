@@ -168,7 +168,9 @@ impl<S: UniversalRead> QuantizedVectorsRead for ReadOnlyQuantizedVectors<S> {
     }
 }
 
-impl<S: UniversalRead> crate::segment::common::memory_usage::MemoryReporter for ReadOnlyQuantizedVectors<S> {
+impl<S: UniversalRead> crate::segment::common::memory_usage::MemoryReporter
+    for ReadOnlyQuantizedVectors<S>
+{
     fn memory_usage(&self) -> crate::segment::common::memory_usage::ComponentMemoryUsage {
         use crate::segment::common::memory_usage::{ComponentMemoryUsage, FileStorageIntent};
 

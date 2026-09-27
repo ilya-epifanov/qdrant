@@ -85,7 +85,10 @@ impl QuotaManager {
             |percent| reusable(percent, limit),
             || {
                 let resident = crate::common::memory_usage::resident_bytes()?;
-                percent_of(resident as u64, crate::segment::utils::mem::total_memory_bytes())
+                percent_of(
+                    resident as u64,
+                    crate::segment::utils::mem::total_memory_bytes(),
+                )
             },
         )
     }

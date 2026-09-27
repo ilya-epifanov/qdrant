@@ -9,7 +9,9 @@ use rand::seq::IndexedRandom;
 use rand::{Rng, RngExt};
 use serde_json::{Value, json};
 
-use crate::segment::data_types::vectors::{DenseVector, MultiDenseVectorInternal, VectorElementType};
+use crate::segment::data_types::vectors::{
+    DenseVector, MultiDenseVectorInternal, VectorElementType,
+};
 use crate::segment::payload_json;
 use crate::segment::types::{
     AnyVariants, Condition, ExtendedPointId, FieldCondition, Filter, HasIdCondition,

@@ -14,12 +14,14 @@ use crate::common::generic_consts::{AccessPattern, Random};
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{MmapFile, MmapFs, Populate, UserData};
-use fs_err as fs;
 use crate::sparse::common::sparse_vector::SparseVector;
+use fs_err as fs;
 
 use crate::segment::common::flags::bitvec_flags::BitvecFlags;
 use crate::segment::common::flags::dynamic_stored_flags::DynamicStoredFlags;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::CowVector;
 use crate::segment::data_types::vectors::VectorRef;
 use crate::segment::types::VectorStorageDatatype;
@@ -431,10 +433,10 @@ mod test {
 
     use crate::common::counter::hardware_counter::HardwareCounterCell;
     use crate::common::generic_consts::Random;
-    use rand::rngs::StdRng;
-    use rand::{RngExt, SeedableRng};
     use crate::sparse::common::sparse_vector;
     use crate::sparse::common::sparse_vector_fixture::random_sparse_vector;
+    use rand::rngs::StdRng;
+    use rand::{RngExt, SeedableRng};
     use tempfile::Builder;
 
     use super::*;

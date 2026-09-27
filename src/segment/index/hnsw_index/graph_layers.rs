@@ -47,8 +47,12 @@ use crate::segment::common::operation_error::{
     CancellableResult, OperationError, OperationResult, check_process_stopped,
 };
 use crate::segment::common::utils::rev_range;
-use crate::segment::index::hnsw_index::graph_links::{GraphLinksFormatParam, serialize_graph_links};
-use crate::segment::index::hnsw_index::point_scorer::{FilteredBytesScorer, FilteredScorer, ScorerFilters};
+use crate::segment::index::hnsw_index::graph_links::{
+    GraphLinksFormatParam, serialize_graph_links,
+};
+use crate::segment::index::hnsw_index::point_scorer::{
+    FilteredBytesScorer, FilteredScorer, ScorerFilters,
+};
 use crate::segment::index::hnsw_index::search_context::SearchContext;
 use crate::segment::index::visited_pool::{VisitedListHandle, VisitedPool};
 use crate::segment::vector_storage::RawScorer;

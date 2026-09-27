@@ -3,8 +3,8 @@ use std::path::Path;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::Random;
 use crate::common::types::PointOffsetType;
-use itertools::Itertools;
 use crate::sparse::common::sparse_vector::SparseVector;
+use itertools::Itertools;
 use tempfile::Builder;
 
 use crate::segment::data_types::vectors::QueryVector;
@@ -15,7 +15,9 @@ use crate::segment::segment_constructor::batched_reader::merge_from_single_sourc
 use crate::segment::vector_storage::query::RecoQuery;
 use crate::segment::vector_storage::sparse::mmap_sparse_vector_storage::MmapSparseVectorStorage;
 use crate::segment::vector_storage::sparse::volatile_sparse_vector_storage::new_volatile_sparse_vector_storage;
-use crate::segment::vector_storage::{DEFAULT_STOPPED, VectorStorage, VectorStorageEnum, VectorStorageRead};
+use crate::segment::vector_storage::{
+    DEFAULT_STOPPED, VectorStorage, VectorStorageEnum, VectorStorageRead,
+};
 
 fn do_test_delete_points(storage: &mut VectorStorageEnum) {
     let points: Vec<SparseVector> = vec![

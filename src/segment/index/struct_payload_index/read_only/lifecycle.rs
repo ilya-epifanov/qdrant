@@ -2,8 +2,8 @@ use std::collections::HashMap;
 use std::path::Path;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::{CachedReadFs, UniversalReadFs};
+use atomic_refcell::AtomicRefCell;
 
 use super::{ReadOnlyIndexesMap, ReadOnlyStructPayloadIndex};
 use crate::segment::common::operation_error::{OperationError, OperationResult};

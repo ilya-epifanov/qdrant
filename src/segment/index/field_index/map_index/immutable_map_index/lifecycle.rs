@@ -2,11 +2,11 @@ use std::borrow::Borrow as _;
 use std::collections::HashMap;
 use std::path::PathBuf;
 
-use bitvec::vec::BitVec;
 use crate::blobstore::Blob;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{UniversalRead, UniversalWrite};
+use bitvec::vec::BitVec;
 
 use super::super::MapIndexKey;
 use super::super::on_disk_map_index::OnDiskMapIndex;

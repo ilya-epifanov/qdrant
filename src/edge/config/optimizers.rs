@@ -1,9 +1,9 @@
 //! Optimizer-related parameters for the edge shard.
 
-use serde::{Deserialize, Serialize};
 use crate::shard::optimizers::config::{
     get_indexing_threshold_kb, get_max_segment_size_kb, get_number_segments,
 };
+use serde::{Deserialize, Serialize};
 
 /// Optimizer-related parameters for the edge shard.
 ///

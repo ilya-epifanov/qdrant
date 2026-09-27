@@ -5,7 +5,9 @@ use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::{AccessPattern, Random};
 use crate::common::mmap::{AdviceSetting, MmapFlusher};
 use crate::common::types::PointOffsetType;
-use crate::common::universal_io::{CachedReadFs, Populate, UniversalRead, UniversalReadFs, UserData};
+use crate::common::universal_io::{
+    CachedReadFs, Populate, UniversalRead, UniversalReadFs, UserData,
+};
 
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::vector_storage::VectorOffsetType;

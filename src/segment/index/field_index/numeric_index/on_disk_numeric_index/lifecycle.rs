@@ -25,7 +25,9 @@ use crate::segment::index::field_index::deleted_mask::{
 };
 use crate::segment::index::field_index::histogram::Histogram;
 use crate::segment::index::field_index::numeric_point::{Numericable, Point};
-use crate::segment::index::field_index::on_disk_point_to_values::{OnDiskPointToValues, StoredValue};
+use crate::segment::index::field_index::on_disk_point_to_values::{
+    OnDiskPointToValues, StoredValue,
+};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct UniversalNumericIndexConfig {

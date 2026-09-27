@@ -1,10 +1,10 @@
 use std::path::{Path, PathBuf};
 
 use crate::common::universal_io::{MmapFile, MmapFs, UniversalRead, UniversalReadFs};
-use parking_lot::RwLock;
-use rayon::prelude::*;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::segment::update_only::UpdateOnlySegment;
+use parking_lot::RwLock;
+use rayon::prelude::*;
 use uuid::Uuid;
 
 use crate::edge::read_only::{LocalSegmentEnumerator, SegmentEnumerator};

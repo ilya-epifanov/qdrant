@@ -1,10 +1,10 @@
 use std::borrow::Cow;
 use std::path::PathBuf;
 
-use ahash::AHashSet;
 use crate::common::generic_consts::Random;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{ReadRange, UioResult, UniversalRead};
+use ahash::AHashSet;
 
 use super::super::on_disk_geo_index::OnDiskGeoIndex;
 use super::{Counts, DELETED_SENTINEL, ImmutableGeoIndex};

@@ -31,14 +31,18 @@ use super::super::shared::{
 use crate::segment::common::Flusher;
 use crate::segment::common::flags::bitvec_flags::BitvecFlags;
 use crate::segment::common::flags::dynamic_stored_flags::DynamicStoredFlags;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::{CowMultiVector, CowVector};
 use crate::segment::data_types::vectors::{
     DenseVector, MultiDenseVectorInternal, TypedMultiDenseVector, TypedMultiDenseVectorRef,
     VectorElementType, VectorRef,
 };
 use crate::segment::spaces::metric::Metric;
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::{Distance, MultiVectorConfig, VectorStorageDatatype};
 use crate::segment::vector_storage::chunked_vectors::ChunkedVectors;
 use crate::segment::vector_storage::multi_dense::appendable_mmap_multi_dense_vector_storage::MultivectorMmapOffset;

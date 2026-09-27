@@ -1,7 +1,7 @@
 use std::iter;
 
-use ahash::AHashMap;
 use crate::common::types::ScoreType;
+use ahash::AHashMap;
 use itertools::{Itertools, MinMaxResult};
 use ordered_float::OrderedFloat;
 

@@ -4,11 +4,11 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::time::Instant;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::defaults::log_load_timing;
 use crate::common::is_alive_lock::IsAliveLock;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::MmapFs;
+use atomic_refcell::AtomicRefCell;
 use parking_lot::Mutex;
 use uuid::Uuid;
 

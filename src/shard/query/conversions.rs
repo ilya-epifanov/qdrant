@@ -1,6 +1,3 @@
-use api::{grpc, rest};
-use itertools::Itertools;
-use ordered_float::OrderedFloat;
 use crate::segment::common::reciprocal_rank_fusion::DEFAULT_RRF_K;
 use crate::segment::data_types::order_by::OrderBy;
 use crate::segment::data_types::vectors::{
@@ -9,11 +6,16 @@ use crate::segment::data_types::vectors::{
 use crate::segment::index::query_optimization::rescore_formula::parsed_formula::{
     DecayKind, ParsedFormula,
 };
-use crate::segment::types::{Filter, SearchParams, VectorNameBuf, WithPayloadInterface, WithVector};
+use crate::segment::types::{
+    Filter, SearchParams, VectorNameBuf, WithPayloadInterface, WithVector,
+};
 use crate::segment::vector_storage::query::{
     ContextQuery, DiscoverQuery, FeedbackItem, NaiveFeedbackCoefficients, NaiveFeedbackQuery,
     RecoQuery,
 };
+use api::{grpc, rest};
+use itertools::Itertools;
+use ordered_float::OrderedFloat;
 
 use crate::shard::query::formula::*;
 use crate::shard::query::query_enum::*;

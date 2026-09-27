@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::universal_io::UniversalReadFs;
+use atomic_refcell::AtomicRefCell;
 
 use super::{ReadOnlyIndexesMap, ReadOnlyStructPayloadIndex};
 use crate::segment::common::operation_error::OperationResult;

@@ -1,12 +1,12 @@
 use std::cmp::Ordering;
 use std::collections::hash_map::Entry;
 
-use ahash::{AHashMap, AHashSet};
-use itertools::Itertools;
 use crate::segment::data_types::groups::GroupId;
 use crate::segment::json_path::JsonPath;
 use crate::segment::spaces::tools::{peek_top_largest_iterable, peek_top_smallest_iterable};
 use crate::segment::types::{ExtendedPointId, Order, PayloadContainer, PointIdType, ScoredPoint};
+use ahash::{AHashMap, AHashSet};
+use itertools::Itertools;
 use serde_json::Value;
 
 use super::{AggregatorError, Group};

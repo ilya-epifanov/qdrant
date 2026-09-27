@@ -2,7 +2,9 @@ use std::path::PathBuf;
 
 use crate::blobstore::{Blob, BlobstoreReader};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
-use crate::common::universal_io::{CachedReadFs, OkNotFound, Populate, UniversalRead, UniversalReadFs};
+use crate::common::universal_io::{
+    CachedReadFs, OkNotFound, Populate, UniversalRead, UniversalReadFs,
+};
 
 use super::super::InMemoryNumericIndex;
 use super::ReadOnlyAppendableNumericIndex;

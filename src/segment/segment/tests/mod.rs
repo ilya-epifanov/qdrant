@@ -5,11 +5,12 @@ mod test_vector_name_ops;
 use std::assert_matches;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashSet;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::tar_ext;
 use crate::common::tar_unpack::tar_unpack_file;
 use crate::common::types::{DeferredBehavior, PointOffsetType};
+use crate::sparse::common::sparse_vector::SparseVector;
+use ahash::AHashSet;
 use fs_err as fs;
 use fs_err::File;
 use ordered_float::OrderedFloat;
@@ -17,7 +18,6 @@ use rand::rngs::StdRng;
 use rand::{RngExt, SeedableRng};
 use rstest::rstest;
 use serde_json::{Number, Value};
-use crate::sparse::common::sparse_vector::SparseVector;
 use tempfile::{Builder, TempDir};
 
 use super::*;
@@ -36,7 +36,9 @@ use crate::segment::entry::entry_point::{
 };
 use crate::segment::entry::{SnapshotEntry as _, StorageSegmentEntry as _};
 use crate::segment::id_tracker::{IdTracker, IdTrackerRead};
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::json_path::JsonPath;
 use crate::segment::segment_constructor::simple_segment_constructor::{
     VECTOR1_NAME, VECTOR2_NAME, build_segment_with_two_named_vecs, build_simple_segment,
@@ -50,7 +52,9 @@ use crate::segment::types::{
     WithVector,
 };
 use crate::segment::utils::maybe_arc::MaybeArc;
-use crate::segment::vector_storage::query::{FeedbackItem, NaiveFeedbackCoefficients, NaiveFeedbackQuery};
+use crate::segment::vector_storage::query::{
+    FeedbackItem, NaiveFeedbackCoefficients, NaiveFeedbackQuery,
+};
 
 fn init_logger() {
     let _ = env_logger::builder().is_test(true).try_init();
@@ -1399,7 +1403,9 @@ fn test_upsert_raw_malformed_blob_rejected() {
     assert!(
         matches!(
             result,
-            Err(crate::segment::common::operation_error::OperationError::MalformedVectorBlob { .. })
+            Err(
+                crate::segment::common::operation_error::OperationError::MalformedVectorBlob { .. }
+            )
         ),
         "malformed blob must be rejected as MalformedVectorBlob, got {result:?}",
     );

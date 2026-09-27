@@ -19,10 +19,10 @@
 use std::io::{Cursor, Write};
 use std::path::{Path, PathBuf};
 
-use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
 use crate::common::stored_bitmask::save_bitmask;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UniversalWriteFileOps;
+use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
 use roaring::RoaringBitmap;
 use uuid::Uuid;
 

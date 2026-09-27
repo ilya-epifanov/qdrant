@@ -16,7 +16,9 @@ use crate::common::universal_io::UserData;
 use itertools::Itertools;
 
 use crate::segment::common::operation_error::OperationResult;
-use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCondition, PrimaryCondition};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, PayloadBlockCondition, PrimaryCondition,
+};
 use crate::segment::index::query_estimator::expected_should_estimation;
 use crate::segment::types::{FieldCondition, Match, PayloadKeyType};
 

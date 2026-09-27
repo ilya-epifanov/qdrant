@@ -3,14 +3,14 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::time::Duration;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
 use crate::common::types::DeferredBehavior;
-use parking_lot::RwLock;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::segment_record::SegmentRecordRaw;
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::types::{PointIdType, SeqNumberType, WithPayload, WithVector};
+use ahash::AHashMap;
+use parking_lot::RwLock;
 
 use crate::shard::retrieve::record_internal::RecordInternal;
 use crate::shard::segment_holder::SegmentHolder;

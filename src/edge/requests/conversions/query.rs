@@ -1,5 +1,5 @@
-use ordered_float::OrderedFloat;
 use crate::shard::query::{ShardPrefetch, ShardQueryRequest};
+use ordered_float::OrderedFloat;
 
 use crate::edge::requests::query::{Prefetch, QueryRequest};
 

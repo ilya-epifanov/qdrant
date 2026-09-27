@@ -107,7 +107,10 @@ mod tests {
         let cfg = DiskCacheConfig::new(remote_dir, local_dir).unwrap();
         let err = cfg.local_path_for(&outside).unwrap_err();
 
-        assert_matches!(err, crate::common::universal_io::UniversalIoError::NotFound { .. });
+        assert_matches!(
+            err,
+            crate::common::universal_io::UniversalIoError::NotFound { .. }
+        );
     }
 
     #[test]

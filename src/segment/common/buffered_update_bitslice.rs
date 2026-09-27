@@ -1,8 +1,8 @@
 use std::sync::Arc;
 
-use ahash::AHashMap;
 use crate::common::stored_bitslice::StoredBitSlice;
 use crate::common::universal_io::UniversalWrite;
+use ahash::AHashMap;
 use itertools::Itertools;
 use parking_lot::RwLock;
 

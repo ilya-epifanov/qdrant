@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
 use crate::common::counter::hardware_counter::HardwareCounterCell;
-use parking_lot::RwLock;
 use crate::segment::data_types::vectors::{DEFAULT_VECTOR_NAME, only_default_vector};
 use crate::segment::entry::ReadSegmentEntry as _;
 use crate::segment::entry::entry_point::SegmentEntry as _;
@@ -9,6 +8,7 @@ use crate::segment::payload_json;
 use crate::segment::types::{
     Condition, FieldCondition, Filter, Match, MatchValue, PayloadKeyType, ValueVariants,
 };
+use parking_lot::RwLock;
 use tempfile::Builder;
 
 use crate::shard::fixtures::{

@@ -19,7 +19,9 @@ fn test_full_text_indexing() {
     use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
     use crate::common::counter::hardware_counter::HardwareCounterCell;
 
-    use crate::segment::index::field_index::{PayloadFieldIndex, PayloadFieldIndexRead, ValueIndexer};
+    use crate::segment::index::field_index::{
+        PayloadFieldIndex, PayloadFieldIndexRead, ValueIndexer,
+    };
 
     let payloads: Vec<_> = vec![
         serde_json::json!(

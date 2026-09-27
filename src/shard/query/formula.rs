@@ -2,11 +2,11 @@ use std::collections::{HashMap, HashSet};
 use std::fmt;
 
 use crate::common::types::ScoreType;
-use itertools::Itertools;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::index::query_optimization::rescore_formula::parsed_formula::*;
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::{Condition, GeoPoint};
+use itertools::Itertools;
 use serde::Serialize;
 use serde_json::Value;
 

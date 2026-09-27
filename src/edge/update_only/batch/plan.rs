@@ -1,6 +1,5 @@
 //! Collapsing a batch of operations into one [`PointUpdates`] entry per point.
 
-use ahash::AHashMap;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::types::{PointIdType, SeqNumberType};
@@ -10,6 +9,7 @@ use crate::shard::operations::point_ops::{
     PointOperations, PointStructPersisted, PointStructRawPersisted,
 };
 use crate::shard::operations::vector_ops::{PointVectorsPersisted, VectorOperations};
+use ahash::AHashMap;
 
 use super::mutation::{OperationVectors, PointMutation, PointUpdates};
 

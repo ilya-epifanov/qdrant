@@ -30,7 +30,9 @@ use crate::segment::index::field_index::numeric_point::{Numericable, Point};
 use crate::segment::index::field_index::on_disk_point_to_values::StoredValue;
 use crate::segment::index::field_index::stat_tools::estimate_multi_value_selection_cardinality;
 use crate::segment::index::field_index::utils::check_boundaries;
-use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCondition, PrimaryCondition};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, PayloadBlockCondition, PrimaryCondition,
+};
 use crate::segment::types::{
     FieldCondition, FloatPayloadType, IntPayloadType, Match, MatchValue, PayloadKeyType, Range,
     RangeInterface, UuidIntType, ValueVariants,

@@ -1,5 +1,5 @@
-use ahash::AHashMap;
 use crate::common::types::PointOffsetType;
+use ahash::AHashMap;
 
 use crate::segment::types::SeqNumberType;
 

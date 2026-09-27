@@ -5,13 +5,15 @@
 //! global `EdgeShardConfig::quantization_config` for that vector.
 
 use crate::segment::data_types::modifier::Modifier;
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::types::{
     Distance, HnswConfig, Indexes, MultiVectorConfig, QuantizationConfig, SparseVectorDataConfig,
     SparseVectorStorageType, VectorDataConfig, VectorStorageDatatype, VectorStorageType,
 };
-use serde::{Deserialize, Serialize};
 use crate::shard::optimizers::config::DenseVectorOptimizerConfig;
+use serde::{Deserialize, Serialize};
 
 /// User-facing dense vector parameters.
 ///
@@ -39,7 +41,10 @@ pub struct EdgeVectorParams {
 impl EdgeVectorParams {
     /// Start building [`EdgeVectorParams`] with a fluent API. The two
     /// required fields (`size`, `distance`) are supplied here.
-    pub fn builder(size: usize, distance: Distance) -> crate::edge::builders::EdgeVectorParamsBuilder {
+    pub fn builder(
+        size: usize,
+        distance: Distance,
+    ) -> crate::edge::builders::EdgeVectorParamsBuilder {
         crate::edge::builders::EdgeVectorParamsBuilder::new(size, distance)
     }
 

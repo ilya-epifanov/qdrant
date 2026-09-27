@@ -1,8 +1,8 @@
 use crate::blobstore::Blob;
 use crate::common::delta_pack::{delta_pack, delta_unpack};
-use serde::{Deserialize, Serialize};
 use crate::sparse::common::sparse_vector::{SparseVector, double_sort};
 use crate::sparse::common::types::{DimId, DimId64, DimWeight};
+use serde::{Deserialize, Serialize};
 
 use crate::segment::common::operation_error::OperationError;
 

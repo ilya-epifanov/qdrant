@@ -12,14 +12,18 @@ use tempfile::{Builder, TempDir};
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::index::TextIndexParams;
 use crate::segment::fixtures::payload_fixtures::random_full_text_payload;
-use crate::segment::index::field_index::field_index_base::{PayloadFieldIndex, PayloadFieldIndexRead};
+use crate::segment::index::field_index::field_index_base::{
+    PayloadFieldIndex, PayloadFieldIndexRead,
+};
 use crate::segment::index::field_index::full_text_index::full_text_index_read::FullTextIndexRead;
 use crate::segment::index::field_index::full_text_index::inverted_index::{
     ARRAY_BOUNDARY_SENTINEL, Document, ParsedQuery, TokenId, TokenSet,
 };
 use crate::segment::index::field_index::full_text_index::mutable_text_index::MutableFullTextIndex;
 use crate::segment::index::field_index::full_text_index::on_disk_text_index::FullTextMmapIndexBuilder;
-use crate::segment::index::field_index::full_text_index::{FullTextGridstoreIndexBuilder, FullTextIndex};
+use crate::segment::index::field_index::full_text_index::{
+    FullTextGridstoreIndexBuilder, FullTextIndex,
+};
 use crate::segment::index::field_index::{FieldIndexBuilderTrait, ValueIndexer};
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::{FieldCondition, Memory, ValuesCount};

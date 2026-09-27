@@ -13,7 +13,9 @@ use crate::common::generic_consts::Sequential;
 use crate::common::universal_io::cached_fs::FileInfo;
 use crate::common::universal_io::simple_disk_cache::pipeline::REMOTE_READ_ALIGNMENT;
 use crate::common::universal_io::simple_disk_cache::{DiskCacheRemote, block_aligned_fetch};
-use crate::common::universal_io::{OwnedPipeline, Populate, UioResult, UniversalIoError, UniversalRead};
+use crate::common::universal_io::{
+    OwnedPipeline, Populate, UioResult, UniversalIoError, UniversalRead,
+};
 
 impl<R> DiskCache<R>
 where

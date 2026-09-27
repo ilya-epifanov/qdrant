@@ -274,8 +274,8 @@ fn read_only_segment_with_load_profile_matches_mutable() {
 #[test]
 #[ignore = "requires a running S3-compatible server (set S3_INTEGRATION_TEST=1)"]
 fn read_only_segment_over_s3() {
-    use bytes::Bytes;
     use crate::common::universal_io::UniversalReadFileOps;
+    use bytes::Bytes;
     use io_bridge_object_store::backends::aws::{AwsConfig, AwsCredentials};
     use io_bridge_object_store::{BlobBackend, BlobFile, BlobFs, ObjectStoreSource};
     use object_store::ObjectStoreExt;
@@ -355,7 +355,9 @@ fn read_only_segment_sparse_mutable_ram_matches_mutable() {
     use crate::sparse::common::sparse_vector::SparseVector;
 
     use crate::segment::data_types::vectors::VectorRef;
-    use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+    use crate::segment::index::sparse_index::sparse_index_config::{
+        SparseIndexConfig, SparseIndexType,
+    };
     use crate::segment::types::{SparseVectorDataConfig, SparseVectorStorageType};
 
     const SPARSE_VECTOR_NAME: &str = "sparse";

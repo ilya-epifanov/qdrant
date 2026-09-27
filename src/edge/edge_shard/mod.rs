@@ -11,10 +11,7 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use crate::wal::WalOptions;
 use crate::common::save_on_disk::SaveOnDisk;
-use fs_err as fs;
-use parking_lot::Mutex;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::entry::ReadSegmentEntry as _;
 use crate::segment::segment_constructor::{load_segment, normalize_segment_dir};
@@ -24,6 +21,9 @@ use crate::shard::segment_holder::locked::LockedSegmentHolder;
 use crate::shard::segment_holder::{FlushMode, SegmentHolder};
 use crate::shard::segment_manifest::SegmentsManifest;
 use crate::shard::wal::SerdeWal;
+use crate::wal::WalOptions;
+use fs_err as fs;
+use parking_lot::Mutex;
 use uuid::Uuid;
 
 use crate::edge::config::optimizers::EdgeOptimizersConfig;
@@ -241,7 +241,10 @@ impl EdgeShard {
     }
 
     /// Update global HNSW config and persist. Does not change per-vector HNSW.
-    pub fn set_hnsw_config(&self, hnsw_config: crate::segment::types::HnswConfig) -> OperationResult<()> {
+    pub fn set_hnsw_config(
+        &self,
+        hnsw_config: crate::segment::types::HnswConfig,
+    ) -> OperationResult<()> {
         self.config
             .write(|cfg| cfg.set_hnsw_config(hnsw_config))
             .map_err(|e| OperationError::service_error(e.to_string()))

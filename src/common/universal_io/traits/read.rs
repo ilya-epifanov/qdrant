@@ -7,7 +7,9 @@ use super::{Item, ReadPipeline, UniversalReadFs, UserData};
 use crate::common::ext::aligned_vec::ACow;
 use crate::common::generic_consts::{AccessPattern, Sequential};
 use crate::common::universal_io::cached_fs::FileInfo;
-use crate::common::universal_io::{ReadBytesItem, ReadRange, UioResult, UniversalIoError, UniversalKind};
+use crate::common::universal_io::{
+    ReadBytesItem, ReadRange, UioResult, UniversalIoError, UniversalKind,
+};
 
 /// Per-file handle for universal read access.
 ///

@@ -2,12 +2,12 @@ use std::cmp::Reverse;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use itertools::Itertools;
-use parking_lot::Mutex;
 use crate::segment::common::operation_time_statistics::OperationDurationsAggregator;
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::index::sparse_index::sparse_index_config::SparseIndexType;
 use crate::segment::types::{HnswConfig, HnswGlobalConfig, Indexes, Memory, VectorName};
+use itertools::Itertools;
+use parking_lot::Mutex;
 
 use super::config::SegmentOptimizerConfig;
 use super::segment_optimizer::{OptimizationPlanner, SegmentOptimizer};

@@ -3,8 +3,8 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use crate::common::zeros::WriteZerosExt;
-use fs_err::File;
 use crate::posting_list::{PostingList, PostingListComponents};
+use fs_err::File;
 use zerocopy::IntoBytes;
 
 use crate::segment::index::field_index::full_text_index::inverted_index::on_disk_inverted_index::types::{

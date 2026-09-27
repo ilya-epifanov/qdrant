@@ -1,15 +1,17 @@
 use std::borrow::Cow;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::UserData;
+use ahash::AHashMap;
 
 use super::inverted_index::{Document, ParsedQuery, TokenId, TokenSet};
 use super::tokenizers::{Tokenizer, TokenizerTextKind};
 use crate::segment::common::operation_error::OperationResult;
-use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCondition, ValueIndexer};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, PayloadBlockCondition, ValueIndexer,
+};
 use crate::segment::index::payload_config::StorageType;
 use crate::segment::telemetry::PayloadIndexTelemetry;
 use crate::segment::types::{FieldCondition, PayloadKeyType};

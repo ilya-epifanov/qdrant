@@ -14,7 +14,9 @@ use super::ReadOnlyImmutableIdTracker;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::id_tracker::compressed::versions_store::CompressedVersions;
 use crate::segment::id_tracker::immutable_id_tracker::deleted_storage::deleted_path;
-use crate::segment::id_tracker::immutable_id_tracker::mappings_storage::{load_mapping, mappings_path};
+use crate::segment::id_tracker::immutable_id_tracker::mappings_storage::{
+    load_mapping, mappings_path,
+};
 use crate::segment::id_tracker::immutable_id_tracker::versions_storage::version_mapping_path;
 use crate::segment::types::SeqNumberType;
 

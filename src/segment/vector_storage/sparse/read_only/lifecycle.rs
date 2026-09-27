@@ -6,7 +6,9 @@ use crate::common::universal_io::{CachedReadFs, Populate, UniversalRead, Univers
 use super::ReadOnlySparseVectorStorage;
 use crate::segment::common::flags::in_memory_bitvec_flags::InMemoryBitvecFlags;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
-use crate::segment::vector_storage::sparse::mmap_sparse_vector_storage::{DELETED_DIRNAME, STORAGE_DIRNAME};
+use crate::segment::vector_storage::sparse::mmap_sparse_vector_storage::{
+    DELETED_DIRNAME, STORAGE_DIRNAME,
+};
 use crate::segment::vector_storage::sparse::stored_sparse_vectors::StoredSparseVector;
 
 impl<S: UniversalRead> ReadOnlySparseVectorStorage<S> {

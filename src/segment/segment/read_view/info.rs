@@ -10,7 +10,9 @@ use crate::segment::payload_storage::PayloadStorageRead;
 use crate::segment::segment::read_view::SegmentReadView;
 use crate::segment::segment::vector_data_read::VectorDataRead;
 use crate::segment::telemetry::SegmentTelemetry;
-use crate::segment::types::{PayloadIndexInfo, SegmentConfig, SegmentInfo, SegmentType, VectorDataInfo};
+use crate::segment::types::{
+    PayloadIndexInfo, SegmentConfig, SegmentInfo, SegmentType, VectorDataInfo,
+};
 use crate::segment::vector_storage::VectorStorageRead;
 
 impl<'s, TIdT, TPI, TPS, TVD> SegmentReadView<'s, TIdT, TPI, TPS, TVD>

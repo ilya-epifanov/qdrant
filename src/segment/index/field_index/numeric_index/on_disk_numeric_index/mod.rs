@@ -6,7 +6,9 @@ use crate::common::universal_io::{MmapFile, SortedBlockIndex, TypedStorage, Univ
 use super::Encodable;
 use crate::segment::index::field_index::histogram::Histogram;
 use crate::segment::index::field_index::numeric_point::{Numericable, Point};
-use crate::segment::index::field_index::on_disk_point_to_values::{OnDiskPointToValues, StoredValue};
+use crate::segment::index::field_index::on_disk_point_to_values::{
+    OnDiskPointToValues, StoredValue,
+};
 
 mod lifecycle;
 mod live_reload;

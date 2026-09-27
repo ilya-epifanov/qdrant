@@ -11,7 +11,9 @@ use crate::sparse::common::sparse_vector::SparseVector;
 use crate::sparse::common::types::{DimId, DimWeight};
 
 use crate::segment::common::Flusher;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::CowVector;
 use crate::segment::data_types::vectors::VectorRef;
 use crate::segment::types::{Distance, VectorStorageDatatype};

@@ -1,10 +1,10 @@
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 
-use ahash::{AHashMap, AHashSet};
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::{DeferredBehavior, ScoreType, ScoredPointOffset};
+use ahash::{AHashMap, AHashSet};
 use itertools::{Either, Itertools};
 
 use crate::segment::common::operation_error::OperationResult;

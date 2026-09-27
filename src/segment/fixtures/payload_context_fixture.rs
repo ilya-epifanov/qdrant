@@ -2,9 +2,9 @@ use std::collections::HashMap;
 use std::path::Path;
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
+use atomic_refcell::AtomicRefCell;
 use rand::SeedableRng;
 use rand::prelude::StdRng;
 

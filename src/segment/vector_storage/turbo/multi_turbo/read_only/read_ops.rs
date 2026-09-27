@@ -16,11 +16,15 @@ use crate::segment::data_types::vectors::{
     MultiDenseVectorInternal, TypedMultiDenseVector, VectorElementType,
 };
 use crate::segment::spaces::metric::Metric;
-use crate::segment::spaces::simple::{CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric};
+use crate::segment::spaces::simple::{
+    CosineMetric, DotProductMetric, EuclidMetric, ManhattanMetric,
+};
 use crate::segment::types::{Distance, MultiVectorConfig, VectorStorageDatatype};
 use crate::segment::vector_storage::multi_dense::appendable_mmap_multi_dense_vector_storage::MultivectorMmapOffset;
 use crate::segment::vector_storage::vector_storage_base::VectorStorageRead;
-use crate::segment::vector_storage::{MultiTQVectorStorageRead, TurboMultiScoring, VectorOffsetType};
+use crate::segment::vector_storage::{
+    MultiTQVectorStorageRead, TurboMultiScoring, VectorOffsetType,
+};
 
 impl<S: UniversalRead> ReadOnlyChunkedMultiTurboVectorStorage<S> {
     /// Offset record for `key`, if the point exists.

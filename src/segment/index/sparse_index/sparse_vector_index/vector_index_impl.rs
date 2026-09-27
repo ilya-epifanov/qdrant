@@ -16,7 +16,9 @@ use crate::segment::data_types::query_context::VectorQueryContext;
 use crate::segment::data_types::vectors::{QueryVector, VectorRef};
 use crate::segment::id_tracker::IdTrackerRead;
 use crate::segment::index::sparse_index::indices_tracker::IndicesTracker;
-use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+use crate::segment::index::sparse_index::sparse_index_config::{
+    SparseIndexConfig, SparseIndexType,
+};
 use crate::segment::index::{VectorIndex, VectorIndexRead};
 use crate::segment::telemetry::VectorIndexSearchesTelemetry;
 use crate::segment::types::{Filter, SearchParams};

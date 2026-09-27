@@ -1,7 +1,7 @@
-use atomic_refcell::AtomicRef;
 use crate::common::bitvec::{BitSlice, BitSliceExt as _};
 use crate::common::types::{DeferredBehavior, PointOffsetType};
 use crate::common::universal_io::{MmapFile, UniversalRead};
+use atomic_refcell::AtomicRef;
 use itertools::Either;
 use self_cell::self_cell;
 

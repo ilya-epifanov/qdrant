@@ -7,9 +7,6 @@ use std::path::Path;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHasher;
-use atomic_refcell::AtomicRefCell;
-use bitvec::macros::internal::funty::Integral;
 use crate::common::budget::ResourcePermit;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::flags::feature_flags;
@@ -18,6 +15,9 @@ use crate::common::small_uint::U24;
 use crate::common::storage_version::StorageVersion;
 use crate::common::types::{DeferredBehavior, PointOffsetType};
 use crate::common::universal_io::MmapFs;
+use ahash::AHasher;
+use atomic_refcell::AtomicRefCell;
+use bitvec::macros::internal::funty::Integral;
 use fs_err as fs;
 use itertools::Itertools;
 use rand::Rng;
@@ -30,7 +30,9 @@ use super::{
     open_or_create_sparse_vector_index, open_vector_storage,
 };
 use crate::segment::common::error_logging::LogError;
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::entry::entry_point::StorageSegmentEntry as _;
 use crate::segment::id_tracker::compressed::compressed_point_mappings::CompressedPointMappings;
 use crate::segment::id_tracker::disk_id_tracker::DiskIdTracker;
@@ -688,7 +690,8 @@ impl SegmentBuilder {
 
             // Try to lock GPU device.
             #[cfg(feature = "gpu")]
-            let gpu_devices_manager = crate::segment::index::hnsw_index::gpu::GPU_DEVICES_MANAGER.read();
+            let gpu_devices_manager =
+                crate::segment::index::hnsw_index::gpu::GPU_DEVICES_MANAGER.read();
             #[cfg(feature = "gpu")]
             let gpu_device = gpu_devices_manager
                 .as_ref()

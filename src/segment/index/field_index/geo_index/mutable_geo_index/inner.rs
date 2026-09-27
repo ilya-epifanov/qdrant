@@ -2,9 +2,9 @@ use std::collections::BTreeMap;
 use std::collections::btree_map::Entry;
 use std::path::PathBuf;
 
-use ahash::AHashSet;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
+use ahash::AHashSet;
 use itertools::Itertools;
 
 use super::super::read_ops::GeoIndexRead;

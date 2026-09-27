@@ -1,9 +1,9 @@
 use std::cmp::max;
 
-use ahash::{AHashMap, AHashSet};
 use crate::common::fixed_length_priority_queue::FixedLengthPriorityQueue;
 use crate::common::types::ScoreType;
 use crate::segment::types::{PointIdType, ScoredPoint, SeqNumberType};
+use ahash::{AHashMap, AHashSet};
 
 /// Avoid excessive memory allocation and allocation failures on huge limits
 const LARGEST_REASONABLE_ALLOCATION_SIZE: usize = 1_048_576;

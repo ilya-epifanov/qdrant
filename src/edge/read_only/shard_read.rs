@@ -1,9 +1,9 @@
 use std::path::Path;
 use std::sync::Arc;
 
-use parking_lot::RwLock;
 use crate::segment::index::UniversalReadExt;
 use crate::segment::segment::read_only::ReadOnlySegment;
+use parking_lot::RwLock;
 
 use crate::edge::EdgeConfig;
 use crate::edge::read_only::ReadOnlyEdgeShard;

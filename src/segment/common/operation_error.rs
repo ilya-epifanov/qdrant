@@ -5,11 +5,11 @@ use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::Duration;
 
-use atomicwrites::Error as AtomicIoError;
 use crate::blobstore::error::BlobstoreError;
 use crate::common::bitpacking_ordered::DecompressionError;
 use crate::common::mmap::Error as MmapError;
 use crate::common::universal_io::{IsNotFound, UniversalIoError};
+use atomicwrites::Error as AtomicIoError;
 use rayon::ThreadPoolBuildError;
 use thiserror::Error;
 

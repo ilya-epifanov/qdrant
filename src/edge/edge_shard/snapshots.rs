@@ -1,9 +1,9 @@
 use std::path::Path;
 
-use fs_err as fs;
 use crate::segment::common::operation_error::OperationResult;
 use crate::shard::snapshots::snapshot_manifest::SnapshotManifest;
 use crate::shard::snapshots::snapshot_utils::{SnapshotMergePlan, SnapshotUtils};
+use fs_err as fs;
 
 use crate::edge::EdgeShard;
 

@@ -20,8 +20,12 @@ use fs_err as fs;
 use parking_lot::Mutex;
 use serde::{Deserialize, Serialize};
 
-use crate::quantization::encoded_storage::{EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size};
-use crate::quantization::encoded_vectors::{EncodedVectors, VectorParameters, validate_vector_parameters};
+use crate::quantization::encoded_storage::{
+    EncodedStorage, EncodedStorageBuilder, validate_storage_vector_size,
+};
+use crate::quantization::encoded_vectors::{
+    EncodedVectors, VectorParameters, validate_vector_parameters,
+};
 use crate::quantization::kmeans::kmeans;
 use crate::quantization::{ConditionalVariable, EncodingError};
 

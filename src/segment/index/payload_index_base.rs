@@ -2,10 +2,10 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::AccessPattern;
 use crate::common::types::{DeferredBehavior, PointOffsetType, ScoreType};
+use ahash::AHashMap;
 use serde_json::Value;
 
 use super::field_index::numeric_index::NumericFieldIndexRead;
@@ -18,7 +18,9 @@ use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCond
 use crate::segment::index::query_optimization::optimized_filter::OptimizedFilter;
 use crate::segment::json_path::JsonPath;
 use crate::segment::telemetry::PayloadIndexTelemetry;
-use crate::segment::types::{Filter, Payload, PayloadFieldSchema, PayloadKeyType, PayloadKeyTypeRef};
+use crate::segment::types::{
+    Filter, Payload, PayloadFieldSchema, PayloadKeyType, PayloadKeyTypeRef,
+};
 
 pub enum BuildIndexResult {
     /// Index was built

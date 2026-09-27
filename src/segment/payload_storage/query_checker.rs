@@ -8,10 +8,10 @@ use std::collections::HashMap;
 use std::ops::Deref;
 use std::sync::Arc;
 
-use ahash::AHashMap;
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
+use ahash::AHashMap;
+use atomic_refcell::AtomicRefCell;
 
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::common::utils::{IndexesMap, check_is_empty, check_is_null};

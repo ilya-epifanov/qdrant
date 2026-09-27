@@ -4,7 +4,6 @@ pub fn main() {
     // Required for tango benchmarks, see:
     // https://github.com/bazhenov/tango/blob/v0.6.0/README.md#getting-started
 
-
     // Matches all platforms that have `nix::fcntl::posix_fadvise` function.
     // https://github.com/nix-rust/nix/blob/v0.29.0/src/fcntl.rs#L35-L42
     println!("cargo:rustc-check-cfg=cfg(posix_fadvise_supported)");

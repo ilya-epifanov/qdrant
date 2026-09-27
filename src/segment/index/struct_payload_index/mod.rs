@@ -13,9 +13,9 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::time::Instant;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::defaults::log_load_timing;
+use atomic_refcell::AtomicRefCell;
 use fs_err as fs;
 
 use super::field_index::FieldIndex;

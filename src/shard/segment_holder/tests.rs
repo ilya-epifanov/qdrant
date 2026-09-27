@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 use std::str::FromStr;
 
-use rand::RngExt;
 use crate::segment::data_types::vectors::{DEFAULT_VECTOR_NAME, VectorInternal};
 use crate::segment::json_path::JsonPath;
 use crate::segment::payload_json;
 use crate::segment::segment_constructor::simple_segment_constructor::build_simple_segment;
 use crate::segment::types::{Distance, PayloadContainer};
+use rand::RngExt;
 use serde_json::Value;
 use tempfile::Builder;
 
@@ -386,7 +386,9 @@ fn test_cow_move_append_only_single_slot() {
 #[test]
 fn test_cow_move_does_not_degrade_turbo_vectors() {
     use crate::segment::data_types::vectors::only_default_vector;
-    use crate::segment::types::{Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType};
+    use crate::segment::types::{
+        Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType,
+    };
 
     const DIM: usize = 128;
     const ROUNDTRIPS: u64 = 32;
@@ -495,7 +497,9 @@ fn test_cow_move_does_not_degrade_turbo_vectors() {
 /// fresh direct ingest of the same data.
 #[test]
 fn test_cow_move_overlay_preserves_untouched_turbo_vector() {
-    use crate::segment::types::{Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType};
+    use crate::segment::types::{
+        Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType,
+    };
 
     const DIM: usize = 128;
     const KEEP: &str = "keep";
@@ -617,7 +621,9 @@ fn test_cow_move_overlay_preserves_untouched_turbo_vector() {
 /// verbatim bytes (bit-identical read-back).
 #[test]
 fn test_cow_move_delete_name_preserves_survivor() {
-    use crate::segment::types::{Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType};
+    use crate::segment::types::{
+        Indexes, VectorDataConfig, VectorStorageDatatype, VectorStorageType,
+    };
 
     const DIM: usize = 128;
     const KEEP: &str = "keep";
@@ -1700,7 +1706,10 @@ fn test_points_deduplication_with_deferred_randomized() {
     for id in 0..POINT_COUNT {
         let point_id = PointIdType::from(id);
         for (seg_idx, segment) in segments.iter().enumerate() {
-            if segment.has_point(point_id, crate::common::types::DeferredBehavior::WithDeferred) {
+            if segment.has_point(
+                point_id,
+                crate::common::types::DeferredBehavior::WithDeferred,
+            ) {
                 is_deferred.insert((id, seg_idx), segment.point_is_deferred(point_id));
             }
         }
@@ -1902,7 +1911,10 @@ fn test_double_proxies() {
     for (_proxy_id, proxy) in &outer_proxies {
         let proxy_read = proxy.get().read();
 
-        if proxy_read.has_point(2.into(), crate::common::types::DeferredBehavior::WithDeferred) {
+        if proxy_read.has_point(
+            2.into(),
+            crate::common::types::DeferredBehavior::WithDeferred,
+        ) {
             has_point = true;
             let payload = proxy_read.payload(2.into(), &hw_counter).unwrap();
 
@@ -1956,18 +1968,18 @@ fn test_double_proxies() {
         "There should be no new segment after unproxying"
     );
 
-    let has_point_1 = locked_segment1
-        .get()
-        .read()
-        .has_point(1.into(), crate::common::types::DeferredBehavior::WithDeferred); // Deleted in inner proxy
-    let has_point_2 = locked_segment1
-        .get()
-        .read()
-        .has_point(2.into(), crate::common::types::DeferredBehavior::WithDeferred); // Deleted in outer proxy
-    let has_point_3 = locked_segment1
-        .get()
-        .read()
-        .has_point(3.into(), crate::common::types::DeferredBehavior::WithDeferred); // Not deleted
+    let has_point_1 = locked_segment1.get().read().has_point(
+        1.into(),
+        crate::common::types::DeferredBehavior::WithDeferred,
+    ); // Deleted in inner proxy
+    let has_point_2 = locked_segment1.get().read().has_point(
+        2.into(),
+        crate::common::types::DeferredBehavior::WithDeferred,
+    ); // Deleted in outer proxy
+    let has_point_3 = locked_segment1.get().read().has_point(
+        3.into(),
+        crate::common::types::DeferredBehavior::WithDeferred,
+    ); // Not deleted
 
     assert!(!has_point_1, "Point 1 should be deleted");
     assert!(!has_point_2, "Point 2 should be deleted");

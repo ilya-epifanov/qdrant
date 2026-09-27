@@ -24,7 +24,9 @@ use crate::edge::read_only::{
     LocalSegmentEnumerator, ManifestSegmentEnumerator, ReadOnlyEdgeShard, SegmentEnumerator,
 };
 use crate::edge::read_view::EdgeShardRead;
-use crate::edge::{CountRequest, EdgeConfig, EdgeShard, RetrieveRequestBuilder, ScrollRequestBuilder};
+use crate::edge::{
+    CountRequest, EdgeConfig, EdgeShard, RetrieveRequestBuilder, ScrollRequestBuilder,
+};
 
 const VECTOR_NAME: &str = "edge-ro-test-vector";
 

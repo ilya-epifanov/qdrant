@@ -2,11 +2,11 @@ use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
 use crate::common::types::DeferredBehavior;
-use parking_lot::{RwLock, RwLockReadGuard};
 use crate::segment::common::check_stopped;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::entry::ReadSegmentEntry;
 use crate::segment::types::PointIdType;
+use parking_lot::{RwLock, RwLockReadGuard};
 
 use crate::shard::locked_segment::LockedSegment;
 use crate::shard::segment_holder::SegmentHolder;

@@ -18,8 +18,9 @@ use crate::segment::index::payload_config::StorageType;
 /// Both wrappers add a different backing storage (`Blobstore` vs
 /// `BlobstoreReader`); the in-memory layout that serves every
 /// [`MapIndexRead`] method is the same, so it lives here once.
-pub(in crate::segment::index::field_index::map_index) struct InMemoryMapIndex<N: MapIndexKey + ?Sized>
-where
+pub(in crate::segment::index::field_index::map_index) struct InMemoryMapIndex<
+    N: MapIndexKey + ?Sized,
+> where
     Vec<<N as MapIndexKey>::Owned>: Blob + Send + Sync,
 {
     pub(in crate::segment::index::field_index::map_index) map:

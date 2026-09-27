@@ -5,11 +5,11 @@ use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::save_on_disk::SaveOnDisk;
 use crate::common::storage_version::StorageVersion;
 use crate::common::types::PointOffsetType;
-use parking_lot::{RwLockUpgradableReadGuard, RwLockWriteGuard};
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::entry::StorageSegmentEntry as _;
 use crate::segment::segment::SegmentVersion;
 use crate::segment::types::SegmentConfig;
+use parking_lot::{RwLockUpgradableReadGuard, RwLockWriteGuard};
 
 use crate::shard::locked_segment::LockedSegment;
 use crate::shard::payload_index_schema::PayloadIndexSchema;

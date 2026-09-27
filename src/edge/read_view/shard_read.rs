@@ -1,11 +1,11 @@
 use std::path::Path;
 use std::sync::Arc;
 
-use rayon::ThreadPool;
 use crate::segment::common::operation_error::OperationResult;
 use crate::segment::data_types::facets::FacetResponse;
 use crate::segment::types::{PointIdType, ScoredPoint};
 use crate::shard::retrieve::record_internal::RecordInternal;
+use rayon::ThreadPool;
 
 use super::{EdgeReadView, Group, ReadSegmentHandle, SearchMatrixResponse, ShardInfo};
 use crate::edge::EdgeConfig;

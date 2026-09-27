@@ -4,7 +4,9 @@ pub use crate::common::flags::{FeatureFlags, init_feature_flags};
 
 mod reexports_from_qdrant_crates {
     pub use crate::segment::common::operation_error::{OperationError, OperationResult};
-    pub use crate::segment::data_types::facets::{FacetHit, FacetResponse, FacetValue, FacetValueHit};
+    pub use crate::segment::data_types::facets::{
+        FacetHit, FacetResponse, FacetValue, FacetValueHit,
+    };
     pub use crate::segment::data_types::fully_qualified_point::FullyQualifiedPoint;
     pub use crate::segment::data_types::index::{
         BoolIndexParams, DatetimeIndexParams, FloatIndexParams, GeoIndexParams, IntegerIndexParams,
@@ -58,7 +60,9 @@ mod reexports_from_qdrant_crates {
     pub use crate::shard::operations::{
         CollectionUpdateOperations as UpdateOperation, CreateIndex, FieldIndexOperations,
     };
-    pub use crate::shard::query::formula::{ExpressionInternal as Expression, FormulaInternal as Formula};
+    pub use crate::shard::query::formula::{
+        ExpressionInternal as Expression, FormulaInternal as Formula,
+    };
     pub use crate::shard::query::query_enum::QueryEnum;
     pub use crate::shard::query::{
         FusionInternal as Fusion, MmrInternal as Mmr, SampleInternal as Sample, ScoringQuery,

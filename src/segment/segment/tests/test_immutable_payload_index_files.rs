@@ -481,7 +481,9 @@ fn payload_index_files_are_immutable_after_build() {
 #[rstest::rstest]
 #[case::regular(crate::segment::types::SnapshotFormat::Regular)]
 #[case::streamable(crate::segment::types::SnapshotFormat::Streamable)]
-fn snapshot_roundtrip_recovers_block_index_sidecars(#[case] format: crate::segment::types::SnapshotFormat) {
+fn snapshot_roundtrip_recovers_block_index_sidecars(
+    #[case] format: crate::segment::types::SnapshotFormat,
+) {
     use crate::common::tar_ext;
     use crate::common::tar_unpack::tar_unpack_file;
     use fs_err::File;

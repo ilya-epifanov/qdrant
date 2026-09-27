@@ -30,7 +30,9 @@ use crate::segment::index::field_index::geo_hash::{
     polygon_hashes_estimation, rectangle_hashes,
 };
 use crate::segment::index::field_index::stat_tools::estimate_multi_value_selection_cardinality;
-use crate::segment::index::field_index::{CardinalityEstimation, PayloadBlockCondition, PrimaryCondition};
+use crate::segment::index::field_index::{
+    CardinalityEstimation, PayloadBlockCondition, PrimaryCondition,
+};
 use crate::segment::index::payload_config::StorageType;
 use crate::segment::telemetry::PayloadIndexTelemetry;
 use crate::segment::types::{CheckGeoPoint, FieldCondition, GeoPoint, PayloadKeyType};

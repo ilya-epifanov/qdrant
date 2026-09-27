@@ -1,13 +1,13 @@
 //! Point upserts: plain, conditional and raw.
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::DeferredBehavior;
-use parking_lot::RwLockWriteGuard;
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::data_types::named_vectors::NamedVectors;
 use crate::segment::entry::entry_point::SegmentEntry;
 use crate::segment::types::{Filter, Payload, PointIdType, SeqNumberType, VectorNameBuf};
+use ahash::AHashMap;
+use parking_lot::RwLockWriteGuard;
 use smallvec::SmallVec;
 
 use crate::shard::operations::point_ops::{

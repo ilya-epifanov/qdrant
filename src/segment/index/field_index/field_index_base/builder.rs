@@ -9,8 +9,12 @@ use crate::segment::index::field_index::bool_index::immutable_bool_index::Immuta
 use crate::segment::index::field_index::bool_index::mutable_bool_index::MutableBoolIndexBuilder;
 use crate::segment::index::field_index::full_text_index::FullTextGridstoreIndexBuilder;
 use crate::segment::index::field_index::full_text_index::on_disk_text_index::FullTextMmapIndexBuilder;
-use crate::segment::index::field_index::geo_index::{GeoIndexGridstoreBuilder, GeoIndexMmapBuilder};
-use crate::segment::index::field_index::map_index::{MapIndexGridstoreBuilder, MapIndexMmapBuilder};
+use crate::segment::index::field_index::geo_index::{
+    GeoIndexGridstoreBuilder, GeoIndexMmapBuilder,
+};
+use crate::segment::index::field_index::map_index::{
+    MapIndexGridstoreBuilder, MapIndexMmapBuilder,
+};
 use crate::segment::index::field_index::null_index::NullIndex;
 use crate::segment::index::field_index::null_index::immutable_null_index::ImmutableNullIndexBuilder;
 use crate::segment::index::field_index::null_index::mutable_null_index::MutableNullIndexBuilder;

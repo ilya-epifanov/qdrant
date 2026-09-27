@@ -9,9 +9,9 @@ use crate::segment::types::{
     Distance, HnswConfig, PayloadStorageType, QuantizationConfig, SegmentConfig, VectorName,
     VectorNameBuf,
 };
-use serde::{Deserialize, Serialize};
 use crate::shard::operations::optimization::OptimizerThresholds;
 use crate::wal::WalOptions;
+use serde::{Deserialize, Serialize};
 
 use super::optimizers::EdgeOptimizersConfig;
 use super::vectors::{EdgeSparseVectorParams, EdgeVectorParams};
@@ -261,7 +261,9 @@ impl EdgeConfig {
 
     /// Build segment optimizer config from this config (for blocking optimizers).
     /// Use this instead of converting to SegmentConfig first.
-    pub fn segment_optimizer_config(&self) -> crate::shard::optimizers::config::SegmentOptimizerConfig {
+    pub fn segment_optimizer_config(
+        &self,
+    ) -> crate::shard::optimizers::config::SegmentOptimizerConfig {
         use crate::shard::optimizers::config::SegmentOptimizerConfig;
 
         let SegmentConfig {

@@ -161,16 +161,18 @@ mod tests {
     use std::collections::HashMap;
     use std::path::Path;
 
-    use fs_err as fs;
     use crate::segment::data_types::vectors::{VectorInternal, VectorStructInternal};
     use crate::segment::types::{Distance, ExtendedPointId, WithPayloadInterface, WithVector};
-    use crate::shard::operations::CollectionUpdateOperations::{PointOperation, VectorNameOperation};
+    use crate::shard::operations::CollectionUpdateOperations::{
+        PointOperation, VectorNameOperation,
+    };
     use crate::shard::operations::VectorNameOperations;
     use crate::shard::operations::point_ops::PointInsertOperationsInternal::PointsList;
     use crate::shard::operations::point_ops::PointOperations::{DeletePoints, UpsertPoints};
     use crate::shard::operations::point_ops::{PointStructPersisted, VectorStructPersisted};
     use crate::shard::operations::vector_name_ops::DeleteVectorName;
     use crate::shard::optimizers::config::default_segment_number;
+    use fs_err as fs;
     use uuid::Uuid;
 
     use crate::edge::config::vectors::EdgeVectorParams;

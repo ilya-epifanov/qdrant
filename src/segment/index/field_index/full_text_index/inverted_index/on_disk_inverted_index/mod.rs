@@ -66,9 +66,12 @@ pub struct OnDiskInvertedIndex<S: UniversalRead = MmapFile> {
     compact_deleted_mask: bool,
 }
 
-pub(in crate::segment::index::field_index::full_text_index) struct Storage<S: UniversalRead = MmapFile> {
+pub(in crate::segment::index::field_index::full_text_index) struct Storage<
+    S: UniversalRead = MmapFile,
+> {
     pub(in crate::segment::index::field_index::full_text_index) postings: OnDiskPostingsEnum<S>,
-    pub(in crate::segment::index::field_index::full_text_index) vocab: UniversalHashMap<str, TokenId, S>,
+    pub(in crate::segment::index::field_index::full_text_index) vocab:
+        UniversalHashMap<str, TokenId, S>,
     pub(in crate::segment::index::field_index::full_text_index) point_to_tokens_count:
         TypedStorage<S, usize>,
     pub(in crate::segment::index::field_index::full_text_index) deleted_points: DeletedBitVec,

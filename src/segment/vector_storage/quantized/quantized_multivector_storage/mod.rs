@@ -2,12 +2,12 @@ use std::borrow::Cow;
 use std::path::PathBuf;
 use std::slice;
 
-use ahash::HashMapExt as _;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::mmap::MmapFlusher;
 use crate::common::typelevel::False;
 use crate::common::types::{PointOffsetType, ScoreType};
 use crate::quantization::EncodedVectors;
+use ahash::HashMapExt as _;
 use serde::{Deserialize, Serialize};
 use smallvec::SmallVec;
 

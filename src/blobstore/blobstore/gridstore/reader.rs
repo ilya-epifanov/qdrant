@@ -5,7 +5,9 @@ use crate::common::counter::counter_cell::CounterCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::counter::referenced_counter::HwMetricRefCounter;
 use crate::common::generic_consts::{AccessPattern, Sequential};
-use crate::common::universal_io::{CachedReadFs, Populate, UniversalRead, UniversalReadFs, UserData};
+use crate::common::universal_io::{
+    CachedReadFs, Populate, UniversalRead, UniversalReadFs, UserData,
+};
 
 use super::pages::Pages;
 use super::view::GridstoreView;

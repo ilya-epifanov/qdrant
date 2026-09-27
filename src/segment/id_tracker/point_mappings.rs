@@ -3,11 +3,11 @@ use std::collections::BTreeMap;
 use std::collections::btree_map::Entry;
 use std::iter;
 
-use byteorder::LittleEndian;
 #[cfg(test)]
 use crate::common::bitpacking::make_bitmask;
 use crate::common::bitvec::{BitSlice, BitSliceExt as _, BitVec};
 use crate::common::types::{DeferredBehavior, PointOffsetType};
+use byteorder::LittleEndian;
 use itertools::{Either, Itertools};
 #[cfg(test)]
 use rand::RngExt;

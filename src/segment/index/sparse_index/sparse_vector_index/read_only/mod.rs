@@ -4,7 +4,6 @@ use std::path::Path;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::generic_consts::Sequential;
 use crate::common::sorted_slice::SortedSlice;
 use crate::common::storage_version::StorageVersion as _;
@@ -14,6 +13,7 @@ use crate::sparse::SearchScratchPool;
 use crate::sparse::common::sparse_vector::SparseVector;
 use crate::sparse::index::inverted_index::inverted_index_ram::InvertedIndexRam;
 use crate::sparse::index::inverted_index::{InvertedIndex, InvertedIndexReadOnly};
+use atomic_refcell::AtomicRefCell;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};
 use crate::segment::id_tracker::IdTrackerRead;

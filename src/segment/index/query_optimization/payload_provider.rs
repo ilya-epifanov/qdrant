@@ -1,8 +1,8 @@
 use std::sync::Arc;
 
-use atomic_refcell::AtomicRefCell;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::types::PointOffsetType;
+use atomic_refcell::AtomicRefCell;
 
 use crate::segment::payload_storage::PayloadStorageRead;
 use crate::segment::types::OwnedPayloadRef;

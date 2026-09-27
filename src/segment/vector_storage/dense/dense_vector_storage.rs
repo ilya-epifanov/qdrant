@@ -18,7 +18,9 @@ use fs_err::{File, OpenOptions};
 
 use crate::segment::common::Flusher;
 use crate::segment::common::io_uring::{IoUringFallback, use_io_uring};
-use crate::segment::common::operation_error::{OperationError, OperationResult, check_process_stopped};
+use crate::segment::common::operation_error::{
+    OperationError, OperationResult, check_process_stopped,
+};
 use crate::segment::data_types::named_vectors::CowVector;
 use crate::segment::data_types::primitive::PrimitiveVectorElement;
 use crate::segment::data_types::vectors::VectorRef;

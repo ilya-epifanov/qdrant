@@ -1,8 +1,6 @@
 use std::collections::HashMap;
 
 use crate::common::counter::hardware_accumulator::HwMeasurementAcc;
-use ordered_float::OrderedFloat;
-use rstest::rstest;
 use crate::segment::data_types::vectors::{
     MultiDenseVectorInternal, VectorInternal, VectorStructInternal,
 };
@@ -10,6 +8,8 @@ use crate::segment::types::{
     Distance, MultiVectorComparator, MultiVectorConfig, PointIdType, ScoredPoint, VectorNameBuf,
 };
 use crate::sparse::common::sparse_vector::SparseVector;
+use ordered_float::OrderedFloat;
+use rstest::rstest;
 use strum::IntoEnumIterator;
 
 use super::mmr_from_points_with_vector;

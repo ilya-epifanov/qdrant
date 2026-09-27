@@ -1,4 +1,6 @@
-use crate::segment::common::memory_usage::{ComponentMemoryUsage, FileStorageIntent, MemoryReporter};
+use crate::segment::common::memory_usage::{
+    ComponentMemoryUsage, FileStorageIntent, MemoryReporter,
+};
 use crate::segment::id_tracker::id_tracker_base::{IdTracker as _, IdTrackerEnum};
 
 impl MemoryReporter for IdTrackerEnum {

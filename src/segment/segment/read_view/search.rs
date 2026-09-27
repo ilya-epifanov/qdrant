@@ -1,10 +1,10 @@
 use std::sync::atomic::AtomicBool;
 
-use ahash::AHashMap;
 use crate::common::counter::hardware_counter::HardwareCounterCell;
 use crate::common::generic_consts::Random;
 use crate::common::iterator_ext::IteratorExt;
 use crate::common::types::{DeferredBehavior, PointOffsetType, ScoredPointOffset};
+use ahash::AHashMap;
 use smallvec::SmallVec;
 
 use crate::segment::common::operation_error::{OperationError, OperationResult};
@@ -420,15 +420,17 @@ mod tests {
 
     use crate::common::counter::hardware_counter::HardwareCounterCell;
     use crate::common::types::DeferredBehavior;
-    use rstest::rstest;
     use crate::sparse::common::sparse_vector::SparseVector;
+    use rstest::rstest;
     use tempfile::Builder;
 
     use crate::segment::common::operation_error::OperationError;
     use crate::segment::data_types::named_vectors::NamedVectors;
     use crate::segment::data_types::vectors::VectorInternal;
     use crate::segment::entry::entry_point::{ReadSegmentEntry as _, SegmentEntry as _};
-    use crate::segment::index::sparse_index::sparse_index_config::{SparseIndexConfig, SparseIndexType};
+    use crate::segment::index::sparse_index::sparse_index_config::{
+        SparseIndexConfig, SparseIndexType,
+    };
     use crate::segment::segment::Segment;
     use crate::segment::segment_constructor::build_segment;
     use crate::segment::types::{

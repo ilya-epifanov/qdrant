@@ -1,9 +1,9 @@
 use std::fmt;
 
-#[cfg(feature = "api")]
-use schemars::JsonSchema;
 use crate::segment::json_path::JsonPath;
 use crate::segment::types::{Filter, Payload, PayloadKeyType, PointIdType};
+#[cfg(feature = "api")]
+use schemars::JsonSchema;
 use serde::{self, Deserialize, Serialize};
 use strum::{EnumDiscriminants, EnumIter};
 #[cfg(feature = "api")]

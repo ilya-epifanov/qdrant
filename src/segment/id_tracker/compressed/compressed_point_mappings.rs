@@ -4,11 +4,11 @@ use std::collections::BTreeMap;
 use std::collections::btree_map::Entry;
 use std::iter;
 
-use byteorder::LittleEndian;
 #[cfg(test)]
 use crate::common::bitpacking::make_bitmask;
 use crate::common::bitvec::{BitSlice, BitVec};
 use crate::common::types::PointOffsetType;
+use byteorder::LittleEndian;
 use itertools::Itertools;
 #[cfg(test)]
 use rand::RngExt;
