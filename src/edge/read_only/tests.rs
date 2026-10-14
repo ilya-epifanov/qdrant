@@ -386,6 +386,8 @@ fn provided_config_overrides_tunables_at_open() {
     assert_eq!(config.on_disk_payload, Some(false));
     // Explicitly provided tunable: wins over the derived config.
     assert_eq!(config.max_search_threads, Some(2));
+    // The search pool is sized from the provided tunable, not from the CPU count.
+    assert_eq!(follower.search_pool.current_num_threads(), 2);
     assert_eq!(exact_count(&follower), 10);
 
     // Refresh re-derives the config from the segments alone: the provided tunables are dropped
@@ -532,7 +534,12 @@ fn leader_writes_manifest_and_follower_loads_it() {
     assert_eq!(from_manifest, on_disk);
 
     // The follower discovers and serves the data through the manifest.
-    let follower = ReadOnlyEdgeShard::<MmapFile>::open_mmap(dir.path()).unwrap();
+    let provided = EdgeConfig {
+        max_search_threads: Some(1),
+        ..EdgeConfig::default()
+    };
+    let follower = ReadOnlyEdgeShard::<MmapFile>::open_mmap(dir.path(), Some(provided)).unwrap();
+    assert_eq!(follower.search_pool.current_num_threads(), 1);
     follower.refresh().unwrap();
     assert_eq!(exact_count(&follower), 100);
 }

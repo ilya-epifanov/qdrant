@@ -16,8 +16,12 @@ impl ReadOnlyEdgeShard<MmapFile> {
     /// Open a read-only follower over local memory-mapped files, discovering segments from the
     /// leader's segment manifest. Requires the leader to write a manifest (the
     /// `write_segment_manifest` feature flag).
-    pub fn open_mmap(path: &Path) -> OperationResult<Self> {
-        Self::open(MmapFs, path, None, None)
+    ///
+    /// A provided `config` overrides tunables at open, as in [`open`](Self::open). Its
+    /// `max_search_threads` sizes the follower's search pool; without it the pool takes the
+    /// CPU-derived default.
+    pub fn open_mmap(path: &Path, config: Option<EdgeConfig>) -> OperationResult<Self> {
+        Self::open(MmapFs, path, config, None)
     }
 }
 
