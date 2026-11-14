@@ -1,3 +1,6 @@
+// Modified for grayce/entity-linking: an in-RAM (normal advice) immutable dense storage maps
+// its vectors once with that advice. See provenance/README.md.
+
 use std::borrow::Cow;
 use std::io::Write;
 use std::mem::{self, MaybeUninit, size_of};
@@ -7,7 +10,7 @@ use crate::common::bitvec::{BitSlice, BitSliceExt as _};
 use crate::common::generic_consts::{AccessPattern, Random, Sequential};
 use crate::common::maybe_uninit::maybe_uninit_fill_from;
 use crate::common::mmap;
-use crate::common::mmap::{AdviceSetting, MmapBitSlice, MmapFlusher};
+use crate::common::mmap::{Advice, AdviceSetting, MmapBitSlice, MmapFlusher};
 use crate::common::types::PointOffsetType;
 use crate::common::universal_io::{
     CachedReadFs, MmapFile, OpenOptions as UniversalOpenOptions, Populate, ReadOnly, ReadRange,
@@ -42,12 +45,18 @@ where
 }
 
 impl<T: PrimitiveVectorElement, S: UniversalRead> ImmutableDenseVectorData<T, S> {
-    fn open_options(populate: Populate) -> UniversalOpenOptions {
+    /// The vector blob's mapping options. `advice` is the storage type's: normal for the in-RAM
+    /// placement, global for the on-disk one. An in-RAM blob is mapped once, with normal
+    /// advice: Linux ignores accesses through a random- or sequential-advised mapping when it
+    /// picks pages to evict, so a blob read on every search would go first under any memory
+    /// pressure. An on-disk blob keeps the global advice and its sequential twin mapping.
+    fn open_options(populate: Populate, advice: AdviceSetting) -> UniversalOpenOptions {
+        let in_ram = matches!(advice, AdviceSetting::Advice(Advice::Normal));
         UniversalOpenOptions {
             writeable: false,
-            need_sequential: true,
+            need_sequential: !in_ram,
             populate,
-            advice: AdviceSetting::Global,
+            advice,
         }
     }
 
@@ -56,9 +65,14 @@ impl<T: PrimitiveVectorElement, S: UniversalRead> ImmutableDenseVectorData<T, S>
         fs: &impl CachedReadFs<File = S>,
         vectors_path: &Path,
         populate: Populate,
+        advice: AdviceSetting,
     ) -> OperationResult<()> {
         // Vector data
-        fs.schedule_prefetch(vectors_path, Some(Self::open_options(populate)), None)?;
+        fs.schedule_prefetch(
+            vectors_path,
+            Some(Self::open_options(populate, advice)),
+            None,
+        )?;
 
         Ok(())
     }
@@ -70,8 +84,9 @@ impl<T: PrimitiveVectorElement, S: UniversalRead> ImmutableDenseVectorData<T, S>
         vectors_path: &Path,
         dim: usize,
         populate: Populate,
+        advice: AdviceSetting,
     ) -> OperationResult<Self> {
-        let options = Self::open_options(populate);
+        let options = Self::open_options(populate, advice);
         let read_only =
             ReadOnly::open(fs, vectors_path, options, Default::default()).map_err(|e| {
                 crate::segment::common::operation_error::OperationError::service_error(format!(
@@ -246,7 +261,8 @@ impl<T: PrimitiveVectorElement, S: UniversalRead> ImmutableDenseVectors<T, S> {
         ensure_mmap_file_size(vectors_path, VECTORS_HEADER, None)
             .describe("Create mmap data file")?;
 
-        let data = ImmutableDenseVectorData::open(fs, vectors_path, dim, populate)?;
+        let data =
+            ImmutableDenseVectorData::open(fs, vectors_path, dim, populate, AdviceSetting::Global)?;
         let num_vectors = data.num_vectors;
 
         // Allocate/open deleted mmap

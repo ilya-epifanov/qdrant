@@ -1,3 +1,6 @@
+// Modified for grayce/entity-linking: the tests pass the open's new advice argument. See
+// provenance/README.md.
+
 use crate::common::universal_io::{Populate, UniversalRead};
 
 use crate::segment::common::flags::in_memory_bitvec_flags::InMemoryBitvecFlags;
@@ -28,6 +31,7 @@ pub struct ReadOnlyImmutableDenseVectorStorage<T: PrimitiveVectorElement, S: Uni
 mod tests {
     use crate::common::counter::hardware_counter::HardwareCounterCell;
     use crate::common::generic_consts::Random;
+    use crate::common::mmap::AdviceSetting;
     use crate::common::sorted_slice::SortedSlice;
     use crate::common::types::PointOffsetType;
     use crate::common::universal_io::{MmapFile, MmapFs};
@@ -90,6 +94,7 @@ mod tests {
             DIM,
             Distance::Dot,
             Populate::No,
+            AdviceSetting::Global,
         )
         .unwrap();
 
@@ -144,6 +149,7 @@ mod tests {
             DIM,
             Distance::Dot,
             Populate::No,
+            AdviceSetting::Global,
         )
         .unwrap();
         assert_eq!(reader.deleted_vector_count(), 0);

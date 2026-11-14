@@ -1,3 +1,6 @@
+// Modified for grayce/entity-linking: the immutable dense storage gets the storage type's mmap
+// advice, as the chunked one does. See provenance/README.md.
+
 use std::path::Path;
 
 use crate::common::mmap::{Advice, AdviceSetting};
@@ -113,18 +116,21 @@ impl<S: UniversalRead> VectorStorageReadEnum<S> {
             }
         } else {
             match datatype {
-                VectorStorageDatatype::Float32 => ReadOnlyImmutableDenseVectorStorage::<
-                    VectorElementType,
-                    S,
-                >::preopen(fs, path, populate),
-                VectorStorageDatatype::Uint8 => ReadOnlyImmutableDenseVectorStorage::<
-                    VectorElementTypeByte,
-                    S,
-                >::preopen(fs, path, populate),
-                VectorStorageDatatype::Float16 => ReadOnlyImmutableDenseVectorStorage::<
-                    VectorElementTypeHalf,
-                    S,
-                >::preopen(fs, path, populate),
+                VectorStorageDatatype::Float32 => {
+                    ReadOnlyImmutableDenseVectorStorage::<VectorElementType, S>::preopen(
+                        fs, path, populate, advice,
+                    )
+                }
+                VectorStorageDatatype::Uint8 => {
+                    ReadOnlyImmutableDenseVectorStorage::<VectorElementTypeByte, S>::preopen(
+                        fs, path, populate, advice,
+                    )
+                }
+                VectorStorageDatatype::Float16 => {
+                    ReadOnlyImmutableDenseVectorStorage::<VectorElementTypeHalf, S>::preopen(
+                        fs, path, populate, advice,
+                    )
+                }
                 VectorStorageDatatype::Turbo4 => {
                     ReadOnlyImmutableTurboVectorStorage::<S>::preopen(fs, path, populate)
                 }
@@ -226,15 +232,21 @@ impl<S: UniversalRead> VectorStorageReadEnum<S> {
             }
         } else {
             match datatype {
-                VectorStorageDatatype::Float32 => Self::Dense(Box::new(
-                    ReadOnlyImmutableDenseVectorStorage::open(fs, path, dim, distance, populate)?,
-                )),
-                VectorStorageDatatype::Uint8 => Self::DenseByte(Box::new(
-                    ReadOnlyImmutableDenseVectorStorage::open(fs, path, dim, distance, populate)?,
-                )),
-                VectorStorageDatatype::Float16 => Self::DenseHalf(Box::new(
-                    ReadOnlyImmutableDenseVectorStorage::open(fs, path, dim, distance, populate)?,
-                )),
+                VectorStorageDatatype::Float32 => {
+                    Self::Dense(Box::new(ReadOnlyImmutableDenseVectorStorage::open(
+                        fs, path, dim, distance, populate, advice,
+                    )?))
+                }
+                VectorStorageDatatype::Uint8 => {
+                    Self::DenseByte(Box::new(ReadOnlyImmutableDenseVectorStorage::open(
+                        fs, path, dim, distance, populate, advice,
+                    )?))
+                }
+                VectorStorageDatatype::Float16 => {
+                    Self::DenseHalf(Box::new(ReadOnlyImmutableDenseVectorStorage::open(
+                        fs, path, dim, distance, populate, advice,
+                    )?))
+                }
                 VectorStorageDatatype::Turbo4 => Self::DenseTurbo(Box::new(
                     ReadOnlyImmutableTurboVectorStorage::open(fs, path, dim, distance, populate)?,
                 )),

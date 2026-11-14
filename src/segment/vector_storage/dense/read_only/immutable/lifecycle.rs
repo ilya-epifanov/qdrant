@@ -1,3 +1,6 @@
+// Modified for grayce/entity-linking: the open takes the storage type's mmap advice. See
+// provenance/README.md.
+
 use std::path::Path;
 
 use crate::common::bitvec::BitVec;
@@ -36,9 +39,10 @@ impl<T: PrimitiveVectorElement, S: UniversalRead> ReadOnlyImmutableDenseVectorSt
         fs: &impl CachedReadFs<File = S>,
         path: &Path,
         populate: Populate,
+        advice: AdviceSetting,
     ) -> OperationResult<()> {
         // Vectors
-        ImmutableDenseVectorData::<T, S>::preopen(fs, &path.join(VECTORS_PATH), populate)?;
+        ImmutableDenseVectorData::<T, S>::preopen(fs, &path.join(VECTORS_PATH), populate, advice)?;
 
         // Deleted flags
         fs.schedule_prefetch(
@@ -52,15 +56,18 @@ impl<T: PrimitiveVectorElement, S: UniversalRead> ReadOnlyImmutableDenseVectorSt
 
     /// Open the read-only counterpart of the immutable dense storage at `path`,
     /// threading every file open through `fs`; reads the existing layout but
-    /// creates and writes nothing. `populate` warms the vector data.
+    /// creates and writes nothing. `populate` warms the vector data; `advice` is the storage
+    /// type's mmap advice for it.
     pub fn open(
         fs: &impl UniversalReadFs<File = S>,
         path: &Path,
         dim: usize,
         distance: Distance,
         populate: Populate,
+        advice: AdviceSetting,
     ) -> OperationResult<Self> {
-        let vectors = ImmutableDenseVectorData::open(fs, &path.join(VECTORS_PATH), dim, populate)?;
+        let vectors =
+            ImmutableDenseVectorData::open(fs, &path.join(VECTORS_PATH), dim, populate, advice)?;
         let deleted = open_deleted_flags::<S>(fs, &path.join(DELETED_PATH), vectors.num_vectors)?;
 
         Ok(Self {
