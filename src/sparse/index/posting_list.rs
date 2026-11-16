@@ -526,6 +526,45 @@ mod tests {
         }
     }
 
+    /// The propagation stops at the first unchanged entry. Each case plants a marker in the
+    /// first element's `max_next_weight`: a propagation that walked the whole list (the old,
+    /// quadratic one) would overwrite it.
+    #[test]
+    fn test_propagation_stops_at_unchanged_entry() {
+        let marker = 99.0_f32;
+        let planted = |records: Vec<(PointOffsetType, DimWeight)>| {
+            let mut list = PostingList::from(records);
+            list.elements[0].max_next_weight = marker;
+            list
+        };
+        let first_max_next_weight = |list: &PostingList| list.elements[0].max_next_weight;
+
+        // Append: the new last element raises only its predecessor.
+        let mut list = planted(vec![(0, 1.0), (1, 5.0), (2, 2.0)]);
+        list.upsert(PostingElementEx::new(3, 1.0));
+        assert_eq!(first_max_next_weight(&list), marker);
+
+        // Update: lowering the last weight changes only its predecessor.
+        let mut list = planted(vec![(0, 1.0), (1, 5.0), (2, 2.0), (3, 1.0)]);
+        list.upsert(PostingElementEx::new(3, 0.5));
+        assert_eq!(first_max_next_weight(&list), marker);
+
+        // Delete: removing the last element changes only the new last one's predecessor.
+        let mut list = planted(vec![(0, 1.0), (1, 5.0), (2, 2.0), (3, 1.0), (4, 1.0)]);
+        list.delete(4);
+        assert_eq!(first_max_next_weight(&list), marker);
+    }
+
+    /// An element inserted in the middle starts with `DEFAULT_MAX_NEXT_WEIGHT`, which equals
+    /// the propagated value when every weight to its right is negative infinity. It must still
+    /// be written past, so its own weight reaches its predecessors.
+    #[test]
+    fn test_insert_before_negative_infinity_tail() {
+        let mut list = PostingList::from(vec![(0, 1.0), (2, f32::NEG_INFINITY)]);
+        list.upsert(PostingElementEx::new(1, 5.0));
+        assert_eq!(list.elements[0].max_next_weight, 5.0);
+    }
+
     #[test]
     fn test_random_delete() {
         use rand::RngExt;
