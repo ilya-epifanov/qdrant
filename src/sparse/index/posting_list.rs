@@ -1,3 +1,6 @@
+// Modified for grayce/entity-linking: the max_next_weight propagation stops once an entry
+// already has its new value. See provenance/README.md.
+
 use std::cmp::max;
 
 use crate::common::types::PointOffsetType;
@@ -91,7 +94,12 @@ impl PostingList {
     }
 
     /// Propagates `max_next_weight` from the entry at `up_to_index` to previous entries.
-    /// If an entry has a weight larger than `max_next_weight`, the propagation stops.
+    ///
+    /// Stops at the first entry, after the one right before `up_to_index`, whose
+    /// `max_next_weight` already has the new value: every entry before it is then unchanged
+    /// too, because each one's value is the previous one's value maxed with that entry's
+    /// unchanged weight. The entry right before `up_to_index` is always written: it may be a
+    /// newly inserted element, whose own weight its predecessors do not reflect yet.
     fn propagate_max_next_weight_to_the_left(&mut self, up_to_index: usize) {
         // used element at `up_to_index` as the starting point
         let starting_element = &self.elements[up_to_index];
@@ -102,7 +110,10 @@ impl PostingList {
         .0;
 
         // propagate max_next_weight update to the previous entries
-        for element in self.elements[..up_to_index].iter_mut().rev() {
+        for (distance, element) in self.elements[..up_to_index].iter_mut().rev().enumerate() {
+            if distance > 0 && element.max_next_weight.to_bits() == max_next_weight.to_bits() {
+                break;
+            }
             // update max_next_weight for element
             element.max_next_weight = max_next_weight;
             max_next_weight = max_next_weight.max(element.weight);
@@ -471,6 +482,48 @@ mod tests {
             posting_list.elements[2].max_next_weight,
             DEFAULT_MAX_NEXT_WEIGHT
         );
+    }
+
+    /// After any sequence of inserts (in and out of id order), weight updates (up, down and
+    /// unchanged) and deletes, each element's `max_next_weight` is bit for bit the one a fresh
+    /// build of the same records computes: the maximum weight to its right.
+    #[test]
+    fn test_max_next_weight_after_random_operations() {
+        let mut state = 0x9e37_79b9_7f4a_7c15_u64;
+        let mut next = move |bound: u64| {
+            state ^= state << 13;
+            state ^= state >> 7;
+            state ^= state << 17;
+            state % bound
+        };
+        for _ in 0..500 {
+            let mut list = PostingList::default();
+            let mut records = std::collections::BTreeMap::new();
+            for step in 0..200_u32 {
+                // Ascending appends first, then random ids: few distinct weights, so ties occur.
+                let id = if step < 40 { step * 2 } else { next(96) as u32 };
+                let weight = (next(12) + 1) as f32 / 4.0;
+                if step >= 40 && next(4) == 0 {
+                    list.delete(id);
+                    records.remove(&id);
+                } else {
+                    list.upsert(PostingElementEx::new(id, weight));
+                    records.insert(id, weight);
+                }
+                let mut builder = PostingBuilder::new();
+                for (&id, &weight) in &records {
+                    builder.add(id, weight);
+                }
+                let expected = builder.build();
+                let bits = |list: &PostingList| {
+                    list.elements
+                        .iter()
+                        .map(|e| (e.record_id, e.weight.to_bits(), e.max_next_weight.to_bits()))
+                        .collect_vec()
+                };
+                assert_eq!(bits(&list), bits(&expected));
+            }
+        }
     }
 
     #[test]
